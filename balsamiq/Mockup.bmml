@@ -75,7 +75,7 @@
         <text>Add%20a%20Drone</text>
       </controlProperties>
     </control>
-    <control controlID="20" controlTypeID="com.balsamiq.mockups::Paragraph" x="71" y="315" w="206" h="80" measuredW="275" measuredH="80" zOrder="9" locked="false" isInGroup="-1">
+    <control controlID="20" controlTypeID="com.balsamiq.mockups::Paragraph" x="71" y="327" w="206" h="37" measuredW="275" measuredH="80" zOrder="9" locked="false" isInGroup="-1">
       <controlProperties>
         <align>center</align>
         <text>*You%20don%27t%20have%20any%20drone.*%0AAdd%20one%20to%20start%20flying%20with%20it%21</text>
@@ -123,6 +123,7 @@
     </control>
     <control controlID="29" controlTypeID="com.balsamiq.mockups::Button" x="808" y="393" w="78" h="30" measuredW="72" measuredH="27" zOrder="18" locked="false" isInGroup="-1">
       <controlProperties>
+        <state>disabled</state>
         <text>Connect</text>
       </controlProperties>
     </control>
@@ -160,6 +161,30 @@
           </controlProperties>
         </control>
       </groupChildrenDescriptors>
+    </control>
+    <control controlID="41" controlTypeID="com.balsamiq.mockups::Label" x="707" y="301" w="91" h="-1" measuredW="53" measuredH="21" zOrder="22" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>right</align>
+        <italic>true</italic>
+        <text>available%21</text>
+      </controlProperties>
+    </control>
+    <control controlID="42" controlTypeID="com.balsamiq.mockups::Label" x="707" y="398" w="91" h="-1" measuredW="70" measuredH="21" zOrder="23" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>right</align>
+        <italic>true</italic>
+        <text>not%20in%20range</text>
+      </controlProperties>
+    </control>
+    <control controlID="43" controlTypeID="com.balsamiq.mockups::Icon" x="1056" y="358" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="24" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>ReloadIcon%7Csmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="44" controlTypeID="com.balsamiq.mockups::Icon" x="165" y="296" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="25" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>AsteriskIcon%7Csmall</icon>
+      </controlProperties>
     </control>
   </controls>
 </mockup>
