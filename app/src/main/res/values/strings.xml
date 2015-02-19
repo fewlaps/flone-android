@@ -5,7 +5,22 @@
 
     <string name="action_connect">Connect</string>
     <string name="action_disconnect">Disconnect</string>
+    <string name="action_next">Next</string>
+    <string name="action_ok">OK</string>
 
     <string name="notification_message">Service running</string>
 
+    <!-- Drone list -->
+    <string name="drone_list_select_one">Select a drone to connect with it!</string>
+    <string name="drone_list_add_drone">Add a new drone</string>
+    <string name="drone_list_zero1">Let\'s start the party!</string>
+    <string name="drone_list_zero2">Add a drone to start flying it</string>
+
+    <!-- Add a drone -->
+    <string name="add_drone_select_bluetooth">Select the drone of the list of bluetooth devices</string>
+    <string name="add_drone_not_paired_yet">If your drone doesn\'t appear in the list,\npair it with the phone</string>
+    <string name="add_drone_launch_bt_screen">Pair the drone with the phone</string>
+    <string name="add_drone_zero1">There isn\'t any paired bluetooth device</string>
+    <string name="add_drone_zero2">Did you tried to switch on the drone?</string>
+    <string name="add_drone_nickname_hint">Write a friendly name...</string>
 </resources>

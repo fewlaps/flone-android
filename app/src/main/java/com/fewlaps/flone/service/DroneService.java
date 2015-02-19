@@ -1,13 +1,15 @@
-package com.fewlaps.flone;
+package com.fewlaps.flone.service;
 
 import android.content.Intent;
 import android.util.Log;
+
+import com.fewlaps.flone.util.NotificationUtil;
 
 /**
  * This Sercive is the responsable of maintaing a connection with the Drone
  *
  * @author Roc Boronat (roc@fewlaps.com)
- * @date 20150215
+ * @date 15/02/2015
  */
 public class DroneService extends BaseService {
 

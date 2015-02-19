@@ -1,0 +1,30 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="@dimen/gapLarge">
+
+    <TextView
+        android:id="@+id/tv_nickname"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Flone #42" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_marginTop="@dimen/gapMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Ocarina BT" />
+
+    <TextView
+        android:id="@+id/tv_address"
+        android:layout_marginTop="@dimen/gapSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="42:CA:FE:BA:BE" />
+
+</LinearLayout>

@@ -1,4 +1,4 @@
-package com.fewlaps.flone;
+package com.fewlaps.flone.service;
 
 import android.app.Service;
 import android.content.Intent;
@@ -12,7 +12,7 @@ import de.greenrobot.event.EventBus;
  * The boring part of common Services
  *
  * @author Roc Boronat (roc@fewlaps.com)
- * @date 20150215
+ * @date 15/02/2015
  */
 public class BaseService extends Service {
 
