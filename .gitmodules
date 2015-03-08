@@ -1,3 +1,7 @@
 [submodule "processing"]
 	path = processing
-	url = https://github.com/rocboronat/flone
+	url = https://github.com/aeracoop/flone.git
+	branch = master
+[submodule "legacy-processing-project"]
+	path = legacy-processing-project
+	url = https://github.com/aeracoop/flone.git
