@@ -39,7 +39,7 @@ public class Database {
     public static void addDrone(Context context, Drone drone) {
         List<Drone> drones = getDrones(context);
         drones.add(drone);
-        PreferenceManager.getDefaultSharedPreferences(context).edit().putString(PREF_DRONES_LIST, GSON.toJson(drones)).apply();
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putString(PREF_DRONES_LIST, GSON.toJson(drones)).commit();
     }
 
     private static Drone selectedDrone = null;
@@ -59,7 +59,7 @@ public class Database {
 
     public static void setSelectedDrone(Context context, Drone drone) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        preferences.edit().putString(PREF_DRONE_SELECTED, GSON.toJson(drone)).apply();
+        preferences.edit().putString(PREF_DRONE_SELECTED, GSON.toJson(drone)).commit();
         selectedDrone = drone;
     }
 }

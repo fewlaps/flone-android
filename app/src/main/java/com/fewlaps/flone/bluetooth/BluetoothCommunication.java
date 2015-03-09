@@ -27,25 +27,20 @@ public class BluetoothCommunication {
     public BluetoothSocket socket = null;
     public OutputStream outStream = null;
     public InputStream inStream = null;
-    // private boolean failed=false;
 
-    public BluetoothCommunication(Context context, String address) {
-        this.address = address.toUpperCase();
+    public boolean connected = false;
+
+    public BluetoothCommunication(Context context) {
         localAdapter = BluetoothAdapter.getDefaultAdapter();
         if ((localAdapter != null) && localAdapter.isEnabled()) {
-            Log.i(TAG, "Bluetooth adapter found and enabled on phone. ");
-            connect(this.address);
+            Log.i(TAG, "Bluetooth adapter found and enabled on phone");
         } else {
             Log.e(TAG, "Bluetooth adapter NOT FOUND or NOT ENABLED!");
         }
     }
 
     public void connect(String address) {
-        for (BluetoothDevice dp : localAdapter.getBondedDevices()) {
-            if (dp.getName().equals(address)) {
-                this.address = dp.getAddress();
-            }
-        }
+        this.address = address.toUpperCase();
         Log.i(TAG, "Bluetooth connecting to " + address + "...");
         try {
             remoteDevice = localAdapter.getRemoteDevice(address);
@@ -82,6 +77,7 @@ public class BluetoothCommunication {
         Log.i(TAG, "Connecting socket...");
         try {
             socket.connect();
+            connected = true;
             Log.i(TAG, "Socket connected.");
         } catch (IOException e) {
             try {
@@ -143,6 +139,7 @@ public class BluetoothCommunication {
                 bytesRead = inStream.read(inBuffer);
 //                this.floneRemote.parseMSPMessage(inBuffer, bytesRead);
             }
+            Log.d(TAG, "Read ok!");
         } catch (Exception e) {
             Log.e(TAG, "Read failed", e);
             inBuffer = null;
