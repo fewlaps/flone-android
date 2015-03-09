@@ -2,8 +2,8 @@ package com.fewlaps.flone.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.fewlaps.flone.R;
@@ -38,6 +38,16 @@ public class DronesListActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 startActivityForResult(new Intent(DronesListActivity.this, AddDroneActivity.class), ADD_DRONE_REQUEST);
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                List<Drone> drones = Database.getDrones(DronesListActivity.this);
+                Drone selectedDrone = drones.get(position);
+                Database.setSelectedDrone(DronesListActivity.this, selectedDrone);
+                startActivity(new Intent(DronesListActivity.this, FlyActivity.class));
             }
         });
     }

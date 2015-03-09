@@ -10,7 +10,13 @@ import com.fewlaps.flone.service.DroneService;
 
 import de.greenrobot.event.EventBus;
 
-/**
+/**About the flow: When the user is in this Activity, it means that it is (or wants to be)
+ * connected to a Drone. So, this Activity is the responsable of launching the Service to
+ * connect to the Drone when the user is in it.
+ *
+ * Also, it is the responsable of saying: "are you sure you want to disconnect of the Drone?"
+ * when the user taps the back button.
+ *
  * @author Roc Boronat (roc@fewlaps.com)
  * @date 20150215
  */

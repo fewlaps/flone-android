@@ -19,6 +19,7 @@ public class Database {
     private static final Gson GSON = new Gson();
 
     private static final String PREF_DRONES_LIST = "prefDronesList";
+    private static final String PREF_DRONE_SELECTED = "prefDroneSelected";
 
     private static List<Drone> drones = null;
 
@@ -39,5 +40,26 @@ public class Database {
         List<Drone> drones = getDrones(context);
         drones.add(drone);
         PreferenceManager.getDefaultSharedPreferences(context).edit().putString(PREF_DRONES_LIST, GSON.toJson(drones)).apply();
+    }
+
+    private static Drone selectedDrone = null;
+
+    public static Drone getSelectedDrone(Context context) {
+        if (selectedDrone == null) {
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+            String value = preferences.getString(PREF_DRONE_SELECTED, null);
+            if (value != null) {
+                selectedDrone = GSON.fromJson(value, Drone.class);
+            } else {
+                selectedDrone = null;
+            }
+        }
+        return selectedDrone;
+    }
+
+    public static void setSelectedDrone(Context context, Drone drone) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        preferences.edit().putString(PREF_DRONE_SELECTED, GSON.toJson(drone)).apply();
+        selectedDrone = drone;
     }
 }
