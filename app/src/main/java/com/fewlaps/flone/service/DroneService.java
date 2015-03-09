@@ -21,7 +21,7 @@ public class DroneService extends BaseService {
 
     BluetoothCommunication communication = null;
 
-    public boolean connected; //it's connected or trying to connect the Drone
+    public boolean running = false;
 
     public static String ACTION_CONNECT = "connect";
     public static String ACTION_DISCONNECT = "disconnect";
@@ -35,19 +35,21 @@ public class DroneService extends BaseService {
         communication = new BluetoothCommunication(this);
         startForeground(NotificationUtil.KEY_FOREGROUND_NOTIFICATION, NotificationUtil.getForegroundServiceNotification(this));
 
-        connectTask.postDelayed(reconnectRunnable, DELAY_RECONNECT);
-        readTask.postDelayed(readRunnable, DELAY_READ);
+        onEventMainThread(ACTION_CONNECT);
 
         return START_NOT_STICKY;
     }
 
     public void onEventMainThread(String action) {
-        Log.d("TEST", "banana");
+        Log.d("SERVICE", "Action received: " + action);
 
         if (action.equals(ACTION_CONNECT)) {
-            connected = true;
+            running = true;
+            reconnectRunnable.run();
+            readTask.postDelayed(readRunnable, DELAY_READ);
         } else if (action.equals(ACTION_DISCONNECT)) {
-            connected = false;
+            communication.disconnect();
+            running = false;
             stopForeground(true);
             stopSelf();
         }
@@ -55,25 +57,25 @@ public class DroneService extends BaseService {
 
     private final Runnable reconnectRunnable = new Runnable() {
         public void run() {
-            if (!communication.connected) {
-                Drone selectedDrone = Database.getSelectedDrone(DroneService.this);
-                if (selectedDrone != null) {
-                    communication.connect(selectedDrone.address);
+            if (running) {
+                if (!communication.connected) {
+                    Drone selectedDrone = Database.getSelectedDrone(DroneService.this);
+                    if (selectedDrone != null) {
+                        communication.connect(selectedDrone.address);
+                    }
                 }
+                connectTask.postDelayed(reconnectRunnable, DELAY_RECONNECT);
             }
-            connectTask.postDelayed(reconnectRunnable, DELAY_RECONNECT);
         }
-
-        ;
     };
     private final Runnable readRunnable = new Runnable() {
         public void run() {
-            if (communication.connected) {
-                communication.read();
+            if (running) {
+                if (communication.connected) {
+                    communication.read();
+                }
+                readTask.postDelayed(readRunnable, DELAY_READ);
             }
-            connectTask.postDelayed(readRunnable, DELAY_READ);
         }
-
-        ;
     };
 }

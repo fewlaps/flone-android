@@ -101,6 +101,16 @@ public class BluetoothCommunication {
         return;
     }
 
+    public void disconnect() {
+        try {
+            inStream.close();
+            outStream.close();
+            socket.close();
+        } catch (IOException e) {
+
+        }
+    }
+
     public void write(String s) {
         //No tags here for performance
         //Log.i(TAG, "Sending \""+s+"\"... ");
@@ -137,7 +147,7 @@ public class BluetoothCommunication {
         try {
             if (inStream.available() > 0) {
                 bytesRead = inStream.read(inBuffer);
-//                this.floneRemote.parseMSPMessage(inBuffer, bytesRead);
+                BluetoothRawTranslation.parseMSPMessage(inBuffer, bytesRead);
             }
             Log.d(TAG, "Read ok!");
         } catch (Exception e) {
