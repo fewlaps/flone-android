@@ -1,7 +1,6 @@
-[submodule "processing"]
-	path = processing
-	url = https://github.com/aeracoop/flone.git
-	branch = master
-[submodule "legacy-processing-project"]
-	path = legacy-processing-project
-	url = https://github.com/aeracoop/flone.git
+[submodule "reference/zjusbo-multiwii-remote"]
+	path = reference/zjusbo-multiwii-remote
+	url = https://github.com/zjusbo/Multiwii-Remote.git
+[submodule "reference/aeracoop-flone-processing"]
+	path = reference/aeracoop-flone-processing
+	url = https://github.com/aeracoop/flone
