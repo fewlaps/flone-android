@@ -4,12 +4,15 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.fewlaps.flone.communication.Communication;
+import com.fewlaps.flone.communication.bean.DroneConnectionStatusChanged;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import de.greenrobot.event.EventBus;
 
 public abstract class MultirotorData {
     public boolean is_SET_RAW_RC_received = false;
@@ -243,6 +246,7 @@ public abstract class MultirotorData {
         mConnectedThread = new ConnectedThread(communication);
         //DO NOT START READING DATA SO FAR --- song bo
         connection.Connected = true;
+        EventBus.getDefault().post(new DroneConnectionStatusChanged(true));
         mConnectedThread.start();
     }
 

@@ -3,10 +3,13 @@ package com.fewlaps.flone.communication.protocol;
 import android.util.Log;
 
 import com.fewlaps.flone.communication.Communication;
+import com.fewlaps.flone.communication.bean.DroneSensorInformation;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
+import de.greenrobot.event.EventBus;
 
 public class MultiWii230 extends MultirotorData {
 
@@ -224,6 +227,7 @@ public class MultiWii230 extends MultirotorData {
                 setIs_ATTITUDE_received(true);
                 attitudeReceivedTime = System.currentTimeMillis();
                 Log.d("aaa", "MSP_ATTITUDE: angx = " + angx + ",angy = " + angy + ",head = " + head);
+                EventBus.getDefault().post(new DroneSensorInformation(head, angy, angx));
                 break;
             case MSP_ALTITUDE:
                 alt = ((float) read32() / 100) - AltCorrection;
@@ -362,12 +366,14 @@ public class MultiWii230 extends MultirotorData {
     private void ReadFrame() {
         DataFlow--;
 
+//        if (communication.dataAvailable()) {
+//            Log.v("READ", "START OF THE MESSAGE ---------------");
         while (communication.dataAvailable()) {
             //It's a finite state machine .. MY GOD!!
             //SONG BO
             try {
                 c = (communication.Read());
-                Log.v("READ", "Data: " + c);
+//                Log.v("READ", "Data: " + c);
 
             } catch (Exception e) {
                 c_state = IDLE;
@@ -390,16 +396,16 @@ public class MultiWii230 extends MultirotorData {
             } else if (c_state == HEADER_ARROW || c_state == HEADER_ERR) {
                 /* is this an error message? */
                 err_rcvd = (c_state == HEADER_ERR); /*
-													 * now we are expecting the
+                                                     * now we are expecting the
 													 * payload size
 													 */
                 dataSize = (c & 0xFF);
-				/* reset index variables */
+                /* reset index variables */
                 p = 0;
                 offset = 0;
                 checksum = 0;
                 checksum ^= (c & 0xFF);
-				/* the command is to follow */
+                /* the command is to follow */
                 c_state = HEADER_SIZE;
             } else if (c_state == HEADER_SIZE) {
                 cmd = (byte) (c & 0xFF);
@@ -409,13 +415,13 @@ public class MultiWii230 extends MultirotorData {
                 checksum ^= (c & 0xFF);
                 inBuf[offset++] = (byte) (c & 0xFF);
             } else if (c_state == HEADER_CMD && offset >= dataSize) {
-				/* compare calculated and transferred checksum */
+                /* compare calculated and transferred checksum */
                 if ((checksum & 0xFF) == (c & 0xFF)) {
                     if (err_rcvd) {
                         Log.e("Multiwii protocol",
                                 "Copter did not understand request type " + c);
                     } else {
-						/* we got a valid response packet, evaluate it */
+                        /* we got a valid response packet, evaluate it */
                         //SONG BO HERE WE RECEIVED ENOUGH DATA-----------------------
                         evaluateCommand(cmd, (int) dataSize);
                         //SONG BO ---------------------------------------
@@ -438,6 +444,8 @@ public class MultiWii230 extends MultirotorData {
                 }
                 c_state = IDLE;
             }
+//        }
+//            Log.v("READ", "END OF THE MESSAGE ---------------");
         }
     }
 
@@ -827,7 +835,7 @@ public class MultiWii230 extends MultirotorData {
     }
 
 	/*
-	 * @Override public void SendRequestMSP_SET_WP(Waypoint w) {
+     * @Override public void SendRequestMSP_SET_WP(Waypoint w) {
 	 * ArrayList<Character> payload = new ArrayList<Character>();
 	 * payload.add((char) w.Number); payload.add((char) (w.Lat & 0xFF));
 	 * payload.add((char) ((w.Lat >> 8) & 0xFF)); payload.add((char) ((w.Lat >>
@@ -899,8 +907,8 @@ public class MultiWii230 extends MultirotorData {
     @Override
     public void SendRequestMSP_SET_SERVO_CONF() {
         // TODO
-		/*
-		 * ArrayList<Character> payload = new ArrayList<Character>();
+        /*
+         * ArrayList<Character> payload = new ArrayList<Character>();
 		 * 
 		 * for (int i = 0; i < ServoConf.length; i++) { payload.add((char)
 		 * (ServoConf[i].Min & 0xFF)); payload.add((char) ((ServoConf[i].Min >>

@@ -7,8 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_centerVertical="true">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/bt_connect"
@@ -24,4 +23,12 @@
             android:layout_weight="1"
             android:text="@string/action_disconnect" />
     </LinearLayout>
+
+    <TextView
+        android:layout_marginLeft="@dimen/gapLarge"
+        android:textSize="@dimen/textSizeLarge"
+        android:id="@+id/tv_drone_sensors"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>

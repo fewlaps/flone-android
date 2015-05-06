@@ -6,6 +6,8 @@ import android.util.Log;
 
 import com.fewlaps.flone.communication.Bluetooth;
 import com.fewlaps.flone.communication.Communication;
+import com.fewlaps.flone.communication.bean.DroneConnectionStatusChanged;
+import com.fewlaps.flone.communication.bean.DroneSensorInformation;
 import com.fewlaps.flone.communication.protocol.MultiWii230;
 import com.fewlaps.flone.communication.protocol.MultirotorData;
 import com.fewlaps.flone.data.Database;
@@ -22,7 +24,6 @@ public class DroneService extends BaseService {
     private static final int BAUD_RATE = 115200;
 
     private static final int DELAY_RECONNECT = 2000;
-    private static final int DELAY_READ = 100;
 
     public Communication communication;
     public MultirotorData protocol;
@@ -33,7 +34,6 @@ public class DroneService extends BaseService {
     public static String ACTION_DISCONNECT = "disconnect";
 
     private Handler connectTask = new Handler();
-    private Handler readTask = new Handler();
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -55,13 +55,22 @@ public class DroneService extends BaseService {
         if (action.equals(ACTION_CONNECT)) {
             running = true;
             reconnectRunnable.run();
-            readTask.postDelayed(readRunnable, DELAY_READ);
         } else if (action.equals(ACTION_DISCONNECT)) {
             communication.Close();
             running = false;
             stopForeground(true);
             stopSelf();
         }
+    }
+
+    public void onEventMainThread(DroneConnectionStatusChanged status) {
+        if (status.isConnected()) {
+            protocol.SendRequestMSP_ATTITUDE();
+        }
+    }
+
+    public void onEventMainThread(DroneSensorInformation sensorInformation) {
+        protocol.SendRequestMSP_ATTITUDE();
     }
 
     private final Runnable reconnectRunnable = new Runnable() {
@@ -73,18 +82,8 @@ public class DroneService extends BaseService {
                         protocol.Connect(selectedDrone.address, BAUD_RATE, 0);
                     }
                 }
-//                connectTask.postDelayed(reconnectRunnable, DELAY_RECONNECT);
+                connectTask.postDelayed(reconnectRunnable, DELAY_RECONNECT);
             }
-        }
-    };
-    private final Runnable readRunnable = new Runnable() {
-        public void run() {
-//            if (running) {
-//                if (communication.Connected) {
-//                    Log.i("BT", "" + communication.Read());
-//                }
-//                readTask.postDelayed(readRunnable, DELAY_READ);
-//            }
         }
     };
 }

@@ -23,4 +23,9 @@
     <string name="add_drone_zero1">There isn\'t any paired bluetooth device</string>
     <string name="add_drone_zero2">Did you tried to switch on the drone?</string>
     <string name="add_drone_nickname_hint">Write a friendly name...</string>
+
+    <!-- Common aircraft axis names -->
+    <string name="axis_yaw">Yaw</string>
+    <string name="axis_pitch">Pitch</string>
+    <string name="axis_roll">Roll</string>
 </resources>
