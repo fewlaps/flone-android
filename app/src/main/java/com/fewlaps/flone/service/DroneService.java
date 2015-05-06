@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
 
-import com.fewlaps.flone.bluetooth.BluetoothCommunication;
+import com.fewlaps.flone.communication.Bluetooth;
+import com.fewlaps.flone.communication.Communication;
+import com.fewlaps.flone.communication.protocol.MultiWii230;
+import com.fewlaps.flone.communication.protocol.MultirotorData;
 import com.fewlaps.flone.data.Database;
 import com.fewlaps.flone.data.bean.Drone;
 import com.fewlaps.flone.util.NotificationUtil;
@@ -16,10 +19,13 @@ import com.fewlaps.flone.util.NotificationUtil;
  * @date 15/02/2015
  */
 public class DroneService extends BaseService {
-    private static final int DELAY_RECONNECT = 500;
+    private static final int BAUD_RATE = 115200;
+
+    private static final int DELAY_RECONNECT = 2000;
     private static final int DELAY_READ = 100;
 
-    BluetoothCommunication communication = null;
+    public Communication communication;
+    public MultirotorData protocol;
 
     public boolean running = false;
 
@@ -32,7 +38,10 @@ public class DroneService extends BaseService {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.i("SERVICE", "onStartCommand");
-        communication = new BluetoothCommunication(this);
+
+        communication = new Bluetooth(getApplicationContext());
+        protocol = new MultiWii230(communication);
+
         startForeground(NotificationUtil.KEY_FOREGROUND_NOTIFICATION, NotificationUtil.getForegroundServiceNotification(this));
 
         onEventMainThread(ACTION_CONNECT);
@@ -48,7 +57,7 @@ public class DroneService extends BaseService {
             reconnectRunnable.run();
             readTask.postDelayed(readRunnable, DELAY_READ);
         } else if (action.equals(ACTION_DISCONNECT)) {
-            communication.disconnect();
+            communication.Close();
             running = false;
             stopForeground(true);
             stopSelf();
@@ -58,24 +67,24 @@ public class DroneService extends BaseService {
     private final Runnable reconnectRunnable = new Runnable() {
         public void run() {
             if (running) {
-                if (!communication.connected) {
+                if (!communication.Connected) {
                     Drone selectedDrone = Database.getSelectedDrone(DroneService.this);
                     if (selectedDrone != null) {
-                        communication.connect(selectedDrone.address);
+                        protocol.Connect(selectedDrone.address, BAUD_RATE, 0);
                     }
                 }
-                connectTask.postDelayed(reconnectRunnable, DELAY_RECONNECT);
+//                connectTask.postDelayed(reconnectRunnable, DELAY_RECONNECT);
             }
         }
     };
     private final Runnable readRunnable = new Runnable() {
         public void run() {
-            if (running) {
-                if (communication.connected) {
-                    communication.read();
-                }
-                readTask.postDelayed(readRunnable, DELAY_READ);
-            }
+//            if (running) {
+//                if (communication.Connected) {
+//                    Log.i("BT", "" + communication.Read());
+//                }
+//                readTask.postDelayed(readRunnable, DELAY_READ);
+//            }
         }
     };
 }
