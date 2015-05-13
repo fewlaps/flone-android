@@ -7,18 +7,18 @@ package com.fewlaps.flone.communication.bean;
  * @date 07/05/2015
  */
 public class DroneSensorInformation {
-    private double yaw;
+    private double heading;
     private double pitch;
     private double roll;
 
-    public DroneSensorInformation(double yaw, double pitch, double roll) {
-        this.yaw = yaw;
+    public DroneSensorInformation(double heading, double pitch, double roll) {
+        this.heading = heading;
         this.pitch = pitch;
         this.roll = roll;
     }
 
-    public double getYaw() {
-        return yaw;
+    public double getHeading() {
+        return heading;
     }
 
     public double getPitch() {
@@ -27,14 +27,5 @@ public class DroneSensorInformation {
 
     public double getRoll() {
         return roll;
-    }
-
-    @Override
-    public String toString() {
-        return "DroneSensorInformation{" +
-                "yaw=" + yaw +
-                ", pitch=" + pitch +
-                ", roll=" + roll +
-                '}';
     }
 }

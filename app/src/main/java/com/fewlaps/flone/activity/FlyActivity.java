@@ -66,7 +66,7 @@ public class FlyActivity extends BaseActivity {
     public void onEventMainThread(DroneSensorInformation droneSensorInformation) {
         StringBuilder sb = new StringBuilder();
         sb.append("Flone:\n");
-        sb.append(getString(R.string.axis_yaw) + ": " + droneSensorInformation.getYaw() + "\n");
+        sb.append(getString(R.string.axis_heading) + ": " + droneSensorInformation.getHeading() + "\n");
         sb.append(getString(R.string.axis_pitch) + ": " + droneSensorInformation.getPitch() + "\n");
         sb.append(getString(R.string.axis_roll) + ": " + droneSensorInformation.getRoll() + "\n");
         droneSensorsTV.setText(sb.toString());
@@ -75,7 +75,7 @@ public class FlyActivity extends BaseActivity {
     public void onEventMainThread(PhoneSensorInformation phoneSensorInformation) {
         StringBuilder sb = new StringBuilder();
         sb.append("Phone:\n");
-        sb.append(getString(R.string.axis_yaw) + ": " + phoneSensorInformation.getYaw() + "\n");
+        sb.append(getString(R.string.axis_heading) + ": " + phoneSensorInformation.getHeading() + "\n");
         sb.append(getString(R.string.axis_pitch) + ": " + phoneSensorInformation.getPitch() + "\n");
         sb.append(getString(R.string.axis_roll) + ": " + phoneSensorInformation.getRoll() + "\n");
         phoneSensorsTV.setText(sb.toString());

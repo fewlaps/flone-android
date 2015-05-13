@@ -9,6 +9,7 @@ import com.fewlaps.flone.communication.Communication;
 import com.fewlaps.flone.communication.RCSignals;
 import com.fewlaps.flone.communication.bean.DroneConnectionStatusChanged;
 import com.fewlaps.flone.communication.bean.DroneSensorInformation;
+import com.fewlaps.flone.communication.bean.PhoneSensorInformation;
 import com.fewlaps.flone.communication.protocol.MultiWii230;
 import com.fewlaps.flone.communication.protocol.MultirotorData;
 import com.fewlaps.flone.data.Database;
@@ -41,6 +42,8 @@ public class DroneService extends BaseService {
     private long lastDroneAnswerReceived = 0;
 
     private OrientationSensorsListener orientationSensorsListener;
+    private PhoneSensorInformation lastPhoneSensorInformation;
+    private DroneSensorInformation lastDroneSensorInformation;
 
     public static final RCSignals rc = new RCSignals(); //Created at startup, never changed, never destroyed, totally reused at every request
 
@@ -79,21 +82,28 @@ public class DroneService extends BaseService {
     public void onEventMainThread(DroneConnectionStatusChanged status) {
         if (status.isConnected()) {
             protocol.SendRequestMSP_ATTITUDE();
-            updateRCWithInputData();
-            protocol.SendRequestMSP_SET_RAW_RC(rc.get());
         }
     }
 
     private void updateRCWithInputData() {
-        rc.setThrottle(1501);
-        rc.setYaw(1502);
-        rc.setRoll(1503);
-        rc.setPitch(1504);
+        rc.setAdjustedThrottle(1500);
+        rc.setAdjustedYaw((int) (lastPhoneSensorInformation.getHeading() - lastDroneSensorInformation.getHeading()));
+        rc.setAdjustedRoll((int) lastPhoneSensorInformation.getRoll());
+        rc.setAdjustedPitch((int) lastPhoneSensorInformation.getPitch());
     }
 
     public void onEventMainThread(DroneSensorInformation sensorInformation) {
+        lastDroneSensorInformation = sensorInformation;
+
         protocol.SendRequestMSP_ATTITUDE();
         lastDroneAnswerReceived = System.currentTimeMillis();
+
+        updateRCWithInputData();
+        protocol.SendRequestMSP_SET_RAW_RC(rc.get());
+    }
+
+    public void onEventMainThread(PhoneSensorInformation sensorInformation) {
+        lastPhoneSensorInformation = sensorInformation;
     }
 
     private final Runnable reconnectRunnable = new Runnable() {

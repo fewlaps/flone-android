@@ -52,7 +52,7 @@ public class OrientationSensorsListener implements SensorEventListener {
         SensorManager.getOrientation(mRotationMatrix, mValuesOrientation);
 
         PhoneSensorInformation sensorData = new PhoneSensorInformation();
-        sensorData.setYaw(restrictAngle((float) Math.toDegrees((double) mValuesOrientation[0])));
+        sensorData.setHeading(restrictAngle((float) Math.toDegrees((double) mValuesOrientation[0])));
         sensorData.setPitch(restrictAngle((float) Math.toDegrees((double) mValuesOrientation[1])));
         sensorData.setRoll(restrictAngle((float) Math.toDegrees((double) mValuesOrientation[2])));
 

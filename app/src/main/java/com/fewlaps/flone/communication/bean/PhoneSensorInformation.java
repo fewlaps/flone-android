@@ -7,7 +7,7 @@ package com.fewlaps.flone.communication.bean;
  * @date 13/05/2015
  */
 public class PhoneSensorInformation {
-    private double yaw;
+    private double heading;
     private double pitch;
     private double roll;
 
@@ -15,18 +15,18 @@ public class PhoneSensorInformation {
 
     }
 
-    public PhoneSensorInformation(double yaw, double pitch, double roll) {
-        this.yaw = yaw;
+    public PhoneSensorInformation(double heading, double pitch, double roll) {
+        this.heading = heading;
         this.pitch = pitch;
         this.roll = roll;
     }
 
-    public double getYaw() {
-        return yaw;
+    public double getHeading() {
+        return heading;
     }
 
-    public void setYaw(double yaw) {
-        this.yaw = yaw;
+    public void setHeading(double heading) {
+        this.heading = heading;
     }
 
     public double getPitch() {
@@ -43,14 +43,5 @@ public class PhoneSensorInformation {
 
     public void setRoll(double roll) {
         this.roll = roll;
-    }
-
-    @Override
-    public String toString() {
-        return "PhoneSensorInformation{" +
-                "yaw=" + yaw +
-                ", pitch=" + pitch +
-                ", roll=" + roll +
-                '}';
     }
 }
