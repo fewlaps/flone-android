@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.fewlaps.flone.communication.Bluetooth;
 import com.fewlaps.flone.communication.Communication;
+import com.fewlaps.flone.communication.RCSignals;
 import com.fewlaps.flone.communication.bean.DroneConnectionStatusChanged;
 import com.fewlaps.flone.communication.bean.DroneSensorInformation;
 import com.fewlaps.flone.communication.protocol.MultiWii230;
@@ -40,6 +41,8 @@ public class DroneService extends BaseService {
     private long lastDroneAnswerReceived = 0;
 
     private OrientationSensorsListener orientationSensorsListener;
+
+    public static final RCSignals rc = new RCSignals(); //Created at startup, never changed, never destroyed, totally reused at every request
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -76,7 +79,16 @@ public class DroneService extends BaseService {
     public void onEventMainThread(DroneConnectionStatusChanged status) {
         if (status.isConnected()) {
             protocol.SendRequestMSP_ATTITUDE();
+            updateRCWithInputData();
+            protocol.SendRequestMSP_SET_RAW_RC(rc.get());
         }
+    }
+
+    private void updateRCWithInputData() {
+        rc.setThrottle(1501);
+        rc.setYaw(1502);
+        rc.setRoll(1503);
+        rc.setPitch(1504);
     }
 
     public void onEventMainThread(DroneSensorInformation sensorInformation) {
