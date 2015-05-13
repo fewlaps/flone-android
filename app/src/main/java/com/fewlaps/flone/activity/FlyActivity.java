@@ -2,12 +2,12 @@ package com.fewlaps.flone.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.fewlaps.flone.R;
 import com.fewlaps.flone.communication.bean.DroneSensorInformation;
+import com.fewlaps.flone.communication.bean.PhoneSensorInformation;
 import com.fewlaps.flone.service.DroneService;
 
 import de.greenrobot.event.EventBus;
@@ -26,6 +26,7 @@ import de.greenrobot.event.EventBus;
 public class FlyActivity extends BaseActivity {
 
     private TextView droneSensorsTV;
+    private TextView phoneSensorsTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class FlyActivity extends BaseActivity {
         setContentView(R.layout.activity_fly);
 
         droneSensorsTV = (TextView) findViewById(R.id.tv_drone_sensors);
+        phoneSensorsTV = (TextView) findViewById(R.id.tv_phone_sensors);
 
         findViewById(R.id.bt_connect).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,11 +64,20 @@ public class FlyActivity extends BaseActivity {
     }
 
     public void onEventMainThread(DroneSensorInformation droneSensorInformation) {
-        Log.d("SENSORS", droneSensorInformation.toString());
         StringBuilder sb = new StringBuilder();
+        sb.append("Flone:\n");
         sb.append(getString(R.string.axis_yaw) + ": " + droneSensorInformation.getYaw() + "\n");
         sb.append(getString(R.string.axis_pitch) + ": " + droneSensorInformation.getPitch() + "\n");
         sb.append(getString(R.string.axis_roll) + ": " + droneSensorInformation.getRoll() + "\n");
         droneSensorsTV.setText(sb.toString());
+    }
+
+    public void onEventMainThread(PhoneSensorInformation phoneSensorInformation) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Phone:\n");
+        sb.append(getString(R.string.axis_yaw) + ": " + phoneSensorInformation.getYaw() + "\n");
+        sb.append(getString(R.string.axis_pitch) + ": " + phoneSensorInformation.getPitch() + "\n");
+        sb.append(getString(R.string.axis_roll) + ": " + phoneSensorInformation.getRoll() + "\n");
+        phoneSensorsTV.setText(sb.toString());
     }
 }

@@ -4,14 +4,18 @@ package com.fewlaps.flone.communication.bean;
  * A bean with 3 values: heading, pitch and roll.
  *
  * @author Roc Boronat (roc@fewlaps.com)
- * @date 07/05/2015
+ * @date 13/05/2015
  */
-public class DroneSensorInformation {
+public class PhoneSensorInformation {
     private double yaw;
     private double pitch;
     private double roll;
 
-    public DroneSensorInformation(double yaw, double pitch, double roll) {
+    public PhoneSensorInformation() {
+
+    }
+
+    public PhoneSensorInformation(double yaw, double pitch, double roll) {
         this.yaw = yaw;
         this.pitch = pitch;
         this.roll = roll;
@@ -21,17 +25,29 @@ public class DroneSensorInformation {
         return yaw;
     }
 
+    public void setYaw(double yaw) {
+        this.yaw = yaw;
+    }
+
     public double getPitch() {
         return pitch;
+    }
+
+    public void setPitch(double pitch) {
+        this.pitch = pitch;
     }
 
     public double getRoll() {
         return roll;
     }
 
+    public void setRoll(double roll) {
+        this.roll = roll;
+    }
+
     @Override
     public String toString() {
-        return "DroneSensorInformation{" +
+        return "PhoneSensorInformation{" +
                 "yaw=" + yaw +
                 ", pitch=" + pitch +
                 ", roll=" + roll +

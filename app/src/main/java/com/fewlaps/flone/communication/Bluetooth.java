@@ -119,7 +119,7 @@ public class Bluetooth extends Communication {
             Log.e(TAG, "SEND : Exception during write.", e);
             CloseSocket();
 
-            Toast.makeText(context, "Write error", Toast.LENGTH_LONG).show();
+//            Toast.makeText(context, "Write error", Toast.LENGTH_LONG).show();
             return false;
         }
 

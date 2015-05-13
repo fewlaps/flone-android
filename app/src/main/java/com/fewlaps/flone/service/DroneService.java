@@ -1,6 +1,9 @@
 package com.fewlaps.flone.service;
 
+import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Handler;
 import android.util.Log;
 
@@ -13,6 +16,7 @@ import com.fewlaps.flone.communication.protocol.MultirotorData;
 import com.fewlaps.flone.data.Database;
 import com.fewlaps.flone.data.bean.Drone;
 import com.fewlaps.flone.util.NotificationUtil;
+import com.fewlaps.flone.util.OrientationSensorsListener;
 
 /**
  * This Sercive is the responsable of maintaing a connection with the Drone
@@ -35,6 +39,10 @@ public class DroneService extends BaseService {
 
     private Handler connectTask = new Handler();
 
+    private SensorManager mSensorManager;
+    private Sensor mAccelerometer;
+    private Sensor mMagnetic;
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.i("SERVICE", "onStartCommand");
@@ -45,6 +53,13 @@ public class DroneService extends BaseService {
         startForeground(NotificationUtil.KEY_FOREGROUND_NOTIFICATION, NotificationUtil.getForegroundServiceNotification(this));
 
         onEventMainThread(ACTION_CONNECT);
+
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mMagnetic = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+        OrientationSensorsListener listener = new OrientationSensorsListener();
+        mSensorManager.registerListener(listener, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(listener, mMagnetic, SensorManager.SENSOR_DELAY_NORMAL);
 
         return START_NOT_STICKY;
     }
