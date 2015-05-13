@@ -28,6 +28,8 @@ public class OrientationSensorsListener implements SensorEventListener {
     private float[] mValuesOrientation = new float[3];
     private float[] mRotationMatrix = new float[9];
 
+    PhoneSensorInformation sensorInformation = new PhoneSensorInformation();
+
     public OrientationSensorsListener(Context context) {
         mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -51,12 +53,11 @@ public class OrientationSensorsListener implements SensorEventListener {
         SensorManager.getRotationMatrix(mRotationMatrix, null, mValuesAccel, mValuesMagnet);
         SensorManager.getOrientation(mRotationMatrix, mValuesOrientation);
 
-        PhoneSensorInformation sensorData = new PhoneSensorInformation();
-        sensorData.setHeading(restrictAngle((float) Math.toDegrees((double) mValuesOrientation[0])));
-        sensorData.setPitch(restrictAngle((float) Math.toDegrees((double) mValuesOrientation[1])));
-        sensorData.setRoll(restrictAngle((float) Math.toDegrees((double) mValuesOrientation[2])));
+        sensorInformation.setHeading(restrictAngle((float) Math.toDegrees((double) mValuesOrientation[0])));
+        sensorInformation.setPitch(restrictAngle((float) Math.toDegrees((double) mValuesOrientation[1])));
+        sensorInformation.setRoll(restrictAngle((float) Math.toDegrees((double) mValuesOrientation[2])));
 
-        EventBus.getDefault().post(sensorData);
+        EventBus.getDefault().post(sensorInformation);
     }
 
 

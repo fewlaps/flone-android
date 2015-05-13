@@ -13,6 +13,8 @@ import de.greenrobot.event.EventBus;
 
 public class MultiWii230 extends MultirotorData {
 
+    private DroneSensorInformation sensorInformation = new DroneSensorInformation();
+
     public MultiWii230(Communication bt) {
         super(bt);
         EZGUIProtocol = "2.3";
@@ -226,8 +228,9 @@ public class MultiWii230 extends MultirotorData {
                 head = read16();
                 setIs_ATTITUDE_received(true);
                 attitudeReceivedTime = System.currentTimeMillis();
-                Log.d("aaa", "MSP_ATTITUDE: angx = " + angx + ",angy = " + angy + ",head = " + head);
-                EventBus.getDefault().post(new DroneSensorInformation(head, angy, angx));
+//                Log.d("aaa", "MSP_ATTITUDE: angx = " + angx + ",angy = " + angy + ",head = " + head);
+                sensorInformation.update(head, angy, angx);
+                EventBus.getDefault().post(sensorInformation);
                 break;
             case MSP_ALTITUDE:
                 alt = ((float) read32() / 100) - AltCorrection;
@@ -928,7 +931,7 @@ public class MultiWii230 extends MultirotorData {
     }
 
 	/*
-	 * @Override public void SendRequestMSP_SET_WP_NAV(WaypointNav w) { // TODO
+     * @Override public void SendRequestMSP_SET_WP_NAV(WaypointNav w) { // TODO
 	 * Auto-generated method stub
 	 * 
 	 * }
