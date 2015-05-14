@@ -5,6 +5,7 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:id="@+id/l_buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -45,4 +46,10 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
+    <View
+        android:id="@+id/v_throttle"
+        android:layout_below="@id/l_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </RelativeLayout>

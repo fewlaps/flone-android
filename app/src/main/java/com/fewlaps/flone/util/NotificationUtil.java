@@ -9,7 +9,7 @@ import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
 
 import com.fewlaps.flone.R;
-import com.fewlaps.flone.activity.FlyActivity;
+import com.fewlaps.flone.view.activity.FlyActivity;
 
 /**
  * @author Roc Boronat (roc@fewlaps.com)
