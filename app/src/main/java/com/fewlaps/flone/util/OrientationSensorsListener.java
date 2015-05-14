@@ -53,15 +53,15 @@ public class OrientationSensorsListener implements SensorEventListener {
         SensorManager.getRotationMatrix(mRotationMatrix, null, mValuesAccel, mValuesMagnet);
         SensorManager.getOrientation(mRotationMatrix, mValuesOrientation);
 
-        sensorInformation.setHeading(restrictAngle((float) Math.toDegrees((double) mValuesOrientation[0])));
-        sensorInformation.setPitch(restrictAngle((float) Math.toDegrees((double) mValuesOrientation[1])));
-        sensorInformation.setRoll(restrictAngle((float) Math.toDegrees((double) mValuesOrientation[2])));
+        sensorInformation.setHeading(restrictAngle((int) Math.toDegrees((double) mValuesOrientation[0])));
+        sensorInformation.setPitch(restrictAngle((int) Math.toDegrees((double) mValuesOrientation[1])));
+        sensorInformation.setRoll(restrictAngle((int) Math.toDegrees((double) mValuesOrientation[2])));
 
         EventBus.getDefault().post(sensorInformation);
     }
 
 
-    private float restrictAngle(float tmpAngle) {
+    private int restrictAngle(int tmpAngle) {
         while (tmpAngle >= 180) tmpAngle -= 360;
         while (tmpAngle < -180) tmpAngle += 360;
         return tmpAngle;

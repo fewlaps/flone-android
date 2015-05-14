@@ -28,6 +28,9 @@ public class FlyActivity extends BaseActivity {
     private TextView droneSensorsTV;
     private TextView phoneSensorsTV;
 
+    StringBuilder droneSensorsSB = new StringBuilder();
+    StringBuilder phoneSensorsSB = new StringBuilder();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,20 +67,19 @@ public class FlyActivity extends BaseActivity {
     }
 
     public void onEventMainThread(DroneSensorInformation droneSensorInformation) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Flone:\n");
-        sb.append(getString(R.string.axis_heading) + ": " + droneSensorInformation.getHeading() + "\n");
-        sb.append(getString(R.string.axis_pitch) + ": " + droneSensorInformation.getPitch() + "\n");
-        sb.append(getString(R.string.axis_roll) + ": " + droneSensorInformation.getRoll() + "\n");
-        droneSensorsTV.setText(sb.toString());
+        droneSensorsSB.setLength(0);
+        droneSensorsSB.append(getString(R.string.axis_heading) + ": " + droneSensorInformation.getHeading() + "\n");
+        droneSensorsSB.append(getString(R.string.axis_pitch) + ": " + droneSensorInformation.getPitch() + "\n");
+        droneSensorsSB.append(getString(R.string.axis_roll) + ": " + droneSensorInformation.getRoll() + "\n");
+        droneSensorsTV.setText(droneSensorsSB.toString());
     }
 
     public void onEventMainThread(PhoneSensorInformation phoneSensorInformation) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Phone:\n");
-        sb.append(getString(R.string.axis_heading) + ": " + phoneSensorInformation.getHeading() + "\n");
-        sb.append(getString(R.string.axis_pitch) + ": " + phoneSensorInformation.getPitch() + "\n");
-        sb.append(getString(R.string.axis_roll) + ": " + phoneSensorInformation.getRoll() + "\n");
-        phoneSensorsTV.setText(sb.toString());
+        phoneSensorsSB.setLength(0);
+        phoneSensorsSB.append("Phone:\n");
+        phoneSensorsSB.append(getString(R.string.axis_heading) + ": " + phoneSensorInformation.getHeading() + "\n");
+        phoneSensorsSB.append(getString(R.string.axis_pitch) + ": " + phoneSensorInformation.getPitch() + "\n");
+        phoneSensorsSB.append(getString(R.string.axis_roll) + ": " + phoneSensorInformation.getRoll() + "\n");
+        phoneSensorsTV.setText(phoneSensorsSB.toString());
     }
 }
