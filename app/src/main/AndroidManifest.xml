@@ -26,6 +26,9 @@
         <activity
             android:name=".view.activity.FlyActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.CalibratePhoneActivity"
+            android:screenOrientation="portrait" />
 
         <service android:name=".service.DroneService" />
     </application>

@@ -2,6 +2,8 @@ package com.fewlaps.flone.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -79,6 +81,23 @@ public class FlyActivity extends BaseActivity {
     protected void onPause() {
         EventBus.getDefault().unregister(this);
         super.onPause();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.fly_activity_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_calibrate_phone:
+                startActivity(new Intent(this, CalibratePhoneActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public void onEventMainThread(DroneSensorData droneSensorInformation) {

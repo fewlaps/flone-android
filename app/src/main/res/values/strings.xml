@@ -30,4 +30,11 @@
     <string name="axis_yaw">Yaw</string>
     <string name="axis_pitch">Pitch</string>
     <string name="axis_roll">Roll</string>
+
+    <!-- Fly Activity menu -->
+    <string name="menu_action_calibrate_phone">Calibrate phone sensors</string>
+    <string name="calibration_start">Start calibration</string>
+    <string name="calibration_stop">Stop calibration</string>
+    <string name="calibration_reset">Reset old calibration</string>
+
 </resources>
