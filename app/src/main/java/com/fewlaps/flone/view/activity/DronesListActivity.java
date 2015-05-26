@@ -8,7 +8,7 @@ import android.widget.ListView;
 
 import com.fewlaps.flone.R;
 import com.fewlaps.flone.view.adapter.DroneAdapter;
-import com.fewlaps.flone.data.Database;
+import com.fewlaps.flone.data.KnownDronesDatabase;
 import com.fewlaps.flone.data.bean.Drone;
 
 import java.util.List;
@@ -44,9 +44,9 @@ public class DronesListActivity extends BaseActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                List<Drone> drones = Database.getDrones(DronesListActivity.this);
+                List<Drone> drones = KnownDronesDatabase.getDrones(DronesListActivity.this);
                 Drone selectedDrone = drones.get(position);
-                Database.setSelectedDrone(DronesListActivity.this, selectedDrone);
+                KnownDronesDatabase.setSelectedDrone(DronesListActivity.this, selectedDrone);
                 startActivity(new Intent(DronesListActivity.this, FlyActivity.class));
             }
         });
@@ -56,7 +56,7 @@ public class DronesListActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
 
-        List<Drone> drones = Database.getDrones(this);
+        List<Drone> drones = KnownDronesDatabase.getDrones(this);
         if (drones.isEmpty()) {
             listView.setVisibility(View.INVISIBLE);
             zeroCase.setVisibility(View.VISIBLE);

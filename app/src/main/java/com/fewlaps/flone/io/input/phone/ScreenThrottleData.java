@@ -1,6 +1,7 @@
 package com.fewlaps.flone.io.input.phone;
 
 import com.fewlaps.flone.io.bean.SensorInformation;
+import com.fewlaps.flone.io.communication.RCSignals;
 
 /**
  * A object to map the throttle that the user wants to send using the phone screen
@@ -12,10 +13,6 @@ public class ScreenThrottleData extends SensorInformation {
     public static ScreenThrottleData instance = new ScreenThrottleData();
 
     private Integer screenHeight;
-
-    public static final int MIN_THROTTLE = 1000;
-    public static final int MAX_THROTTLE = 2000;
-    public static final int GAP_THROTTLE = MAX_THROTTLE - MIN_THROTTLE;
 
     public Integer getScreenHeight() {
         return screenHeight;
@@ -41,7 +38,7 @@ public class ScreenThrottleData extends SensorInformation {
         }
 
         double throttleRelative = (float) throttlePosition / screenHeight;
-        int chosenThrottle = (int) (GAP_THROTTLE * throttleRelative);
-        this.throttle = ScreenThrottleData.MIN_THROTTLE + chosenThrottle;
+        int chosenThrottle = (int) (RCSignals.RC_GAP * throttleRelative);
+        this.throttle = RCSignals.RC_MIN + chosenThrottle;
     }
 }

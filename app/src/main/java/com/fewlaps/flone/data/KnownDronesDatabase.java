@@ -14,7 +14,7 @@ import java.util.List;
  * @author Roc Boronat (roc@fewlaps.com)
  * @date 19/02/2015
  */
-public class Database {
+public class KnownDronesDatabase {
 
     private static final Gson GSON = new Gson();
 

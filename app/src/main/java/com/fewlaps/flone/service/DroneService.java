@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
 
-import com.fewlaps.flone.data.Database;
+import com.fewlaps.flone.data.KnownDronesDatabase;
 import com.fewlaps.flone.data.bean.Drone;
 import com.fewlaps.flone.io.bean.DroneConnectionStatusChanged;
 import com.fewlaps.flone.io.bean.DroneSensorData;
@@ -89,8 +89,8 @@ public class DroneService extends BaseService {
     private void updateRCWithInputData() {
         rc.setThrottle(userInput.getThrottle());
         rc.setAdjustedYaw((int) (userInput.getHeading() - droneInput.getHeading()));
-        rc.setAdjustedRoll((int) userInput.getRoll());
-        rc.setAdjustedPitch((int) userInput.getPitch());
+        rc.setRoll((int) userInput.getRoll());
+        rc.setPitch((int) userInput.getPitch());
     }
 
     public void onEventMainThread(DroneSensorData sensorInformation) {
@@ -107,7 +107,7 @@ public class DroneService extends BaseService {
         public void run() {
             if (running) {
                 if (!communication.Connected) {
-                    Drone selectedDrone = Database.getSelectedDrone(DroneService.this);
+                    Drone selectedDrone = KnownDronesDatabase.getSelectedDrone(DroneService.this);
                     if (selectedDrone != null) {
                         protocol.Connect(selectedDrone.address, BAUD_RATE, 0);
                     }

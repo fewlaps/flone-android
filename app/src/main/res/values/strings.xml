@@ -42,7 +42,7 @@
     <!-- Calibrate phone -->
     <string name="calibrate_phone_sensors">Calibrate phone sensors</string>
     <string name="calibrate_phone_sensors_description">In order to have a great flying experience, calibrate your phone sensors. Calibrating it, the magic algorithm will know what are the minimum and maximum values of your phone\'s sensors, so we\'ll make your drone fly to its next stage.</string>
-    <string name="calibrate_phone_sensors_move_phone">It\'s the time to move your phone in all it\'s axis!</string>
+    <string name="calibrate_phone_sensors_move_phone">It\'s the time to move your phone in all its axis, doing the natural movement you think it\'s good to fly. Don\'t overrotate the phone!</string>
     <string name="calibrate_phone_sensors_start_button">Start calibration</string>
     <string name="calibrate_phone_sensors_stop_and_save_button">Stop and save calibration</string>
     <!-- Calibrate drone -->
@@ -53,7 +53,6 @@
     <string name="calibrate_sync_phone_and_drone">Sync phone and drone sensors</string>
     <string name="calibrate_sync_phone_and_drone_description">The easier way to make drone fly is to have it sync\'d with your phone. So, put your drone in a flat stable table, and get your phone with your hand, heading to the same orientation. Then, tap the button. The phone and the drone will be instantly sync\'d.</string>
     <string name="calibrate_sync_phone_and_drone_button">Synchronize sensors</string>
-
 
 
 </resources>

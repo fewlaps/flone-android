@@ -263,9 +263,9 @@
         <text>The%20easier%20way%20to%20make%20drone%20fly%20is%20to%20have%20it%20sync%27d%20with%20your%20phone.%20So%2C%20put%20your%20drone%20in%20a%20flat%20stable%20table%2C%20and%20get%20your%20phone%20with%20your%20hand%2C%20heading%20to%20the%20same%20orientation.%20Then%2C%20tap%20the%20button.%20The%20phone%20and%20the%20drone%20will%20be%20instantly%20sync%27d.</text>
       </controlProperties>
     </control>
-    <control controlID="63" controlTypeID="com.balsamiq.mockups::Button" x="901" y="1100" w="208" h="27" measuredW="139" measuredH="27" zOrder="34" locked="false" isInGroup="-1">
+    <control controlID="63" controlTypeID="com.balsamiq.mockups::Button" x="901" y="1100" w="208" h="27" measuredW="145" measuredH="27" zOrder="34" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Syncronize%20sensors</text>
+        <text>Synchronize%20sensors</text>
       </controlProperties>
     </control>
     <control controlID="64" controlTypeID="__group__" x="266" y="1272" w="282" h="573" measuredW="282" measuredH="573" zOrder="35" locked="false" isInGroup="-1">
@@ -385,9 +385,9 @@
         <text>Throttle%2042%25</text>
       </controlProperties>
     </control>
-    <control controlID="75" controlTypeID="com.balsamiq.mockups::Paragraph" x="301" y="1031" w="211" h="47" measuredW="275" measuredH="80" zOrder="42" locked="false" isInGroup="-1">
+    <control controlID="75" controlTypeID="com.balsamiq.mockups::Paragraph" x="301" y="1031" w="211" h="69" measuredW="275" measuredH="80" zOrder="42" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>It%27s%20the%20time%20to%20move%20your%20phone%20in%20all%20it%27s%20axis%21</text>
+        <text>It%27s%20the%20time%20to%20move%20your%20phone%20in%20all%20its%20axis%2C%20doing%20the%20natural%20movement%20you%20think%20it%27s%20good%20to%20fly.%20Don%27t%20overrotate%20the%20phone%21</text>
       </controlProperties>
     </control>
     <control controlID="76" controlTypeID="com.balsamiq.mockups::Paragraph" x="600" y="979" w="211" h="113" measuredW="275" measuredH="80" zOrder="43" locked="false" isInGroup="-1">
@@ -581,6 +581,16 @@
     <control controlID="126" controlTypeID="com.balsamiq.mockups::Button" x="299" y="1726" w="213" h="27" measuredW="131" measuredH="27" zOrder="73" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Load%20default%20value</text>
+      </controlProperties>
+    </control>
+    <control controlID="127" controlTypeID="com.balsamiq.mockups::StickyNote" x="245" y="1163" w="179" h="94" measuredW="109" measuredH="123" zOrder="74" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Only%20takes%20phone%20data.%20It%27s%20the%20same%20when%20flying%20with%20different%20drones</text>
+      </controlProperties>
+    </control>
+    <control controlID="128" controlTypeID="com.balsamiq.mockups::StickyNote" x="984" y="1148" w="179" h="87" measuredW="109" measuredH="123" zOrder="75" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>It%20depends%20of%20the%20drone%2C%20not%20only%20the%20phone.</text>
       </controlProperties>
     </control>
   </controls>

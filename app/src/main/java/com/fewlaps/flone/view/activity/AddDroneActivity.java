@@ -12,7 +12,7 @@ import android.widget.ListView;
 
 import com.fewlaps.flone.R;
 import com.fewlaps.flone.view.adapter.DeviceAdapter;
-import com.fewlaps.flone.data.Database;
+import com.fewlaps.flone.data.KnownDronesDatabase;
 import com.fewlaps.flone.data.bean.Drone;
 import com.fewlaps.flone.view.dialog.ChooseDeviceNickNameDialog;
 import com.fewlaps.flone.view.listener.OnDeviceNickNameSetListener;
@@ -81,7 +81,7 @@ public class AddDroneActivity extends BaseActivity implements OnDeviceNickNameSe
     @Override
     public void onDeviceNickNameSetListener(String nickName) {
         drone.nickName = nickName;
-        Database.addDrone(this, drone);
+        KnownDronesDatabase.addDrone(this, drone);
         setResult(Activity.RESULT_OK);
         finish();
     }

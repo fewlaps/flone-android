@@ -7,9 +7,12 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
+import com.fewlaps.flone.data.CalibrationDatabase;
+import com.fewlaps.flone.io.communication.RCSignals;
 import com.fewlaps.flone.io.input.UserInstructionsInput;
 
 import de.greenrobot.event.EventBus;
+import hugo.weaving.DebugLog;
 
 
 /**
@@ -29,8 +32,10 @@ public class PhoneInput implements SensorEventListener, UserInstructionsInput {
     private float[] mRotationMatrix = new float[9];
 
     PhoneInputData inputData = new PhoneInputData();
+    private Context context;
 
     public PhoneInput(Context context) {
+        this.context = context;
         mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mMagnetic = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
@@ -80,13 +85,23 @@ public class PhoneInput implements SensorEventListener, UserInstructionsInput {
         return inputData.getHeading();
     }
 
+    @DebugLog
     @Override
     public double getPitch() {
-        return inputData.getPitch();
+        double value = inputData.getPitch();
+        double average = CalibrationDatabase.getPhoneCalibrationData(context).getAverageMaxPitch();
+        double relative = value * RCSignals.RC_MID_GAP / average;
+        double absolute = relative + RCSignals.RC_MID;
+        return absolute;
     }
 
+    @DebugLog
     @Override
     public double getRoll() {
-        return inputData.getRoll();
+        double value = inputData.getRoll();
+        double average = CalibrationDatabase.getPhoneCalibrationData(context).getAverageMaxRoll();
+        double relative = value * RCSignals.RC_MID_GAP / average;
+        double absolute = relative + RCSignals.RC_MID;
+        return absolute;
     }
 }

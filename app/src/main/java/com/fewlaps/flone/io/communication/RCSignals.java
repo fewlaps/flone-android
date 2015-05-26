@@ -1,6 +1,11 @@
 package com.fewlaps.flone.io.communication;
 
 public class RCSignals {
+    public static int RC_MIN = 1000;
+    public static int RC_MAX = 2000;
+    public static int RC_MID = (RC_MAX - RC_MIN) / 2 + RC_MIN;
+    public static int RC_GAP = RC_MAX - RC_MIN;
+    public static int RC_MID_GAP = RC_GAP / 2;
 
     public enum AdjustMode {
         THROTTLE("T: ", (byte) 3), ROLL("R: ", (byte) 0), PITCH("P: ", (byte) 1), YAW("Y: ", (byte) 2);
@@ -41,9 +46,6 @@ public class RCSignals {
     private int[] rc_signals_raw = new int[8];
     private int[] rc_signals_trim = new int[8];
     private int[] rc_signals = new int[8];
-    private int RC_MIN = 1000;
-    private int RC_MAX = 2000;
-    private int RC_MID = (RC_MAX - RC_MIN) / 2 + RC_MIN;
 
     public int ThrottleResolution = 10;
     public int TrimRoll = 0;
