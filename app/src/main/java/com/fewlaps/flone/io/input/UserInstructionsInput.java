@@ -12,9 +12,9 @@ package com.fewlaps.flone.io.input;
 public interface UserInstructionsInput {
     public int getThrottle();
 
-    public int getHeading();
+    public double getHeading();
 
-    public int getPitch();
+    public double getPitch();
 
-    public int getRoll();
+    public double getRoll();
 }

@@ -76,17 +76,17 @@ public class PhoneInput implements SensorEventListener, UserInstructionsInput {
     }
 
     @Override
-    public int getHeading() {
+    public double getHeading() {
         return inputData.getHeading();
     }
 
     @Override
-    public int getPitch() {
+    public double getPitch() {
         return inputData.getPitch();
     }
 
     @Override
-    public int getRoll() {
+    public double getRoll() {
         return inputData.getRoll();
     }
 }

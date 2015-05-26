@@ -7,35 +7,35 @@ package com.fewlaps.flone.io.bean;
  * @date 14/05/2015
  */
 public abstract class SensorInformation {
-    private int heading;
-    private int pitch;
-    private int roll;
+    private double heading;
+    private double pitch;
+    private double roll;
 
-    public int getHeading() {
+    public double getHeading() {
         return heading;
     }
 
-    public void setHeading(int heading) {
+    public void setHeading(double heading) {
         this.heading = heading;
     }
 
-    public int getPitch() {
+    public double getPitch() {
         return pitch;
     }
 
-    public void setPitch(int pitch) {
+    public void setPitch(double pitch) {
         this.pitch = pitch;
     }
 
-    public int getRoll() {
+    public double getRoll() {
         return roll;
     }
 
-    public void setRoll(int roll) {
+    public void setRoll(double roll) {
         this.roll = roll;
     }
 
-    public void update(int heading, int pitch, int roll) {
+    public void update(double heading, double pitch, double roll) {
         this.heading = heading;
         this.pitch = pitch;
         this.roll = roll;

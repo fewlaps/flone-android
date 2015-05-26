@@ -6,15 +6,15 @@ import android.util.Log;
 
 import com.fewlaps.flone.data.Database;
 import com.fewlaps.flone.data.bean.Drone;
+import com.fewlaps.flone.io.bean.DroneConnectionStatusChanged;
+import com.fewlaps.flone.io.bean.DroneSensorData;
 import com.fewlaps.flone.io.communication.Bluetooth;
 import com.fewlaps.flone.io.communication.Communication;
 import com.fewlaps.flone.io.communication.RCSignals;
-import com.fewlaps.flone.io.bean.DroneConnectionStatusChanged;
-import com.fewlaps.flone.io.bean.DroneSensorData;
 import com.fewlaps.flone.io.communication.protocol.MultiWii230;
 import com.fewlaps.flone.io.communication.protocol.MultirotorData;
-import com.fewlaps.flone.io.input.phone.PhoneInput;
 import com.fewlaps.flone.io.input.UserInstructionsInput;
+import com.fewlaps.flone.io.input.phone.PhoneInput;
 import com.fewlaps.flone.util.NotificationUtil;
 
 /**
@@ -87,10 +87,10 @@ public class DroneService extends BaseService {
      * to do before sending the RC to the drone, to make it fly as the user excepts
      */
     private void updateRCWithInputData() {
-        rc.setAdjustedThrottle(userInput.getThrottle());
-        rc.setAdjustedYaw((userInput.getHeading() - droneInput.getHeading()));
-        rc.setAdjustedRoll(userInput.getRoll());
-        rc.setAdjustedPitch(userInput.getPitch());
+        rc.setThrottle(userInput.getThrottle());
+        rc.setAdjustedYaw((int) (userInput.getHeading() - droneInput.getHeading()));
+        rc.setAdjustedRoll((int) userInput.getRoll());
+        rc.setAdjustedPitch((int) userInput.getPitch());
     }
 
     public void onEventMainThread(DroneSensorData sensorInformation) {
