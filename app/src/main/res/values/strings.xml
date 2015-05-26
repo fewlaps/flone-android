@@ -31,7 +31,11 @@
     <string name="axis_pitch">Pitch</string>
     <string name="axis_roll">Roll</string>
 
+    <!-- Throttle zone -->
+    <string name="trottle_full">Rotors at full power</string>
+    <string name="trottle_stop">Rotors stopped</string>
 
+    <!-- Menu -->
     <string name="menu_calibration">Calibration</string>
     <string name="menu_preferences">Preferences</string>
 

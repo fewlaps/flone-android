@@ -2,6 +2,7 @@ package com.fewlaps.flone.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -41,7 +42,7 @@ public class FlyActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fly);
 
-        throttleV = findViewById(R.id.v_throttle);
+        throttleV = findViewById(R.id.rl_throttle);
         droneSensorsTV = (TextView) findViewById(R.id.tv_drone_sensors);
         phoneSensorsTV = (TextView) findViewById(R.id.tv_phone_sensors);
 
@@ -62,11 +63,14 @@ public class FlyActivity extends BaseActivity {
         throttleV.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if (ScreenThrottleData.instance.getScreenHeight() == null) {
-                    ScreenThrottleData.instance.setScreenHeight(v.getHeight());
-                }
                 ScreenThrottleData.instance.setThrottle((int) event.getY());
                 return true;
+            }
+        });
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                ScreenThrottleData.instance.setScreenHeight(throttleV.getHeight());
             }
         });
     }

@@ -15,6 +15,7 @@ public class ScreenThrottleData extends SensorInformation {
 
     public static final int MIN_THROTTLE = 1000;
     public static final int MAX_THROTTLE = 2000;
+    public static final int GAP_THROTTLE = MAX_THROTTLE - MIN_THROTTLE;
 
     public Integer getScreenHeight() {
         return screenHeight;
@@ -31,6 +32,16 @@ public class ScreenThrottleData extends SensorInformation {
     }
 
     public void setThrottle(Integer screenPosition) {
-        this.throttle = (screenHeight - screenPosition) * ScreenThrottleData.MAX_THROTTLE / screenHeight + ScreenThrottleData.MIN_THROTTLE;
+        int throttlePosition = screenHeight - screenPosition;
+
+        if (throttlePosition > getScreenHeight()) {
+            throttlePosition = getScreenHeight();
+        } else if (throttlePosition < 0) {
+            throttlePosition = 0;
+        }
+
+        double throttleRelative = (float) throttlePosition / screenHeight;
+        int chosenThrottle = (int) (GAP_THROTTLE * throttleRelative);
+        this.throttle = ScreenThrottleData.MIN_THROTTLE + chosenThrottle;
     }
 }
