@@ -1,4 +1,4 @@
-<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="2039" measuredH="1221" mockupW="1874" mockupH="1189">
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="2039" measuredH="1845" mockupW="1874" mockupH="1813">
   <controls>
     <control controlID="5" controlTypeID="__group__" x="563" y="32" w="282" h="573" measuredW="282" measuredH="573" zOrder="0" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
@@ -268,7 +268,7 @@
         <text>Syncronize%20sensors</text>
       </controlProperties>
     </control>
-    <control controlID="64" controlTypeID="__group__" x="1163" y="648" w="282" h="573" measuredW="282" measuredH="573" zOrder="35" locked="false" isInGroup="-1">
+    <control controlID="64" controlTypeID="__group__" x="266" y="1272" w="282" h="573" measuredW="282" measuredH="573" zOrder="35" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="0" controlTypeID="com.balsamiq.mockups::iPhone" x="0" y="0" w="-1" h="-1" measuredW="282" measuredH="573" zOrder="0" locked="false" isInGroup="64">
           <controlProperties>
@@ -283,12 +283,12 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="65" controlTypeID="com.balsamiq.mockups::Paragraph" x="1199" y="797" w="211" h="178" measuredW="275" measuredH="80" zOrder="36" locked="false" isInGroup="-1">
+    <control controlID="65" controlTypeID="com.balsamiq.mockups::Paragraph" x="302" y="1421" w="211" h="178" measuredW="275" measuredH="80" zOrder="36" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Different%20phones%20and%20different%20hands%20need%20different%20throttle%20zones.%20Drag%20the%20top%20and%20the%20bottom%20of%20the%20throttle%20zone%20to%20make%20it%20fit%20your%20hand.%20The%20top%20of%20the%20zone%20will%20put%20the%20rotors%20at%20100%25%2C%20and%20the%20bottom%20zone%20will%20stop%20them%20completelly.</text>
       </controlProperties>
     </control>
-    <control controlID="70" controlTypeID="com.balsamiq.mockups::Label" x="1266" y="1017" w="-1" h="-1" measuredW="77" measuredH="35" zOrder="38" locked="false" isInGroup="-1">
+    <control controlID="70" controlTypeID="com.balsamiq.mockups::Label" x="369" y="1641" w="-1" h="-1" measuredW="77" measuredH="35" zOrder="38" locked="false" isInGroup="-1">
       <controlProperties>
         <color>16777215</color>
         <size>16</size>
@@ -296,7 +296,7 @@
         <textOrientation>slanted</textOrientation>
       </controlProperties>
     </control>
-    <control controlID="71" controlTypeID="__group__" x="1204" y="937" w="200" h="149" measuredW="200" measuredH="149" zOrder="37" locked="false" isInGroup="-1">
+    <control controlID="71" controlTypeID="__group__" x="307" y="1561" w="200" h="149" measuredW="200" measuredH="149" zOrder="37" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="0" controlTypeID="com.balsamiq.mockups::TextArea" x="0" y="0" w="200" h="149" measuredW="200" measuredH="140" zOrder="0" locked="false" isInGroup="71">
           <controlProperties>
@@ -472,6 +472,115 @@
     <control controlID="90" controlTypeID="com.balsamiq.mockups::Button" x="1042" y="318" w="55" h="35" measuredW="41" measuredH="27" zOrder="56" locked="false" isInGroup="-1">
       <controlProperties>
         <text>OK</text>
+      </controlProperties>
+    </control>
+    <control controlID="100" controlTypeID="com.balsamiq.mockups::VCurly" x="195" y="1293" w="24" h="505" measuredW="180" measuredH="140" zOrder="57" locked="false" isInGroup="-1">
+      <controlProperties>
+        <direction>right</direction>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="101" controlTypeID="com.balsamiq.mockups::Label" x="165" y="1396" w="-1" h="-1" measuredW="40" measuredH="304" zOrder="58" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>32</size>
+        <text>Preferences%20screens</text>
+        <textOrientation>up</textOrientation>
+      </controlProperties>
+    </control>
+    <control controlID="107" controlTypeID="__group__" x="563" y="1272" w="282" h="573" measuredW="282" measuredH="573" zOrder="59" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::iPhone" x="0" y="0" w="-1" h="-1" measuredW="282" measuredH="573" zOrder="0" locked="false" isInGroup="107">
+          <controlProperties>
+            <model>IPhone5</model>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::HRule" x="31" y="134" w="217" h="-1" measuredW="100" measuredH="10" zOrder="1" locked="false" isInGroup="107"/>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="37" y="107" w="-1" h="-1" measuredW="103" measuredH="21" zOrder="2" locked="false" isInGroup="107">
+          <controlProperties>
+            <text>Cap%20pitch%20and%20roll</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="108" controlTypeID="com.balsamiq.mockups::Paragraph" x="599" y="1421" w="211" h="131" measuredW="275" measuredH="80" zOrder="60" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Controlling%20your%20drone%20is%20not%20an%20easy%20task.%20If%20you%27re%20a%20beginner%2C%20cap%20pitch%20and%20roll%20limit%20values.%20The%20drone%20will%20have%20a%20more%20stable%20flight.</text>
+      </controlProperties>
+    </control>
+    <control controlID="111" controlTypeID="com.balsamiq.mockups::HSlider" x="600" y="1570" w="209" h="-1" measuredW="33" measuredH="11" zOrder="61" locked="false" isInGroup="-1">
+      <controlProperties>
+        <value>34</value>
+      </controlProperties>
+    </control>
+    <control controlID="112" controlTypeID="com.balsamiq.mockups::Label" x="600" y="1548" w="-1" h="-1" measuredW="53" measuredH="21" zOrder="62" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Beginner</text>
+      </controlProperties>
+    </control>
+    <control controlID="113" controlTypeID="com.balsamiq.mockups::Label" x="769" y="1548" w="-1" h="-1" measuredW="40" measuredH="21" zOrder="63" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Expert</text>
+      </controlProperties>
+    </control>
+    <control controlID="116" controlTypeID="com.balsamiq.mockups::Paragraph" x="598" y="1630" w="210" h="80" measuredW="275" measuredH="80" zOrder="64" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Cap%20value%3A%20142%0AMin%20pitch%3A%201358%0AMax%20pitch%3A%201642%0AMin%20roll%3A%201358%0AMax%20roll%3A%201642</text>
+      </controlProperties>
+    </control>
+    <control controlID="117" controlTypeID="__group__" x="866" y="1272" w="282" h="573" measuredW="282" measuredH="573" zOrder="65" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::iPhone" x="0" y="0" w="-1" h="-1" measuredW="282" measuredH="573" zOrder="0" locked="false" isInGroup="117">
+          <controlProperties>
+            <model>IPhone5</model>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::HRule" x="31" y="134" w="217" h="-1" measuredW="100" measuredH="10" zOrder="1" locked="false" isInGroup="117"/>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="37" y="107" w="-1" h="-1" measuredW="107" measuredH="21" zOrder="2" locked="false" isInGroup="117">
+          <controlProperties>
+            <text>Interpolate%20values</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="118" controlTypeID="com.balsamiq.mockups::Paragraph" x="902" y="1421" w="211" h="131" measuredW="275" measuredH="80" zOrder="66" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>To%20help%20you%20in%20your%20flight%2C%20you%20can%20set%20an%20interpolator.%20If%20you%20do%20it%2C%20the%20stable%20position%20will%20be%20more%20easy%20to%20reach.%20In%20the%20same%20way%2C%20getting%20the%20maximum%20pitch%20and%20roll%20values%20will%20be%20more%20difficult%2C%20so%20you%27ll%20need%20to%20rotate%20your%20phone%20a%20little%20more.</text>
+      </controlProperties>
+    </control>
+    <control controlID="119" controlTypeID="com.balsamiq.mockups::HSlider" x="903" y="1612" w="209" h="-1" measuredW="33" measuredH="11" zOrder="67" locked="false" isInGroup="-1">
+      <controlProperties>
+        <value>34</value>
+      </controlProperties>
+    </control>
+    <control controlID="120" controlTypeID="com.balsamiq.mockups::Label" x="901" y="1591" w="-1" h="-1" measuredW="115" measuredH="21" zOrder="68" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Curved%20interpolator</text>
+      </controlProperties>
+    </control>
+    <control controlID="121" controlTypeID="com.balsamiq.mockups::Label" x="1002" y="1623" w="-1" h="-1" measuredW="110" measuredH="21" zOrder="69" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Linear%20interpolator</text>
+      </controlProperties>
+    </control>
+    <control controlID="123" controlTypeID="com.balsamiq.mockups::CheckBox" x="901" y="1552" w="-1" h="-1" measuredW="147" measuredH="22" zOrder="70" locked="false" isInGroup="-1">
+      <controlProperties>
+        <state>selected</state>
+        <text>Interpolate%20the%20signal</text>
+      </controlProperties>
+    </control>
+    <control controlID="124" controlTypeID="com.balsamiq.mockups::Button" x="596" y="1726" w="213" h="27" measuredW="131" measuredH="27" zOrder="71" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Load%20default%20value</text>
+      </controlProperties>
+    </control>
+    <control controlID="125" controlTypeID="com.balsamiq.mockups::Button" x="900" y="1726" w="213" h="27" measuredW="131" measuredH="27" zOrder="72" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Load%20default%20value</text>
+      </controlProperties>
+    </control>
+    <control controlID="126" controlTypeID="com.balsamiq.mockups::Button" x="299" y="1726" w="213" h="27" measuredW="131" measuredH="27" zOrder="73" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Load%20default%20value</text>
       </controlProperties>
     </control>
   </controls>
