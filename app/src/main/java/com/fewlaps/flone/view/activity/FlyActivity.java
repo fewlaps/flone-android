@@ -92,8 +92,8 @@ public class FlyActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_calibrate_phone:
-                startActivity(new Intent(this, CalibratePhoneActivity.class));
+            case R.id.action_calibration:
+                startActivity(new Intent(this, CalibrationActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

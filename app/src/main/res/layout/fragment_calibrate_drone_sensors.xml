@@ -1,0 +1,35 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FlyActivity"
+    android:padding="@dimen/gapLarge">
+
+    <Button
+        android:layout_alignParentBottom="true"
+        android:id="@+id/bt_start_calibration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/calibrate_drone_sensors_start_button" />
+
+    <LinearLayout
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bt_start_calibration">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/calibrate_drone_sensors_description"
+            android:layout_marginBottom="@dimen/gapLarge" />
+
+        <TextView
+            tools:text="Drone pitch: 0,927612\nDrone pitch: -0,124895"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/gapLarge" />
+
+    </LinearLayout>
+</RelativeLayout>

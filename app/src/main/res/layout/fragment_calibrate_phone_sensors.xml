@@ -1,0 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FlyActivity"
+    android:padding="@dimen/gapLarge">
+
+    <Button
+        android:layout_alignParentBottom="true"
+        android:id="@+id/bt_stop_calibration_and_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/calibrate_phone_sensors_stop_and_save_button" />
+
+    <LinearLayout
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bt_stop_calibration_and_save">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/calibrate_phone_sensors_description"
+            android:layout_marginBottom="@dimen/gapLarge" />
+
+        <TextView
+            tools:text="Min pitch: -127,371829\nMax pitch: 128,421861\nMin roll: -127,124789\nMax roll: 126, 912462"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/gapLarge" />
+
+        <Button
+            android:layout_alignParentBottom="true"
+            android:id="@+id/bt_start_calibration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/calibrate_phone_sensors_start_button"
+            android:layout_marginBottom="@dimen/gapLarge" />
+
+        <TextView
+            android:text="@string/calibrate_phone_sensors_move_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</RelativeLayout>

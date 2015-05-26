@@ -1,0 +1,21 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FlyActivity"
+    android:padding="@dimen/gapLarge">
+
+    <Button
+        android:layout_alignParentBottom="true"
+        android:id="@+id/bt_stop_calibration_and_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/calibrate_sync_phone_and_drone_button" />
+
+    <TextView
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/calibrate_sync_phone_and_drone_description" />
+
+</RelativeLayout>

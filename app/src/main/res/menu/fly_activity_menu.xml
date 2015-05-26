@@ -2,8 +2,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_calibrate_phone"
-        android:title="@string/menu_action_calibrate_phone"
+        android:id="@+id/action_calibration"
+        android:title="@string/menu_calibration"
         app:showAsAction="never" />
-
+    <item
+        android:id="@+id/action_preferences"
+        android:title="@string/menu_preferences"
+        app:showAsAction="never" />
 </menu>
