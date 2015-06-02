@@ -54,5 +54,8 @@
     <string name="calibrate_sync_phone_and_drone_description">The easier way to make drone fly is to have it sync\'d with your phone. So, put your drone in a flat stable table, and get your phone with your hand, heading to the same orientation. Then, tap the button. The phone and the drone will be instantly sync\'d.</string>
     <string name="calibrate_sync_phone_and_drone_button">Synchronize sensors</string>
 
-
+    <!-- Fly screen data-->
+    <string name="fly_phone">Phone</string>
+    <string name="fly_drone">Drone</string>
+    <string name="fly_data_sent">Data sent</string>
 </resources>

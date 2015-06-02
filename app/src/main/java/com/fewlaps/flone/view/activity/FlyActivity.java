@@ -7,11 +7,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.SeekBar;
 
 import com.fewlaps.flone.R;
 import com.fewlaps.flone.io.bean.DroneSensorData;
 import com.fewlaps.flone.io.input.phone.PhoneInputData;
+import com.fewlaps.flone.io.input.phone.PhoneOutputData;
 import com.fewlaps.flone.io.input.phone.ScreenThrottleData;
 import com.fewlaps.flone.service.DroneService;
 
@@ -31,11 +32,16 @@ import de.greenrobot.event.EventBus;
 public class FlyActivity extends BaseActivity {
 
     private View throttleV;
-    private TextView droneSensorsTV;
-    private TextView phoneSensorsTV;
 
-    StringBuilder droneSensorsSB = new StringBuilder();
-    StringBuilder phoneSensorsSB = new StringBuilder();
+    private SeekBar phoneHeading;
+    private SeekBar phonePitch;
+    private SeekBar phoneRoll;
+    private SeekBar droneHeading;
+    private SeekBar dronePitch;
+    private SeekBar droneRoll;
+    private SeekBar dataSentYaw;
+    private SeekBar dataSentPitch;
+    private SeekBar dataSentRoll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +49,16 @@ public class FlyActivity extends BaseActivity {
         setContentView(R.layout.activity_fly);
 
         throttleV = findViewById(R.id.rl_throttle);
-        droneSensorsTV = (TextView) findViewById(R.id.tv_drone_sensors);
-        phoneSensorsTV = (TextView) findViewById(R.id.tv_phone_sensors);
+
+        phoneHeading = (SeekBar) findViewById(R.id.sb_phone_heading);
+        phonePitch = (SeekBar) findViewById(R.id.sb_phone_pitch);
+        phoneRoll = (SeekBar) findViewById(R.id.sb_phone_roll);
+        droneHeading = (SeekBar) findViewById(R.id.sb_drone_heading);
+        dronePitch = (SeekBar) findViewById(R.id.sb_drone_pitch);
+        droneRoll = (SeekBar) findViewById(R.id.sb_drone_roll);
+        dataSentYaw = (SeekBar) findViewById(R.id.sb_data_sent_yaw);
+        dataSentPitch = (SeekBar) findViewById(R.id.sb_data_sent_pitch);
+        dataSentRoll = (SeekBar) findViewById(R.id.sb_data_sent_roll);
 
         findViewById(R.id.bt_connect).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,21 +118,23 @@ public class FlyActivity extends BaseActivity {
         }
     }
 
-    public void onEventMainThread(DroneSensorData droneSensorInformation) {
-        droneSensorsSB.setLength(0);
-        droneSensorsSB.append(getString(R.string.axis_heading) + ": " + droneSensorInformation.getHeading() + "\n");
-        droneSensorsSB.append(getString(R.string.axis_pitch) + ": " + droneSensorInformation.getPitch() + "\n");
-        droneSensorsSB.append(getString(R.string.axis_roll) + ": " + droneSensorInformation.getRoll() + "\n");
-        droneSensorsTV.setText(droneSensorsSB.toString());
+    public void onEventMainThread(DroneSensorData data) {
+        droneHeading.setProgress((int) data.getHeading() + 180);
+        dronePitch.setProgress((int) data.getPitch() + 180);
+        droneRoll.setProgress((int) data.getRoll() + 180);
     }
 
-    public void onEventMainThread(PhoneInputData phoneSensorInformation) {
-        phoneSensorsSB.setLength(0);
-        phoneSensorsSB.append("Phone:\n");
-        phoneSensorsSB.append(getString(R.string.throttle) + ": " + ScreenThrottleData.instance.getThrottle() + "\n");
-        phoneSensorsSB.append(getString(R.string.axis_heading) + ": " + phoneSensorInformation.getHeading() + "\n");
-        phoneSensorsSB.append(getString(R.string.axis_pitch) + ": " + phoneSensorInformation.getPitch() + "\n");
-        phoneSensorsSB.append(getString(R.string.axis_roll) + ": " + phoneSensorInformation.getRoll() + "\n");
-        phoneSensorsTV.setText(phoneSensorsSB.toString());
+    public void onEventMainThread(PhoneInputData data) {
+        phoneHeading.setProgress((int) data.getHeading() + 180);
+        phonePitch.setProgress((int) data.getPitch() + 180);
+        phoneRoll.setProgress((int) data.getRoll() + 180);
+
+//        phoneSensorsSB.append(getString(R.string.throttle) + ": " + ScreenThrottleData.instance.getThrottle() + "\n");
+    }
+
+    public void onEventMainThread(PhoneOutputData data) {
+        dataSentYaw.setProgress((int) data.getHeading() + 180);
+        dataSentPitch.setProgress((int) data.getPitch() - 1000);
+        dataSentRoll.setProgress((int) data.getRoll() - 1000);
     }
 }

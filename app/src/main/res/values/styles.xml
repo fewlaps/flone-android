@@ -5,4 +5,9 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="SeekBarData">
+        <item name="android:max">360</item>
+        <item name="android:enabled">false</item>
+    </style>
+
 </resources>

@@ -22,9 +22,9 @@ public class ScreenThrottleData extends SensorInformation {
         this.screenHeight = screenHeight;
     }
 
-    private Integer throttle;
+    private int throttle = 0;
 
-    public Integer getThrottle() {
+    public int getThrottle() {
         return throttle;
     }
 

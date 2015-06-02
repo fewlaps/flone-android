@@ -15,7 +15,10 @@ import com.fewlaps.flone.io.communication.protocol.MultiWii230;
 import com.fewlaps.flone.io.communication.protocol.MultirotorData;
 import com.fewlaps.flone.io.input.UserInstructionsInput;
 import com.fewlaps.flone.io.input.phone.PhoneInput;
+import com.fewlaps.flone.io.input.phone.PhoneOutputData;
 import com.fewlaps.flone.util.NotificationUtil;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * This Sercive is the responsable of maintaining a connection with the Drone, asking for data, and sending data
@@ -43,6 +46,8 @@ public class DroneService extends BaseService {
 
     private UserInstructionsInput userInput;
     private DroneSensorData droneInput;
+
+    private PhoneOutputData phoneOutputData = new PhoneOutputData();
 
     public static final RCSignals rc = new RCSignals(); //Created at startup, never changed, never destroyed, totally reused at every request
 
@@ -87,10 +92,17 @@ public class DroneService extends BaseService {
      * to do before sending the RC to the drone, to make it fly as the user excepts
      */
     private void updateRCWithInputData() {
+        int yaw = (int) (droneInput.getHeading() - userInput.getHeading());
+        int pitch = (int) (userInput.getPitch());
+        int roll = (int) userInput.getRoll();
+
         rc.setThrottle(userInput.getThrottle());
-        rc.setAdjustedYaw((int) (userInput.getHeading() - droneInput.getHeading()));
-        rc.setRoll((int) userInput.getRoll());
-        rc.setPitch((int) userInput.getPitch());
+        rc.setAdjustedYaw(yaw);
+        rc.setPitch(pitch);
+        rc.setRoll(roll);
+
+        phoneOutputData.update(yaw, pitch, roll);
+        EventBus.getDefault().post(phoneOutputData);
     }
 
     public void onEventMainThread(DroneSensorData sensorInformation) {

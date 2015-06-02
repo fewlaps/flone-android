@@ -6,13 +6,13 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.util.Log;
 
 import com.fewlaps.flone.data.CalibrationDatabase;
 import com.fewlaps.flone.io.communication.RCSignals;
 import com.fewlaps.flone.io.input.UserInstructionsInput;
 
 import de.greenrobot.event.EventBus;
-import hugo.weaving.DebugLog;
 
 
 /**
@@ -44,23 +44,28 @@ public class PhoneInput implements SensorEventListener, UserInstructionsInput {
     }
 
 
-    @Override
-    public void onSensorChanged(SensorEvent sensorEvent) {
-        // Handle the events for which we registered
-        switch (sensorEvent.sensor.getType()) {
-            case Sensor.TYPE_ACCELEROMETER:
-                System.arraycopy(sensorEvent.values, 0, mValuesAccel, 0, 3);
-                break;
-            case Sensor.TYPE_MAGNETIC_FIELD:
-                System.arraycopy(sensorEvent.values, 0, mValuesMagnet, 0, 3);
-                break;
-        }
-        SensorManager.getRotationMatrix(mRotationMatrix, null, mValuesAccel, mValuesMagnet);
-        SensorManager.getOrientation(mRotationMatrix, mValuesOrientation);
+    float[] mGravity;
+    float[] mGeomagnetic;
+    float R[] = new float[9];
+    float I[] = new float[9];
+    float orientation[] = new float[3];
 
-        inputData.setHeading(restrictAngle((int) Math.toDegrees((double) mValuesOrientation[0])));
-        inputData.setPitch(restrictAngle((int) Math.toDegrees((double) mValuesOrientation[1])));
-        inputData.setRoll(restrictAngle((int) Math.toDegrees((double) mValuesOrientation[2])));
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER)
+            mGravity = event.values;
+        if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD)
+            mGeomagnetic = event.values;
+        if (mGravity != null && mGeomagnetic != null) {
+            boolean success = SensorManager.getRotationMatrix(R, I, mGravity, mGeomagnetic);
+            if (success) {
+                SensorManager.getOrientation(R, orientation);
+            }
+        }
+
+        inputData.setHeading(restrictAngle((int) Math.toDegrees((double) orientation[0])));
+        inputData.setPitch(restrictAngle((int) Math.toDegrees((double) orientation[1])));
+        inputData.setRoll(restrictAngle((int) Math.toDegrees((double) orientation[2])));
         EventBus.getDefault().post(inputData);
     }
 
@@ -85,7 +90,6 @@ public class PhoneInput implements SensorEventListener, UserInstructionsInput {
         return inputData.getHeading();
     }
 
-    @DebugLog
     @Override
     public double getPitch() {
         double value = inputData.getPitch();
@@ -95,7 +99,6 @@ public class PhoneInput implements SensorEventListener, UserInstructionsInput {
         return absolute;
     }
 
-    @DebugLog
     @Override
     public double getRoll() {
         double value = inputData.getRoll();
