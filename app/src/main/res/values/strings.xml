@@ -34,6 +34,7 @@
     <!-- Throttle zone -->
     <string name="trottle_full">Rotors at full power</string>
     <string name="trottle_stop">Rotors stopped</string>
+    <string name="trottle_now">Throttle {value}%</string>
 
     <!-- Menu -->
     <string name="menu_calibration">Calibration</string>

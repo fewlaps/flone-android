@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.fewlaps.flone.R;
 import com.fewlaps.flone.io.bean.DroneSensorData;
@@ -15,6 +16,7 @@ import com.fewlaps.flone.io.input.phone.PhoneInputData;
 import com.fewlaps.flone.io.input.phone.PhoneOutputData;
 import com.fewlaps.flone.io.input.phone.ScreenThrottleData;
 import com.fewlaps.flone.service.DroneService;
+import com.squareup.phrase.Phrase;
 
 import de.greenrobot.event.EventBus;
 
@@ -32,6 +34,9 @@ import de.greenrobot.event.EventBus;
 public class FlyActivity extends BaseActivity {
 
     private View throttleV;
+    private View throttleRL;
+    private View actualThrottleV;
+    private TextView actualThrottleTV;
 
     private SeekBar phoneHeading;
     private SeekBar phonePitch;
@@ -43,12 +48,16 @@ public class FlyActivity extends BaseActivity {
     private SeekBar dataSentPitch;
     private SeekBar dataSentRoll;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fly);
 
-        throttleV = findViewById(R.id.rl_throttle);
+        throttleV = findViewById(R.id.v_throttle);
+        throttleRL = findViewById(R.id.rl_throttle);
+        actualThrottleV = findViewById(R.id.ll_actual_throttle);
+        actualThrottleTV = (TextView) findViewById(R.id.tv_actual_throttle);
 
         phoneHeading = (SeekBar) findViewById(R.id.sb_phone_heading);
         phonePitch = (SeekBar) findViewById(R.id.sb_phone_pitch);
@@ -78,6 +87,11 @@ public class FlyActivity extends BaseActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 ScreenThrottleData.instance.setThrottle((int) event.getY());
+                actualThrottleV.setY(ScreenThrottleData.instance.getThrottleScreenPosition() - actualThrottleV.getHeight() + throttleRL.getPaddingTop());
+
+                CharSequence formatted = Phrase.from(getString(R.string.trottle_now)).put("value", ScreenThrottleData.instance.getThrottlePorcentage()).format();
+                actualThrottleTV.setText(formatted);
+
                 return true;
             }
         });

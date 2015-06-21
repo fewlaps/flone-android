@@ -1,0 +1,6 @@
+<resources>
+    <color name="throttle_area_background">#22FF0000</color>
+    <color name="throttle_area_text">#44FF0000</color>
+    <color name="throttle_line">#F00</color>
+    <color name="throttle_text">#F00</color>
+</resources>

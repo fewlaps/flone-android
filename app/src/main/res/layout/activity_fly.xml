@@ -129,27 +129,66 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:background="#22FF0000"
         android:layout_alignParentBottom="true"
-        android:id="@+id/rl_throttle"
         android:layout_width="match_parent"
-        android:layout_margin="@dimen/gapMedium"
-        android:layout_height="200dp">
+        android:layout_height="@dimen/throttle_area"
+        android:layout_marginBottom="@dimen/gapLarge">
 
-        <TextView
-            android:layout_margin="@dimen/gapMedium"
-            android:layout_width="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentTop="true"
+        <RelativeLayout
+            android:id="@+id/rl_throttle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/trottle_full" />
+            android:paddingTop="@dimen/gapXLarge">
 
-        <TextView
-            android:layout_margin="@dimen/gapMedium"
-            android:layout_width="wrap_content"
-            android:layout_centerHorizontal="true"
+            <View
+                android:id="@+id/v_throttle"
+                android:background="@color/throttle_area_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/gapLarge"
+                android:layout_marginRight="@dimen/gapLarge" />
+
+            <TextView
+                android:textColor="@color/throttle_area_text"
+                android:padding="@dimen/gapMedium"
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
+                android:layout_height="wrap_content"
+                android:text="@string/trottle_full" />
+
+            <TextView
+                android:textColor="@color/throttle_area_text"
+                android:padding="@dimen/gapMedium"
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_height="wrap_content"
+                android:text="@string/trottle_stop" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_actual_throttle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_alignParentBottom="true"
-            android:layout_height="wrap_content"
-            android:text="@string/trottle_stop" />
+            android:layout_marginLeft="@dimen/gapMedium"
+            android:layout_marginRight="@dimen/gapMedium">
+
+            <TextView
+                android:id="@+id/tv_actual_throttle"
+                android:layout_marginLeft="@dimen/gapLarge"
+                android:layout_width="wrap_content"
+                android:textColor="@color/throttle_text"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                tools:text="Throttle 0%" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/throttle_horizontal_line_height"
+                android:background="@color/throttle_line" />
+        </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

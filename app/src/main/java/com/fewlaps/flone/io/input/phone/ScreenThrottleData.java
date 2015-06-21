@@ -41,4 +41,12 @@ public class ScreenThrottleData extends SensorInformation {
         int chosenThrottle = (int) (RCSignals.RC_GAP * throttleRelative);
         this.throttle = RCSignals.RC_MIN + chosenThrottle;
     }
+
+    public float getThrottleScreenPosition() {
+        return screenHeight - ((throttle - RCSignals.RC_MIN) * screenHeight / RCSignals.RC_GAP);
+    }
+
+    public int getThrottlePorcentage() {
+        return (throttle - RCSignals.RC_MIN) * 100 / RCSignals.RC_GAP;
+    }
 }
