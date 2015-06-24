@@ -5,8 +5,8 @@ This is our goal:
 ![The goal](https://github.com/aeracoop/FloneRemote/blob/master/balsamiq/Mockup.png)
 
 And these are some pictures of the yet-flying totally open hardware drone:
-![The Flone](http://flone.aeracoop.net/wp-content/uploads/flone-projecting.jpg)
-![A broken Flone](http://flone.aeracoop.net/wp-content/uploads/flone-aspirado.jpg)
-![Flone at RNE](http://flone.aeracoop.net/wp-content/uploads/flone-radio3.jpg)
+![The Flone](http://fewlaps.com/xtra/flone/flone-projecting.jpg)
+![A broken Flone](http://fewlaps.com/xtra/flone/flone-broken.jpg)
+![Flone at RNE](http://fewlaps.com/xtra/flone/flone-at-RNE.jpg)
 
 Don't hesitate to read the official website: http://flone.aeracoop.net/
