@@ -16,15 +16,16 @@ A Multiwii drone remote controller, driven with performance in mind.
 - Get the GPS location of the phone, when connecting over the Internet (for boards without GPS)
 - Do you have an idea? [Create an issue!](https://github.com/aeracoop/FloneRemote/issues/new) 
 
+## The project nowadays
+<img src="http://fewlaps.com/xtra/flone/app1.jpg" width="130">
+<img src="http://fewlaps.com/xtra/flone/app2.jpg" width="130">
+<img src="http://fewlaps.com/xtra/flone/app3.jpg" width="130">
+<img src="http://fewlaps.com/xtra/flone/app4.jpg" width="130">
+<img src="http://fewlaps.com/xtra/flone/app5.jpg" width="130">
+
 ## The project goal
 This is what we want to reach. The main issue is that we update the mockup frequently...!<br/><br/>
 ![The goal](https://github.com/aeracoop/FloneRemote/blob/master/balsamiq/Mockup.png)
-
-## Pictures
-Some pictures of the yet-flying totally Open Hardware drone:<br/><br/>
-![The Flone](http://fewlaps.com/xtra/flone/flone-projecting.jpg)<br/>
-![A broken Flone](http://fewlaps.com/xtra/flone/flone-broken.jpg)<br/>
-![Flone at RNE](http://fewlaps.com/xtra/flone/flone-at-RNE.jpg)
 
 ## References
 Like you guess, we didn't this magic alone. We want to thank these great projects:
@@ -36,5 +37,8 @@ Like you guess, we didn't this magic alone. We want to thank these great project
 ## Download
 Get it at [Google Play!](https://play.google.com/store/apps/details?id=com.fewlaps.flone) 
 
-## Want to know more about Flone?
-Don't hesitate to read the official website: http://flone.aeracoop.net/
+# Want to know more about Flone?
+Don't hesitate to read the official website: http://flone.aeracoop.net/<br/><br/>
+![The Flone](http://fewlaps.com/xtra/flone/flone-projecting.jpg)<br/>
+![A broken Flone](http://fewlaps.com/xtra/flone/flone-broken.jpg)<br/>
+![Flone at RNE](http://fewlaps.com/xtra/flone/flone-at-RNE.jpg)
