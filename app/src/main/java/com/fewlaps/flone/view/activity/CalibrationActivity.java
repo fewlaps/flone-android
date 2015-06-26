@@ -1,10 +1,12 @@
 package com.fewlaps.flone.view.activity;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 
 import com.fewlaps.flone.R;
 import com.fewlaps.flone.view.fragment.CalibrateDroneSensorsFragment;
@@ -22,9 +24,15 @@ public class CalibrationActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calibration);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         ViewPager pager = (ViewPager) findViewById(R.id.vp_root);
         CalibratePagerAdapter adapter = new CalibratePagerAdapter(getSupportFragmentManager());
         pager.setAdapter(adapter);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        tabLayout.setupWithViewPager(pager);
     }
 
     public class CalibratePagerAdapter extends FragmentPagerAdapter {

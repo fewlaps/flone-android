@@ -3,4 +3,8 @@
     <color name="throttle_area_text">#44FF0000</color>
     <color name="throttle_line">#F00</color>
     <color name="throttle_text">#F00</color>
+
+    <color name="colorPrimary">#db2027</color>
+    <color name="colorPrimaryDark">#ffba2027</color>
+    <color name="colorAccent">#6393F9</color>
 </resources>

@@ -1,28 +1,33 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:layout_margin="@dimen/gapMedium"
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/bt_add_drone"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/drone_list_add_drone" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/gapLarge"
+        app:borderWidth="0dp"
+        app:elevation="6dp"
+        android:src="@drawable/ic_add_white"
+        app:pressedTranslationZ="12dp" />
 
     <LinearLayout
-        android:layout_above="@id/bt_add_drone"
         android:id="@+id/l_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
         android:orientation="vertical">
 
         <TextView
-            android:padding="@dimen/gapLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/gapLarge"
             android:text="@string/drone_list_select_one" />
 
         <ListView

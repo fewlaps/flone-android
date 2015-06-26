@@ -28,7 +28,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.activity.CalibrationActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <service android:name=".service.DroneService" />
     </application>
