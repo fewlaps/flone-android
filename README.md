@@ -5,7 +5,7 @@ A Multiwii drone remote controller, driven with performance in mind.
 - Autoreconnection: if connection drops, the app will try to connect again to the drone automatically
 - Automagic heading: the drone will mimic your orientation automatically
 - Connects with the drone via Bluetooth
-- The communication is deal in a Service, so the drone wouldn't fall if someone calls you
+- The communication is handled in a Service, so the drone wouldn't fall if someone calls you
 - It works with all Multiwii boards, not only the Flone
 
 ### Next releases features
