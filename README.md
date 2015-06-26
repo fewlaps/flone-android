@@ -17,11 +17,11 @@ A Multiwii drone remote controller, driven with performance in mind.
 - Do you have an idea? [Create an issue!](https://github.com/aeracoop/FloneRemote/issues/new) 
 
 ## The project nowadays
-![Add a drone](http://fewlaps.com/xtra/flone/app1.jpg)
-![The flying screen](http://fewlaps.com/xtra/flone/app2.jpg)
-![Calibrate your phone sensors](http://fewlaps.com/xtra/flone/app3.jpg)
-![Calibrate the drone sensors](http://fewlaps.com/xtra/flone/app4.jpg)
-![Sync phone and drone](http://fewlaps.com/xtra/flone/app5.jpg)
+<img src="http://fewlaps.com/xtra/flone/app1.jpg" width="130">
+<img src="http://fewlaps.com/xtra/flone/app2.jpg" width="130">
+<img src="http://fewlaps.com/xtra/flone/app3.jpg" width="130">
+<img src="http://fewlaps.com/xtra/flone/app4.jpg" width="130">
+<img src="http://fewlaps.com/xtra/flone/app5.jpg" width="130">
 
 ## The project goal
 This is what we want to reach. The main issue is that we update the mockup frequently...!<br/><br/>
