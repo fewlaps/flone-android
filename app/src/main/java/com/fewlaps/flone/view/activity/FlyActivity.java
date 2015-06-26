@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -33,10 +34,11 @@ import de.greenrobot.event.EventBus;
  */
 public class FlyActivity extends BaseActivity {
 
-    private View throttleV;
+    private View throttleBackgroundV;
     private View throttleRL;
-    private View actualThrottleV;
-    private TextView actualThrottleTV;
+    private View throttleTouchableRL;
+    private View throttleControlLL;
+    private TextView throttleControlPercentageTV;
 
     private SeekBar phoneHeading;
     private SeekBar phonePitch;
@@ -54,10 +56,11 @@ public class FlyActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fly);
 
-        throttleV = findViewById(R.id.v_throttle);
+        throttleBackgroundV = findViewById(R.id.v_throttle_background);
         throttleRL = findViewById(R.id.rl_throttle);
-        actualThrottleV = findViewById(R.id.ll_actual_throttle);
-        actualThrottleTV = (TextView) findViewById(R.id.tv_actual_throttle);
+        throttleTouchableRL = findViewById(R.id.rl_throttle_touchable);
+        throttleControlLL = findViewById(R.id.ll_throttle_control);
+        throttleControlPercentageTV = (TextView) findViewById(R.id.tv_throttle_control_percentage);
 
         phoneHeading = (SeekBar) findViewById(R.id.sb_phone_heading);
         phonePitch = (SeekBar) findViewById(R.id.sb_phone_pitch);
@@ -83,24 +86,29 @@ public class FlyActivity extends BaseActivity {
             }
         });
 
-        throttleV.setOnTouchListener(new View.OnTouchListener() {
+        throttleBackgroundV.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 ScreenThrottleData.instance.setThrottle((int) event.getY());
-                actualThrottleV.setY(ScreenThrottleData.instance.getThrottleScreenPosition() - actualThrottleV.getHeight() + throttleRL.getPaddingTop());
 
-                CharSequence formatted = Phrase.from(getString(R.string.trottle_now)).put("value", ScreenThrottleData.instance.getThrottlePorcentage()).format();
-                actualThrottleTV.setText(formatted);
+                double y = ScreenThrottleData.instance.getThrottleScreenPosition() - throttleControlLL.getHeight() + throttleTouchableRL.getPaddingTop();
+                throttleControlLL.setY((int) y);
+
+                updateThrottleLabel(ScreenThrottleData.instance.getThrottlePorcentage());
 
                 return true;
             }
         });
-        new Handler().post(new Runnable() {
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                ScreenThrottleData.instance.setScreenHeight(throttleV.getHeight());
+                ScreenThrottleData.instance.setScreenHeight(throttleBackgroundV.getHeight());
+                throttleRL.startAnimation(AnimationUtils.loadAnimation(FlyActivity.this, android.R.anim.fade_in));
+                throttleRL.setVisibility(View.VISIBLE);
             }
-        });
+        }, 100);
+
+        updateThrottleLabel(0);
     }
 
     @Override
@@ -150,5 +158,10 @@ public class FlyActivity extends BaseActivity {
         dataSentYaw.setProgress((int) data.getHeading() + 180);
         dataSentPitch.setProgress((int) data.getPitch() - 1000);
         dataSentRoll.setProgress((int) data.getRoll() - 1000);
+    }
+
+    private void updateThrottleLabel(int throttlePorcentage) {
+        CharSequence formatted = Phrase.from(getString(R.string.trottle_now)).put("value", throttlePorcentage).format();
+        throttleControlPercentageTV.setText(formatted);
     }
 }
