@@ -9,8 +9,8 @@ android {
         applicationId "com.fewlaps.flone"
         minSdkVersion 11
         targetSdkVersion 21
-        versionCode 3
-        versionName "0.21 beta"
+        versionCode 4
+        versionName "0.3 beta"
     }
     buildTypes {
         release {
