@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
 
+import com.fewlaps.flone.DesiredYawCalculator;
 import com.fewlaps.flone.data.KnownDronesDatabase;
 import com.fewlaps.flone.data.bean.Drone;
 import com.fewlaps.flone.io.bean.DroneConnectionStatusChanged;
@@ -50,6 +51,7 @@ public class DroneService extends BaseService {
     private PhoneOutputData phoneOutputData = new PhoneOutputData();
 
     public static final RCSignals rc = new RCSignals(); //Created at startup, never changed, never destroyed, totally reused at every request
+    DesiredYawCalculator yawCalculator = new DesiredYawCalculator();
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -92,8 +94,10 @@ public class DroneService extends BaseService {
      * to do before sending the RC to the drone, to make it fly as the user excepts
      */
     private void updateRCWithInputData() {
-        int yaw = (int) (userInput.getHeading() - droneInput.getHeading());
-        int pitch = (int) (userInput.getPitch());
+        Log.i("HEADING", "phone: " + userInput.getHeading() + "   drone: " + droneInput.getHeading());
+
+        int yaw = (int) yawCalculator.getYaw(droneInput.getHeading(), userInput.getHeading());
+        int pitch = (int) userInput.getPitch();
         int roll = (int) userInput.getRoll();
 
         rc.setThrottle(userInput.getThrottle());

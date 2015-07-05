@@ -20,6 +20,8 @@ android {
     }
 }
 
+apply from: 'build.workaround-missing-resource.gradle'
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
@@ -27,4 +29,9 @@ dependencies {
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.squareup.phrase:phrase:1.1.0'
     compile 'com.android.support:design:22.2.0'
+
+    testCompile 'junit:junit:4.12'
+    testCompile "org.mockito:mockito-core:1.9.5"
+    testCompile 'org.apache.maven:maven-ant-tasks:2.1.3'
+    testCompile "org.robolectric:robolectric:3.0-rc3"
 }
