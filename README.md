@@ -33,6 +33,7 @@ Like you guess, we didn't this magic alone. We want to thank these great project
 - [@greenrobot's EventBus](https://github.com/greenrobot/EventBus): the great way to have a Bus in your loved Android
 - [@google's GSON](https://github.com/google/gson): a standard and simple way to work with JSON
 - [@square's Phrase](https://github.com/square/phrase): a fancy way to format strings
+- [@nenick's AndroidStudioAndRobolectric](https://github.com/nenick/AndroidStudioAndRobolectric): a great and simple example to add Roboelectric feature to your existing Android project
 
 ## Download
 Get it at [Google Play!](https://play.google.com/store/apps/details?id=com.fewlaps.flone) 
