@@ -24,6 +24,13 @@
     <string name="add_drone_zero2">Did you tried to switch on the drone?</string>
     <string name="add_drone_nickname_hint">Write a friendly name...</string>
 
+    <!-- Remove a drone -->
+    <string name="remove_drone_confirmation">Are you sure you want to remove the drone %1$s?</string>
+
+    <!-- OkCancelDialog -->
+    <string name="ok_cancel_dialog_ok">Ok</string>
+    <string name="ok_cancel_dialog_cancel">Cancel</string>
+
     <!-- Common aircraft axis names -->
     <string name="throttle">Throttle</string>
     <string name="axis_heading">Heading</string>
