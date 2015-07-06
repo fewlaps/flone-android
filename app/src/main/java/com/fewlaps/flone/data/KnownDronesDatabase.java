@@ -42,6 +42,17 @@ public class KnownDronesDatabase {
         PreferenceManager.getDefaultSharedPreferences(context).edit().putString(PREF_DRONES_LIST, GSON.toJson(drones)).commit();
     }
 
+    public static void removeDrone(Context context, Drone drone){
+        List<Drone> drones = getDrones(context);
+        drones.remove(drone);
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putString(PREF_DRONES_LIST, GSON.toJson(drones)).commit();
+        clearCache();
+    }
+
+    private static void clearCache(){
+        drones = null;
+    }
+
     private static Drone selectedDrone = null;
 
     public static Drone getSelectedDrone(Context context) {

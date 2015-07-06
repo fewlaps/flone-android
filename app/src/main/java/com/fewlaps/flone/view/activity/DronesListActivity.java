@@ -10,6 +10,8 @@ import com.fewlaps.flone.R;
 import com.fewlaps.flone.view.adapter.DroneAdapter;
 import com.fewlaps.flone.data.KnownDronesDatabase;
 import com.fewlaps.flone.data.bean.Drone;
+import com.fewlaps.flone.view.dialog.OkCancelDialog;
+import com.fewlaps.flone.view.listener.OnSelectedOkDialogListener;
 
 import java.util.List;
 
@@ -17,13 +19,14 @@ import java.util.List;
  * @author Roc Boronat (roc@fewlaps.com)
  * @date 19/02/2015
  */
-public class DronesListActivity extends BaseActivity {
+public class DronesListActivity extends BaseActivity implements OnSelectedOkDialogListener{
 
     private static final int ADD_DRONE_REQUEST = 42;
 
     private ListView listView = null;
     private View listContainer = null;
     private View zeroCase = null;
+    private Drone droneToRemove;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,8 @@ public class DronesListActivity extends BaseActivity {
         listView = (ListView) findViewById(R.id.lv_drones);
         listContainer = findViewById(R.id.l_container);
         zeroCase = findViewById(R.id.z_drones);
+
+        listView.setEmptyView(zeroCase);
 
         findViewById(R.id.bt_add_drone).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +55,15 @@ public class DronesListActivity extends BaseActivity {
                 startActivity(new Intent(DronesListActivity.this, FlyActivity.class));
             }
         });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                droneToRemove = KnownDronesDatabase.getDrones(DronesListActivity.this).get(position);
+                OkCancelDialog.showDialog(DronesListActivity.this, String.format(getString(R.string.remove_drone_confirmation), droneToRemove.nickName));
+                return true;
+            }
+        });
     }
 
     @Override
@@ -57,14 +71,15 @@ public class DronesListActivity extends BaseActivity {
         super.onResume();
 
         List<Drone> drones = KnownDronesDatabase.getDrones(this);
-        if (drones.isEmpty()) {
-            listView.setVisibility(View.INVISIBLE);
-            zeroCase.setVisibility(View.VISIBLE);
-        } else {
-            listView.setVisibility(View.VISIBLE);
-            zeroCase.setVisibility(View.INVISIBLE);
 
-            listView.setAdapter(new DroneAdapter(this, drones));
-        }
+        listView.setAdapter(new DroneAdapter(this, drones));
+    }
+
+    @Override
+    public void OnSelectedOkDialogListener() {
+        KnownDronesDatabase.removeDrone(DronesListActivity.this, droneToRemove);
+
+        List<Drone> drones = KnownDronesDatabase.getDrones(DronesListActivity.this);
+        listView.setAdapter(new DroneAdapter(DronesListActivity.this, drones));
     }
 }
