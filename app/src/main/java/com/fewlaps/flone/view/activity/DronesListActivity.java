@@ -24,8 +24,6 @@ public class DronesListActivity extends BaseActivity implements OnSelectedOkDial
     private static final int ADD_DRONE_REQUEST = 42;
 
     private ListView listView = null;
-    private View listContainer = null;
-    private View zeroCase = null;
     private Drone droneToRemove;
 
     @Override
@@ -34,10 +32,7 @@ public class DronesListActivity extends BaseActivity implements OnSelectedOkDial
         setContentView(R.layout.activity_drones_list);
 
         listView = (ListView) findViewById(R.id.lv_drones);
-        listContainer = findViewById(R.id.l_container);
-        zeroCase = findViewById(R.id.z_drones);
-
-        listView.setEmptyView(zeroCase);
+        listView.setEmptyView(findViewById(R.id.z_drones));
 
         findViewById(R.id.bt_add_drone).setOnClickListener(new View.OnClickListener() {
             @Override
