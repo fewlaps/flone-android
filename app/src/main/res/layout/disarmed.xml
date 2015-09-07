@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_disarmed"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/disarmed_background"
+    android:padding="@dimen/textSizeLarge">
+
+    <TextView
+        android:id="@+id/tv_disarmed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/disarmed"
+        android:textColor="@color/disarmed_text"
+        android:textSize="@dimen/textSizeLarge" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_disarmed"
+        android:layout_marginTop="@dimen/gapLarge"
+        android:gravity="center"
+        android:text="@string/disarmed_instructions"
+        android:textColor="@color/disarmed_text"
+        android:textSize="@dimen/textSizeMedium" />
+</RelativeLayout>

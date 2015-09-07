@@ -7,6 +7,8 @@ import android.util.Log;
 import com.fewlaps.flone.DesiredYawCalculator;
 import com.fewlaps.flone.data.KnownDronesDatabase;
 import com.fewlaps.flone.data.bean.Drone;
+import com.fewlaps.flone.io.bean.ArmedDataChangeRequest;
+import com.fewlaps.flone.io.bean.ActualArmedData;
 import com.fewlaps.flone.io.bean.DroneConnectionStatusChanged;
 import com.fewlaps.flone.io.bean.DroneSensorData;
 import com.fewlaps.flone.io.communication.Bluetooth;
@@ -28,8 +30,13 @@ import de.greenrobot.event.EventBus;
  * @date 15/02/2015
  */
 public class DroneService extends BaseService {
-    public static String ACTION_CONNECT = "connect";
-    public static String ACTION_DISCONNECT = "disconnect";
+    public static final boolean ARMED_DEFAULT = false;
+
+    public static final Object ACTION_GET_ARMED = "getArmed";
+    public static final String ACTION_CONNECT = "connect";
+    public static final String ACTION_DISCONNECT = "disconnect";
+
+    private boolean armed = ARMED_DEFAULT;
 
     private static final int BAUD_RATE = 115200; //The baud rate where the BT works
 
@@ -80,6 +87,8 @@ public class DroneService extends BaseService {
             running = false;
             stopForeground(true);
             stopSelf();
+        } else if (action.equals(ACTION_GET_ARMED)) {
+            EventBus.getDefault().post(new ActualArmedData(armed));
         }
     }
 
@@ -100,23 +109,35 @@ public class DroneService extends BaseService {
         int pitch = (int) userInput.getPitch();
         int roll = (int) userInput.getRoll();
 
-        rc.setThrottle(userInput.getThrottle());
         rc.setAdjustedYaw(yaw);
         rc.setPitch(pitch);
         rc.setRoll(roll);
+        if (armed) {
+            rc.set(RCSignals.AUX1, RCSignals.RC_MAX);
+            rc.setThrottle(userInput.getThrottle());
+        } else {
+            rc.set(RCSignals.AUX1, RCSignals.RC_MIN);
+            rc.setThrottle(RCSignals.RC_MIN);
+        }
+
 
         phoneOutputData.update(yaw, pitch, roll);
         EventBus.getDefault().post(phoneOutputData);
     }
 
-    public void onEventMainThread(DroneSensorData sensorInformation) {
-        droneInput = sensorInformation;
+    public void onEventMainThread(DroneSensorData droneSensorData) {
+        droneInput = droneSensorData;
 
         protocol.SendRequestMSP_ATTITUDE();
         lastDroneAnswerReceived = System.currentTimeMillis();
 
         updateRCWithInputData();
         protocol.SendRequestMSP_SET_RAW_RC(rc.get());
+    }
+
+    public void onEventMainThread(ArmedDataChangeRequest armedDataChangeRequest) {
+        armed = armedDataChangeRequest.isArmed();
+        EventBus.getDefault().post(new ActualArmedData(armed));
     }
 
     private final Runnable reconnectRunnable = new Runnable() {

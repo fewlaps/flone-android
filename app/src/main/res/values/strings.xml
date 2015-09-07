@@ -66,4 +66,8 @@
     <string name="fly_phone">Phone</string>
     <string name="fly_drone">Drone</string>
     <string name="fly_data_sent">Data sent</string>
+
+    <!-- Disarmed layer -->
+    <string name="disarmed">Disarmed</string>
+    <string name="disarmed_instructions">To arm the Flone, tap the \'volume up\' button of the phone. To disarm it again, tap the \'volume down\'.</string>
 </resources>

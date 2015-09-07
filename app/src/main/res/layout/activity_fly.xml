@@ -194,4 +194,6 @@
                 android:background="@color/throttle_line" />
         </LinearLayout>
     </RelativeLayout>
+
+    <include layout="@layout/disarmed" />
 </RelativeLayout>

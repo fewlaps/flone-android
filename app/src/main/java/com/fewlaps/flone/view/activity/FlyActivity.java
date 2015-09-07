@@ -3,6 +3,7 @@ package com.fewlaps.flone.view.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -12,6 +13,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.fewlaps.flone.R;
+import com.fewlaps.flone.io.bean.ArmedDataChangeRequest;
+import com.fewlaps.flone.io.bean.ActualArmedData;
 import com.fewlaps.flone.io.bean.DroneSensorData;
 import com.fewlaps.flone.io.input.phone.PhoneInputData;
 import com.fewlaps.flone.io.input.phone.PhoneOutputData;
@@ -39,6 +42,7 @@ public class FlyActivity extends BaseActivity {
     private View throttleTouchableRL;
     private View throttleControlLL;
     private TextView throttleControlPercentageTV;
+    private View disarmedLayout;
 
     private SeekBar phoneHeading;
     private SeekBar phonePitch;
@@ -50,6 +54,7 @@ public class FlyActivity extends BaseActivity {
     private SeekBar dataSentPitch;
     private SeekBar dataSentRoll;
 
+    private boolean armed = DroneService.ARMED_DEFAULT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +66,7 @@ public class FlyActivity extends BaseActivity {
         throttleTouchableRL = findViewById(R.id.rl_throttle_touchable);
         throttleControlLL = findViewById(R.id.ll_throttle_control);
         throttleControlPercentageTV = (TextView) findViewById(R.id.tv_throttle_control_percentage);
+        disarmedLayout = findViewById(R.id.root_disarmed);
 
         phoneHeading = (SeekBar) findViewById(R.id.sb_phone_heading);
         phonePitch = (SeekBar) findViewById(R.id.sb_phone_pitch);
@@ -109,12 +115,24 @@ public class FlyActivity extends BaseActivity {
         }, 100);
 
         updateThrottleLabel(0);
+
+        EventBus.getDefault().post(DroneService.ACTION_GET_ARMED);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         EventBus.getDefault().register(this);
+
+        updateArmedLayer();
+    }
+
+    private void updateArmedLayer() {
+        if (armed) {
+            disarmedLayout.setVisibility(View.INVISIBLE);
+        } else {
+            disarmedLayout.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -150,8 +168,6 @@ public class FlyActivity extends BaseActivity {
         phoneHeading.setProgress((int) data.getHeading() + 180);
         phonePitch.setProgress((int) data.getPitch() + 180);
         phoneRoll.setProgress((int) data.getRoll() + 180);
-
-//        phoneSensorsSB.append(getString(R.string.throttle) + ": " + ScreenThrottleData.instance.getThrottle() + "\n");
     }
 
     public void onEventMainThread(PhoneOutputData data) {
@@ -160,8 +176,23 @@ public class FlyActivity extends BaseActivity {
         dataSentRoll.setProgress((int) data.getRoll() - 1000);
     }
 
+    public void onEventMainThread(ActualArmedData armed) {
+        this.armed = armed.isArmed();
+        updateArmedLayer();
+    }
+
     private void updateThrottleLabel(int throttlePorcentage) {
         CharSequence formatted = Phrase.from(getString(R.string.trottle_now)).put("value", throttlePorcentage).format();
         throttleControlPercentageTV.setText(formatted);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
+            EventBus.getDefault().post(new ArmedDataChangeRequest(true));
+        } else if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
+            EventBus.getDefault().post(new ArmedDataChangeRequest(false));
+        }
+        return true;
     }
 }
