@@ -7,8 +7,8 @@ import android.util.Log;
 import com.fewlaps.flone.DesiredYawCalculator;
 import com.fewlaps.flone.data.KnownDronesDatabase;
 import com.fewlaps.flone.data.bean.Drone;
-import com.fewlaps.flone.io.bean.ArmedDataChangeRequest;
 import com.fewlaps.flone.io.bean.ActualArmedData;
+import com.fewlaps.flone.io.bean.ArmedDataChangeRequest;
 import com.fewlaps.flone.io.bean.DroneConnectionStatusChanged;
 import com.fewlaps.flone.io.bean.DroneSensorData;
 import com.fewlaps.flone.io.communication.Bluetooth;
@@ -109,17 +109,25 @@ public class DroneService extends BaseService {
         int pitch = (int) userInput.getPitch();
         int roll = (int) userInput.getRoll();
 
-        rc.setAdjustedYaw(yaw);
-        rc.setPitch(pitch);
-        rc.setRoll(roll);
         if (armed) {
             rc.set(RCSignals.AUX1, RCSignals.RC_MAX);
-            rc.setThrottle(userInput.getThrottle());
+            rc.setThrottle((int) userInput.getThrottle());
+
+            yaw = (int) yawCalculator.getYaw(droneInput.getHeading(), userInput.getHeading());
+            pitch = (int) userInput.getPitch();
+            roll = (int) userInput.getRoll();
         } else {
             rc.set(RCSignals.AUX1, RCSignals.RC_MIN);
             rc.setThrottle(RCSignals.RC_MIN);
+
+            yaw = RCSignals.RC_MID;
+            pitch = RCSignals.RC_MID;
+            roll = RCSignals.RC_MID;
         }
 
+        rc.setAdjustedYaw(yaw);
+        rc.setRoll(pitch);
+        rc.setPitch(roll);
 
         phoneOutputData.update(yaw, pitch, roll);
         EventBus.getDefault().post(phoneOutputData);

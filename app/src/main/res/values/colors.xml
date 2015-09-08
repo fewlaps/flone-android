@@ -8,6 +8,6 @@
     <color name="colorPrimaryDark">#ffba2027</color>
     <color name="colorAccent">#6393F9</color>
 
-    <color name="disarmed_background">#88008f28</color>
+    <color name="disarmed_background">#BBdcffe6</color>
     <color name="disarmed_text">#007a22</color>
 </resources>

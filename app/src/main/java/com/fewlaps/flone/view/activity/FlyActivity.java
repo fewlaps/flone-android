@@ -13,9 +13,10 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.fewlaps.flone.R;
-import com.fewlaps.flone.io.bean.ArmedDataChangeRequest;
 import com.fewlaps.flone.io.bean.ActualArmedData;
+import com.fewlaps.flone.io.bean.ArmedDataChangeRequest;
 import com.fewlaps.flone.io.bean.DroneSensorData;
+import com.fewlaps.flone.io.communication.RCSignals;
 import com.fewlaps.flone.io.input.phone.PhoneInputData;
 import com.fewlaps.flone.io.input.phone.PhoneOutputData;
 import com.fewlaps.flone.io.input.phone.ScreenThrottleData;
@@ -78,20 +79,6 @@ public class FlyActivity extends BaseActivity {
         dataSentPitch = (SeekBar) findViewById(R.id.sb_data_sent_pitch);
         dataSentRoll = (SeekBar) findViewById(R.id.sb_data_sent_roll);
 
-        findViewById(R.id.bt_connect).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FlyActivity.this.startService(new Intent(FlyActivity.this, DroneService.class));
-                EventBus.getDefault().post(DroneService.ACTION_CONNECT);
-            }
-        });
-        findViewById(R.id.bt_disconnect).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EventBus.getDefault().post(DroneService.ACTION_DISCONNECT);
-            }
-        });
-
         throttleBackgroundV.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -100,7 +87,7 @@ public class FlyActivity extends BaseActivity {
                 double y = ScreenThrottleData.instance.getThrottleScreenPosition() - throttleControlLL.getHeight() + throttleTouchableRL.getPaddingTop();
                 throttleControlLL.setY((int) y);
 
-                updateThrottleLabel(ScreenThrottleData.instance.getThrottlePorcentage());
+                updateThrottleLabel((int) ScreenThrottleData.instance.getThrottlePorcentage());
 
                 return true;
             }
@@ -125,6 +112,10 @@ public class FlyActivity extends BaseActivity {
         EventBus.getDefault().register(this);
 
         updateArmedLayer();
+
+        if (!armed) {
+            setThrottleToZero();
+        }
     }
 
     private void updateArmedLayer() {
@@ -188,11 +179,34 @@ public class FlyActivity extends BaseActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
-            EventBus.getDefault().post(new ArmedDataChangeRequest(true));
-        } else if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
-            EventBus.getDefault().post(new ArmedDataChangeRequest(false));
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
+                EventBus.getDefault().post(new ArmedDataChangeRequest(true));
+                setThrottleToMid();
+            } else if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
+                EventBus.getDefault().post(new ArmedDataChangeRequest(false));
+                setThrottleToZero();
+            } else if (keyCode == KeyEvent.KEYCODE_BACK) {
+                EventBus.getDefault().post(new ArmedDataChangeRequest(false));
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        EventBus.getDefault().post(DroneService.ACTION_DISCONNECT);
+                        finish();
+                    }
+                }, 1000);
+            }
         }
         return true;
+    }
+
+    private void setThrottleToZero() {
+        ScreenThrottleData.instance.setThrottleRaw(RCSignals.RC_MIN);
+        updateThrottleLabel(0);
+    }
+
+    private void setThrottleToMid() {
+        ScreenThrottleData.instance.setThrottleRaw(RCSignals.RC_MID); //Mid it's the default value for armed drones
+        updateThrottleLabel(0);
     }
 }

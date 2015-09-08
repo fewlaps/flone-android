@@ -5,31 +5,10 @@
     tools:context=".FlyActivity">
 
     <LinearLayout
-        android:id="@+id/l_buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/bt_connect"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/action_connect" />
-
-        <Button
-            android:id="@+id/bt_disconnect"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/action_disconnect" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/l_buttons"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/gapLarge"
+        android:layout_alignParentTop="true"
         android:orientation="horizontal">
 
         <LinearLayout

@@ -6,7 +6,6 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.util.Log;
 
 import com.fewlaps.flone.data.CalibrationDatabase;
 import com.fewlaps.flone.io.communication.RCSignals;
@@ -81,7 +80,7 @@ public class PhoneInput implements SensorEventListener, UserInstructionsInput {
     }
 
     @Override
-    public int getThrottle() {
+    public double getThrottle() {
         return ScreenThrottleData.instance.getThrottle();
     }
 

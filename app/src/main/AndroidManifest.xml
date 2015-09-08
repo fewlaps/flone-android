@@ -24,12 +24,15 @@
             android:name=".view.activity.AddDroneActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".view.activity.ConnectingActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".view.activity.FlyActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.activity.CalibrationActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <service android:name=".service.DroneService" />
     </application>

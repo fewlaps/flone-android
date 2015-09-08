@@ -22,7 +22,7 @@
     <string name="add_drone_launch_bt_screen">Pair the drone with the phone</string>
     <string name="add_drone_zero1">There isn\'t any paired bluetooth device</string>
     <string name="add_drone_zero2">Did you tried to switch on the drone?</string>
-    <string name="add_drone_nickname_hint">Write a friendly name...</string>
+    <string name="add_drone_nickname_hint">Write a friendly name for this drone...</string>
 
     <!-- Remove a drone -->
     <string name="remove_drone_confirmation">Are you sure you want to remove the drone %1$s?</string>
@@ -37,6 +37,9 @@
     <string name="axis_yaw">Yaw</string>
     <string name="axis_pitch">Pitch</string>
     <string name="axis_roll">Roll</string>
+
+    <!-- Connecting screen -->
+    <string name="connecting">Connecting...</string>
 
     <!-- Throttle zone -->
     <string name="trottle_full">Engines at full power</string>
@@ -53,10 +56,12 @@
     <string name="calibrate_phone_sensors_move_phone">It\'s the time to move your phone in all its axis, doing the natural movement you think it\'s good to fly. Don\'t overrotate the phone!</string>
     <string name="calibrate_phone_sensors_start_button">Start calibration</string>
     <string name="calibrate_phone_sensors_stop_and_save_button">Stop and save calibration</string>
+
     <!-- Calibrate drone -->
     <string name="calibrate_drone_sensors">Drone sensors</string>
     <string name="calibrate_drone_sensors_description">In order to have a great flying experience, calibrate your drone sensors. Usually they\'re actually well calibrated. To check its calibration, place the drone in a neutral zone, like a flat stable table, and check for a 0 pitch and 0 roll values. If they don\'t show a double 0, tap the button and wait for 20 seconds without doing absolutely nothing.</string>
     <string name="calibrate_drone_sensors_start_button">Start calibration</string>
+
     <!-- Sync phone and drone -->
     <string name="calibrate_sync_phone_and_drone">Sync</string>
     <string name="calibrate_sync_phone_and_drone_description">The easier way to make drone fly is to have it sync\'d with your phone. So, put your drone in a flat stable table, and get your phone with your hand, heading to the same orientation. Then, tap the button. The phone and the drone will be instantly sync\'d.</string>
@@ -69,5 +74,5 @@
 
     <!-- Disarmed layer -->
     <string name="disarmed">Disarmed</string>
-    <string name="disarmed_instructions">To arm the Flone, tap the \'volume up\' button of the phone. To disarm it again, tap the \'volume down\'.</string>
+    <string name="disarmed_instructions">To arm the drone, tap the \'volume up\' button of the phone. To disarm it again, tap the \'volume down\'.</string>
 </resources>

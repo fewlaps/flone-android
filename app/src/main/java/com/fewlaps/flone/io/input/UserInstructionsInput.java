@@ -10,7 +10,7 @@ package com.fewlaps.flone.io.input;
  * @date 14/05/2015
  */
 public interface UserInstructionsInput {
-    public int getThrottle();
+    public double getThrottle();
 
     public double getHeading();
 
