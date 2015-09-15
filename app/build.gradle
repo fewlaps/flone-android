@@ -12,6 +12,9 @@ android {
         versionCode 4
         versionName "0.3 beta"
     }
+    lintOptions {
+        abortOnError false
+    }
     buildTypes {
         release {
             minifyEnabled false
