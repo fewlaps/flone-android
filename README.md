@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Fewlaps/FloneRemote.svg?branch=master)](https://travis-ci.org/Fewlaps/FloneRemote)
+
 # FloneRemote
 A Multiwii drone remote controller, driven with performance in mind.
 
