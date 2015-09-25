@@ -1,6 +1,8 @@
+![The Flone](http://fewlaps.com/xtra/flone/flone-desert.png)<br/>
+
 [![Build Status](https://travis-ci.org/Fewlaps/FloneRemote.svg?branch=master)](https://travis-ci.org/Fewlaps/FloneRemote)
 
-# FloneRemote
+# flone-android
 A Multiwii drone remote controller, driven with performance in mind.
 
 ### Current features
@@ -43,5 +45,4 @@ Get it at [Google Play!](https://play.google.com/store/apps/details?id=com.fewla
 # Want to know more about Flone?
 Don't hesitate to read the official website: http://flone.aeracoop.net/<br/><br/>
 ![The Flone](http://fewlaps.com/xtra/flone/flone-projecting.jpg)<br/>
-![A broken Flone](http://fewlaps.com/xtra/flone/flone-broken.jpg)<br/>
 ![Flone at RNE](http://fewlaps.com/xtra/flone/flone-at-RNE.jpg)
