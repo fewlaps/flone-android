@@ -182,7 +182,7 @@ public class FlyActivity extends BaseActivity {
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
                 EventBus.getDefault().post(new ArmedDataChangeRequest(true));
-                setThrottleToMid();
+                setThrottleToZero();
             } else if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
                 EventBus.getDefault().post(new ArmedDataChangeRequest(false));
                 setThrottleToZero();
@@ -201,12 +201,7 @@ public class FlyActivity extends BaseActivity {
     }
 
     private void setThrottleToZero() {
-        ScreenThrottleData.instance.setThrottleRaw(RCSignals.RC_MIN);
-        updateThrottleLabel(0);
-    }
-
-    private void setThrottleToMid() {
-        ScreenThrottleData.instance.setThrottleRaw(RCSignals.RC_MID); //Mid it's the default value for armed drones
+        ScreenThrottleData.instance.setThrottle(RCSignals.RC_MIN);
         updateThrottleLabel(0);
     }
 }

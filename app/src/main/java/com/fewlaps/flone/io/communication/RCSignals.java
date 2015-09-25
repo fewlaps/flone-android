@@ -6,7 +6,6 @@ public class RCSignals {
     public static int RC_MID = (RC_MAX - RC_MIN) / 2 + RC_MIN;
     public static int RC_GAP = RC_MAX - RC_MIN;
     public static int RC_MID_GAP = RC_GAP / 2;
-    public static int RC_THRESHOLD = RC_MAX - RC_MID;
 
     public enum AdjustMode {
         THROTTLE("T: ", (byte) 3), ROLL("R: ", (byte) 0), PITCH("P: ", (byte) 1), YAW("Y: ", (byte) 2);
@@ -181,12 +180,9 @@ public class RCSignals {
     }
 
     public void set(byte id, int value) {
-        if (value >= RC_MIN && value <= RC_MAX)
+        if (value >= RC_MIN && value <= RC_MAX) {
             rc_signals_raw[id] = value;
-        if (rc_signals_raw[THROTTLE] >= 1030)
-            setMax(AUX1);
-        else
-            setMin(AUX1);
+        }
     }
 
     public void trim(byte id, int newValue) {

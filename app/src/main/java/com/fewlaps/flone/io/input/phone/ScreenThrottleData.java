@@ -22,17 +22,17 @@ public class ScreenThrottleData extends SensorInformation {
         this.screenHeight = screenHeight;
     }
 
-    private double throttle = 0;
+    private int throttle = 0;
 
-    public double getThrottle() {
+    public int getThrottle() {
         return throttle;
     }
 
-    public void setThrottleRaw(int value) {
-        this.throttle = value;
-    }
-
     public void setThrottle(Integer screenPosition) {
+        if (screenPosition == null || screenHeight == null) {
+            this.throttle = RCSignals.RC_MIN;
+            return;
+        }
         int throttlePosition = screenHeight - screenPosition;
 
         if (throttlePosition > getScreenHeight()) {
@@ -41,16 +41,16 @@ public class ScreenThrottleData extends SensorInformation {
             throttlePosition = 0;
         }
 
-        double throttleRelative = (float) throttlePosition / screenHeight / 2;
+        double throttleRelative = (float) throttlePosition / screenHeight;
         int chosenThrottle = (int) (RCSignals.RC_GAP * throttleRelative);
-        this.throttle = RCSignals.RC_MID + chosenThrottle;
+        this.throttle = RCSignals.RC_MIN + chosenThrottle;
     }
 
-    public double getThrottleScreenPosition() {
-        return screenHeight - getThrottlePorcentage() * screenHeight / 100;
+    public float getThrottleScreenPosition() {
+        return screenHeight - ((throttle - RCSignals.RC_MIN) * screenHeight / RCSignals.RC_GAP);
     }
 
-    public double getThrottlePorcentage() {
-        return (throttle - RCSignals.RC_MID) * 100 / RCSignals.RC_THRESHOLD;
+    public int getThrottlePorcentage() {
+        return (throttle - RCSignals.RC_MIN) * 100 / RCSignals.RC_GAP;
     }
 }

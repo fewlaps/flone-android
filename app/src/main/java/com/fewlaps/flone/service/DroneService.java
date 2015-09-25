@@ -103,7 +103,7 @@ public class DroneService extends BaseService {
      * to do before sending the RC to the drone, to make it fly as the user excepts
      */
     private void updateRCWithInputData() {
-        Log.i("HEADING", "phone: " + userInput.getHeading() + "   drone: " + droneInput.getHeading());
+//        Log.i("HEADING", "phone: " + userInput.getHeading() + "   drone: " + droneInput.getHeading());
 
         int yaw = (int) yawCalculator.getYaw(droneInput.getHeading(), userInput.getHeading());
         int pitch = (int) userInput.getPitch();
