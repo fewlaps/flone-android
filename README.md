@@ -43,6 +43,6 @@ Like you guess, we didn't this magic alone. We want to thank these great project
 Get it at [Google Play!](https://play.google.com/store/apps/details?id=com.fewlaps.flone) 
 
 # Want to know more about Flone?
-Don't hesitate to read the official website: http://flone.aeracoop.net/<br/><br/>
+Don't hesitate to read the official website: http://flone.cc/<br/><br/>
 ![The Flone](http://fewlaps.com/xtra/flone/flone-projecting.jpg)<br/>
 ![Flone at RNE](http://fewlaps.com/xtra/flone/flone-at-RNE.jpg)
