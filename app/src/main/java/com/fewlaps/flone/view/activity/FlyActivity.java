@@ -3,6 +3,7 @@ package com.fewlaps.flone.view.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.IntentCompat;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -187,17 +188,24 @@ public class FlyActivity extends BaseActivity {
                 EventBus.getDefault().post(new ArmedDataChangeRequest(false));
                 setThrottleToZero();
             } else if (keyCode == KeyEvent.KEYCODE_BACK) {
-                EventBus.getDefault().post(new ArmedDataChangeRequest(false));
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        EventBus.getDefault().post(DroneService.ACTION_DISCONNECT);
-                        finish();
-                    }
-                }, 1000);
+                shutDownAndQuitActivity();
             }
         }
         return true;
+    }
+
+    private void shutDownAndQuitActivity() {
+        EventBus.getDefault().post(new ArmedDataChangeRequest(false));
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                EventBus.getDefault().post(DroneService.ACTION_DISCONNECT);
+                Intent i = new Intent(FlyActivity.this, DronesListActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+                finish();
+                startActivity(i);
+            }
+        }, 1000);
     }
 
     private void setThrottleToZero() {

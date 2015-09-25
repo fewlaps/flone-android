@@ -28,6 +28,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.activity.FlyActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.activity.CalibrationActivity"
