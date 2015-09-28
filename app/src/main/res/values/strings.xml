@@ -49,6 +49,7 @@
     <!-- Menu -->
     <string name="menu_calibration">Calibration</string>
     <string name="menu_preferences">Preferences</string>
+    <string name="menu_disconnect">Disarm and disconnect</string>
 
     <!-- Calibrate phone -->
     <string name="calibrate_phone_sensors">Phone sensors</string>

@@ -9,4 +9,8 @@
         android:id="@+id/action_preferences"
         android:title="@string/menu_preferences"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_disconnect"
+        android:title="@string/menu_disconnect"
+        app:showAsAction="never" />
 </menu>

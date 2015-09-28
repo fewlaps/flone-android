@@ -145,6 +145,12 @@ public class FlyActivity extends BaseActivity {
             case R.id.action_calibration:
                 startActivity(new Intent(this, CalibrationActivity.class));
                 return true;
+            case R.id.action_preferences:
+//                startActivity(new Intent(this, CalibrationActivity.class));
+                return true;
+            case R.id.action_disconnect:
+                shutDownAndQuitActivity();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -187,8 +193,6 @@ public class FlyActivity extends BaseActivity {
             } else if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
                 EventBus.getDefault().post(new ArmedDataChangeRequest(false));
                 setThrottleToZero();
-            } else if (keyCode == KeyEvent.KEYCODE_BACK) {
-                shutDownAndQuitActivity();
             }
         }
         return true;
