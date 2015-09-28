@@ -125,7 +125,8 @@ public class DroneService extends BaseService {
             roll = RCSignals.RC_MID;
         }
 
-        rc.setAdjustedYaw(yaw);
+//        rc.setAdjustedYaw(yaw); //while having the compass issue, sending 1500 to the board
+        rc.setYaw(1500);
         rc.setRoll(pitch);
         rc.setPitch(roll);
 

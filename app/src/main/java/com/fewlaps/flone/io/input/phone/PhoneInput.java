@@ -63,8 +63,8 @@ public class PhoneInput implements SensorEventListener, UserInstructionsInput {
         }
 
         inputData.setHeading(restrictAngle((int) Math.toDegrees((double) orientation[0])));
-        inputData.setPitch(restrictAngle((int) Math.toDegrees((double) orientation[1])));
-        inputData.setRoll(restrictAngle((int) Math.toDegrees((double) orientation[2])));
+        inputData.setPitch(restrictAngle((int) Math.toDegrees((double) orientation[2])));
+        inputData.setRoll(restrictAngle((int) Math.toDegrees((double) orientation[1])));
         EventBus.getDefault().post(inputData);
     }
 
