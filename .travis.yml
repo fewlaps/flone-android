@@ -45,8 +45,6 @@ env:
 
 before_install:
  - chmod +x gradlew
- - ./execute inexistent install-and-update-sdk
- - ./execute create-and-start-device wait-for-device-online
 
 install:
  - ./gradlew --version # show version and download Gradle Wrapper when is not present in cache
