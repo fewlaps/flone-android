@@ -1,6 +1,6 @@
 ![The Flone](http://fewlaps.com/xtra/flone/flone-desert.png)<br/>
 
-[![Build Status](https://travis-ci.org/Fewlaps/flone-remote.svg?branch=master)](https://travis-ci.org/Fewlaps/flone-remote)
+[![Build Status](https://travis-ci.org/Fewlaps/flone-android.svg?branch=master)](https://travis-ci.org/Fewlaps/flone-android)
 
 # flone-android
 A Multiwii drone remote controller, driven with performance in mind.
