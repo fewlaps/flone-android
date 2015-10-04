@@ -32,13 +32,13 @@ before_install:
  - chmod +x gradlew
 
  # Emulator Management: Create, Start and Wait
- before_script:
-   - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
-   - emulator -avd test -no-skin -no-audio -no-window &
-   - adb wait-for-device
-   - adb shell input keyevent 82 &
+before_script:
+ - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
+ - emulator -avd test -no-skin -no-audio -no-window &
+ - adb wait-for-device
+ - adb shell input keyevent 82 &
 
- script:
-   - echo $ADB_INSTALL_TIMEOUT
-   - android list target
-   - ./gradlew test connectedAndroidTest
+script:
+ - echo $ADB_INSTALL_TIMEOUT
+ - android list target
+ - ./gradlew test connectedAndroidTest
