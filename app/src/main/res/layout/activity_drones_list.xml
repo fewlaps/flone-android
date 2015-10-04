@@ -12,10 +12,10 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/gapLarge"
-        app:borderWidth="0dp"
-        app:elevation="@dimen/fab_elevation"
         android:src="@drawable/ic_add_white"
-        app:pressedTranslationZ="@dimen/fab_translation_z_pressed" />
+        app:borderWidth="0dp"
+        app:elevation="@dimen/fab_elevation_high"
+        app:pressedTranslationZ="@dimen/fab_elevation_low" />
 
     <LinearLayout
         android:layout_width="match_parent"

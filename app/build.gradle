@@ -2,15 +2,16 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.hugo'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
 
     defaultConfig {
         applicationId "com.fewlaps.flone"
         minSdkVersion 15
-        targetSdkVersion 21
+        targetSdkVersion 23
         versionCode 5
         versionName "0.4 beta"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
         abortOnError false
@@ -21,21 +22,34 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'LICENSE.txt'
+    }
 }
 
 apply from: 'build.workaround-missing-resource.gradle'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'com.android.support:support-annotations:23.0.1'
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.squareup.phrase:phrase:1.0.3'
-    compile 'com.android.support:design:22.2.0'
+    compile 'com.android.support:design:23.0.1'
     compile 'net.frakbot:jumpingbeans:1.2.0'
 
-    testCompile 'junit:junit:4.12'
     testCompile "org.mockito:mockito-core:1.9.5"
     testCompile 'org.apache.maven:maven-ant-tasks:2.1.3'
     testCompile "org.robolectric:robolectric:3.0-rc3"
+
+    // @see https://google.github.io/android-testing-support-library/docs/espresso
+    // @see https://google.github.io/android-testing-support-library/downloads
+    androidTestCompile 'com.android.support.test:runner:0.4.1'
+    androidTestCompile 'com.android.support.test:rules:0.4.1'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
+    androidTestCompile 'com.android.support.test.espresso:espresso-contrib:2.2.1'
+    androidTestCompile 'com.android.support.test.espresso:espresso-idling-resource:2.2.1'
+    androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2.1'
+
 }

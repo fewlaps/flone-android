@@ -13,6 +13,12 @@
     <dimen name="textSizeMedium">18sp</dimen>
     <dimen name="textSizeLarge">22sp</dimen>
 
+    <!-- Throttle -->
     <dimen name="throttle_area">300dp</dimen>
     <dimen name="throttle_horizontal_line_height">3dp</dimen>
+
+    <!-- FAB -->
+    <dimen name="fab_diameter">56dp</dimen>
+    <dimen name="fab_elevation_low">2dp</dimen>
+    <dimen name="fab_elevation_high">4dp</dimen>
 </resources>
