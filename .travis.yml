@@ -61,7 +61,7 @@ before_script:
 script:
  - echo $ADB_INSTALL_TIMEOUT
  - android list target
- - ./gradlew test connectedAndroidTest
+ - ./gradlew test
 
 after_script:
  - cat ${TRAVIS_BUILD_DIR}/espresso/*/app/build/outputs/androidTest-results/connected/* # show logs
