@@ -126,7 +126,7 @@ public class Bluetooth extends Communication {
     }
 
     @Override
-    public void Close() {
+    public void close() {
         CloseSocket();
     }
 

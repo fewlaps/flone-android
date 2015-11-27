@@ -18,4 +18,11 @@
         <item name="android:enabled">false</item>
     </style>
 
+    <style name="SeekBarSendRawDataDialog">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:max">1000</item>
+        <item name="android:layout_marginTop">@dimen/gapLarge</item>
+    </style>
+
 </resources>

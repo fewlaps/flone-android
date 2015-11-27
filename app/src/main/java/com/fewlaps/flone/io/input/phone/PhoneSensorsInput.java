@@ -8,6 +8,8 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
 import com.fewlaps.flone.data.CalibrationDatabase;
+import com.fewlaps.flone.data.bean.PhoneSensorsData;
+import com.fewlaps.flone.io.bean.MultiWiiValues;
 import com.fewlaps.flone.io.communication.RCSignals;
 import com.fewlaps.flone.io.input.UserInstructionsInput;
 
@@ -19,27 +21,25 @@ import de.greenrobot.event.EventBus;
  * <p/>
  * Created by Roc on 14/05/2015.
  */
-public class PhoneInput implements SensorEventListener, UserInstructionsInput {
+public class PhoneSensorsInput extends MultiWiiValues implements SensorEventListener, UserInstructionsInput {
 
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
     private Sensor mMagnetic;
 
-    private float[] mValuesMagnet = new float[3];
-    private float[] mValuesAccel = new float[3];
-    private float[] mValuesOrientation = new float[3];
-    private float[] mRotationMatrix = new float[9];
-
-    PhoneInputData inputData = new PhoneInputData();
     private Context context;
 
-    public PhoneInput(Context context) {
+    public PhoneSensorsInput(Context context) {
         this.context = context;
         mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mMagnetic = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
         mSensorManager.registerListener(this, mMagnetic, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    public void unregisterListeners() {
+        mSensorManager.unregisterListener(this);
     }
 
 
@@ -62,10 +62,11 @@ public class PhoneInput implements SensorEventListener, UserInstructionsInput {
             }
         }
 
-        inputData.setHeading(restrictAngle((int) Math.toDegrees((double) orientation[0])));
-        inputData.setPitch(restrictAngle((int) Math.toDegrees((double) orientation[2])));
-        inputData.setRoll(restrictAngle((int) Math.toDegrees((double) orientation[1])));
-        EventBus.getDefault().post(inputData);
+        setHeading(restrictAngle((int) Math.toDegrees((double) orientation[0])));
+        setPitch(restrictAngle((int) Math.toDegrees((double) orientation[2])));
+        setRoll(restrictAngle((int) Math.toDegrees((double) orientation[1])));
+
+        EventBus.getDefault().post(new PhoneSensorsData(heading, pitch, roll));
     }
 
 
@@ -86,23 +87,21 @@ public class PhoneInput implements SensorEventListener, UserInstructionsInput {
 
     @Override
     public double getHeading() {
-        return inputData.getHeading();
+        return heading;
     }
 
     @Override
     public double getPitch() {
-        double value = inputData.getPitch();
         double average = CalibrationDatabase.getPhoneCalibrationData(context).getAverageMaxPitch();
-        double relative = value * RCSignals.RC_MID_GAP / average;
+        double relative = pitch * RCSignals.RC_MID_GAP / average;
         double absolute = relative + RCSignals.RC_MID;
         return absolute;
     }
 
     @Override
     public double getRoll() {
-        double value = inputData.getRoll();
         double average = CalibrationDatabase.getPhoneCalibrationData(context).getAverageMaxRoll();
-        double relative = value * RCSignals.RC_MID_GAP / average;
+        double relative = roll * RCSignals.RC_MID_GAP / average;
         double absolute = relative + RCSignals.RC_MID;
         return absolute;
     }

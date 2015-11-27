@@ -344,7 +344,7 @@ public abstract class MultirotorData {
                 connection.Connected = false;
             }
             if (stop) {
-                connection.Close();
+                connection.close();
             }
 
             // Reset the ConnectThread because we're done
@@ -361,7 +361,7 @@ public abstract class MultirotorData {
 
         public void cancel() {
             stop = true;
-            connection.Close();
+            connection.close();
         }
     }
 
@@ -387,7 +387,7 @@ public abstract class MultirotorData {
 
         public void cancel() {
             connection.Connected = false;
-            connection.Close();
+            connection.close();
         }
     }
 
@@ -422,7 +422,7 @@ public abstract class MultirotorData {
 
     public abstract void SendRequestMSP_WP(int Number);
 
-    public abstract void SendRequestMSP_SET_RAW_RC(int[] channels8);
+    public abstract void sendRequestMSP_SET_RAW_RC(int[] channels8);
 
     public abstract void SendRequestMSP_EEPROM_WRITE();
 
