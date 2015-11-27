@@ -12,7 +12,7 @@ import com.fewlaps.flone.io.communication.RCSignals;
 public class ScreenThrottleData extends SensorInformation {
     public static ScreenThrottleData instance = new ScreenThrottleData();
 
-    private Integer screenHeight;
+    private Integer screenHeight = 0;
 
     public Integer getScreenHeight() {
         return screenHeight;
@@ -44,6 +44,10 @@ public class ScreenThrottleData extends SensorInformation {
         double throttleRelative = (float) throttlePosition / screenHeight;
         int chosenThrottle = (int) (RCSignals.RC_GAP * throttleRelative);
         this.throttle = RCSignals.RC_MIN + chosenThrottle;
+    }
+
+    public void setThrottleAtMid() {
+        this.throttle = RCSignals.RC_MID;
     }
 
     public float getThrottleScreenPosition() {

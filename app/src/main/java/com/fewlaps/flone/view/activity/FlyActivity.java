@@ -83,12 +83,14 @@ public class FlyActivity extends BaseActivity {
         throttleBackgroundV.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                ScreenThrottleData.instance.setThrottle((int) event.getY());
+                int action = event.getAction();
+                if (action == MotionEvent.ACTION_MOVE || action == MotionEvent.ACTION_DOWN) {
+                    ScreenThrottleData.instance.setThrottle((int) event.getY());
+                } else if (action == MotionEvent.ACTION_UP) {
+                    ScreenThrottleData.instance.setThrottleAtMid();
+                }
 
-                double y = ScreenThrottleData.instance.getThrottleScreenPosition() - throttleControlLL.getHeight() + throttleTouchableRL.getPaddingTop();
-                throttleControlLL.setY((int) y);
-
-                updateThrottleLabel((int) ScreenThrottleData.instance.getThrottlePorcentage());
+                updateThrottleLabel();
 
                 return true;
             }
@@ -102,7 +104,7 @@ public class FlyActivity extends BaseActivity {
             }
         }, 100);
 
-        updateThrottleLabel(0);
+        updateThrottleLabel();
 
         EventBus.getDefault().post(DroneService.ACTION_GET_ARMED);
     }
@@ -179,8 +181,11 @@ public class FlyActivity extends BaseActivity {
         updateArmedLayer();
     }
 
-    private void updateThrottleLabel(int throttlePorcentage) {
-        CharSequence formatted = Phrase.from(getString(R.string.trottle_now)).put("value", throttlePorcentage).format();
+    private void updateThrottleLabel() {
+        double y = ScreenThrottleData.instance.getThrottleScreenPosition() - throttleControlLL.getHeight() + throttleTouchableRL.getPaddingTop();
+        throttleControlLL.setY((int) y);
+
+        CharSequence formatted = Phrase.from(getString(R.string.trottle_now)).put("value", ScreenThrottleData.instance.getThrottlePorcentage()).format();
         throttleControlPercentageTV.setText(formatted);
     }
 
@@ -214,6 +219,6 @@ public class FlyActivity extends BaseActivity {
 
     private void setThrottleToZero() {
         ScreenThrottleData.instance.setThrottle(RCSignals.RC_MIN);
-        updateThrottleLabel(0);
+        updateThrottleLabel();
     }
 }
