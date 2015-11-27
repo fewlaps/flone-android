@@ -1,0 +1,175 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/gapMedium">
+
+    <SeekBar
+        android:id="@+id/sb_throttle"
+        style="@style/SeekBarSendRawDataDialog" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/throttle" />
+
+        <TextView
+            android:id="@+id/tv_throttle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            tools:text="1245" />
+    </RelativeLayout>
+
+    <SeekBar
+        android:id="@+id/sb_roll"
+        style="@style/SeekBarSendRawDataDialog" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/axis_roll" />
+
+        <TextView
+            android:id="@+id/tv_roll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            tools:text="1245" />
+    </RelativeLayout>
+
+    <SeekBar
+        android:id="@+id/sb_pitch"
+        style="@style/SeekBarSendRawDataDialog" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/axis_pitch" />
+
+        <TextView
+            android:id="@+id/tv_pitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            tools:text="1245" />
+    </RelativeLayout>
+
+    <SeekBar
+        android:id="@+id/sb_yaw"
+        style="@style/SeekBarSendRawDataDialog" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/axis_yaw" />
+
+        <TextView
+            android:id="@+id/tv_yaw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            tools:text="1245" />
+    </RelativeLayout>
+
+    <SeekBar
+        android:id="@+id/sb_aux1"
+        style="@style/SeekBarSendRawDataDialog" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/aux1" />
+
+        <TextView
+            android:id="@+id/tv_aux1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            tools:text="1245" />
+    </RelativeLayout>
+
+    <SeekBar
+        android:id="@+id/sb_aux2"
+        style="@style/SeekBarSendRawDataDialog" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/aux2" />
+
+        <TextView
+            android:id="@+id/tv_aux2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            tools:text="1245" />
+    </RelativeLayout>
+
+    <SeekBar
+        android:id="@+id/sb_aux3"
+        style="@style/SeekBarSendRawDataDialog" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/aux3" />
+
+        <TextView
+            android:id="@+id/tv_aux3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            tools:text="1245" />
+    </RelativeLayout>
+
+    <SeekBar
+        android:id="@+id/sb_aux4"
+        style="@style/SeekBarSendRawDataDialog" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/aux4" />
+
+        <TextView
+            android:id="@+id/tv_aux4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            tools:text="1245" />
+    </RelativeLayout>
+</LinearLayout>

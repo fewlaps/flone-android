@@ -140,7 +140,7 @@ public class Wifi extends Communication {
 	}
 
 	@Override
-	public void Close() {
+	public void close() {
 		Connected = false;
 		if (mySocket != null && mySocket.isConnected())
 			try {

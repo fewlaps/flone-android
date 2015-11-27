@@ -654,7 +654,7 @@ public class MultiWii230 extends MultirotorData {
      * 0rcRoll 1rcPitch 2rcYaw 3rcThrottle 4rcAUX1 5rcAUX2 6rcAUX3 7rcAUX4
      */
     @Override
-    public void SendRequestMSP_SET_RAW_RC(int[] channels8) {
+    public void sendRequestMSP_SET_RAW_RC(int[] channels8) {
         Character[] rc_signals_array = new Character[16];
         int index = 0;
         for (int i = 0; i < 8; i++) {

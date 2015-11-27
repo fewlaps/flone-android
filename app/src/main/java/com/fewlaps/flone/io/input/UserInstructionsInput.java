@@ -10,11 +10,19 @@ package com.fewlaps.flone.io.input;
  * @date 14/05/2015
  */
 public interface UserInstructionsInput {
-    public double getThrottle();
+    double getThrottle();
 
-    public double getHeading();
+    double getHeading();
 
-    public double getPitch();
+    double getPitch();
 
-    public double getRoll();
+    double getRoll();
+
+    double getAux1();
+
+    double getAux2();
+
+    double getAux3();
+
+    double getAux4();
 }
