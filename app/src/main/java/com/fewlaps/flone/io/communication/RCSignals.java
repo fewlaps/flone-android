@@ -1,5 +1,7 @@
 package com.fewlaps.flone.io.communication;
 
+import java.util.Arrays;
+
 public class RCSignals {
     public static int RC_MIN = 1000;
     public static int RC_MAX = 2000;
@@ -210,12 +212,32 @@ public class RCSignals {
 
     @Override
     public String toString() {
-        return "Throttle: " + get(THROTTLE) + "\n" + toStringNoThrottle();
+        StringBuilder sb = new StringBuilder();
+        sb.append(" THROT:" + get(THROTTLE));
+        sb.append(" ROLL:" + get(ROLL));
+        sb.append(" PITCH:" + get(PITCH));
+        sb.append(" YAW:" + get(YAW));
+        sb.append(" AUX1:" + get(AUX1));
+//        sb.append(" AUX2:" + get(AUX2));
+//        sb.append(" AUX3:" + get(AUX3));
+//        sb.append(" AUX4:" + get(AUX4));
+
+        return sb.toString();
     }
 
-    public String toStringNoThrottle() {
-        return "Roll: " + get(ROLL) + "\n"
-                + "Pitch: " + get(PITCH) + "\n"
-                + "Yaw: " + get(YAW) + "\n";
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        RCSignals rcSignals = (RCSignals) o;
+
+        return Arrays.equals(rc_signals_raw, rcSignals.rc_signals_raw);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(rc_signals_raw);
     }
 }

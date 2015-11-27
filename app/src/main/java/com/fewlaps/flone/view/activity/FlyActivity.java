@@ -14,11 +14,11 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.fewlaps.flone.R;
+import com.fewlaps.flone.data.bean.PhoneSensorsData;
 import com.fewlaps.flone.io.bean.ActualArmedData;
 import com.fewlaps.flone.io.bean.ArmedDataChangeRequest;
 import com.fewlaps.flone.io.bean.DroneSensorData;
 import com.fewlaps.flone.io.communication.RCSignals;
-import com.fewlaps.flone.io.input.phone.PhoneInputData;
 import com.fewlaps.flone.io.input.phone.PhoneOutputData;
 import com.fewlaps.flone.io.input.phone.ScreenThrottleData;
 import com.fewlaps.flone.service.DroneService;
@@ -167,7 +167,7 @@ public class FlyActivity extends BaseActivity {
         droneRoll.setProgress((int) data.getRoll() + 180);
     }
 
-    public void onEventMainThread(PhoneInputData data) {
+    public void onEventMainThread(PhoneSensorsData data) {
         phoneHeading.setProgress((int) data.getHeading() + 180);
         phonePitch.setProgress((int) data.getPitch() + 180);
         phoneRoll.setProgress((int) data.getRoll() + 180);

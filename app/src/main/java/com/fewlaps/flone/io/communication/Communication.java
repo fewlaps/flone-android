@@ -131,7 +131,7 @@ public abstract class Communication {
 		return true;
 	}
 	
-	public abstract void Close();
+	public abstract void close();
 
 	public abstract void Disable();
 	

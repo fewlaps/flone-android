@@ -1,6 +1,5 @@
 package com.fewlaps.flone.io.input.phone;
 
-import com.fewlaps.flone.io.bean.SensorInformation;
 import com.fewlaps.flone.io.communication.RCSignals;
 
 /**
@@ -9,7 +8,7 @@ import com.fewlaps.flone.io.communication.RCSignals;
  * @author Roc Boronat (roc@fewlaps.com)
  * @date 13/05/2015
  */
-public class ScreenThrottleData extends SensorInformation {
+public class ScreenThrottleData {
     public static ScreenThrottleData instance = new ScreenThrottleData();
 
     private Integer screenHeight = 0;
@@ -24,7 +23,7 @@ public class ScreenThrottleData extends SensorInformation {
 
     private int throttle = 0;
 
-    public int getThrottle() {
+    public double getThrottle() {
         return throttle;
     }
 
