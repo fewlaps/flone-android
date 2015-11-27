@@ -22,6 +22,7 @@ import com.fewlaps.flone.io.input.phone.PhoneInputData;
 import com.fewlaps.flone.io.input.phone.PhoneOutputData;
 import com.fewlaps.flone.io.input.phone.ScreenThrottleData;
 import com.fewlaps.flone.service.DroneService;
+import com.fewlaps.flone.view.dialog.SendRawDataDialog;
 import com.squareup.phrase.Phrase;
 
 import de.greenrobot.event.EventBus;
@@ -148,7 +149,9 @@ public class FlyActivity extends BaseActivity {
                 startActivity(new Intent(this, CalibrationActivity.class));
                 return true;
             case R.id.action_preferences:
-//                startActivity(new Intent(this, CalibrationActivity.class));
+                return true;
+            case R.id.action_send_raw_data:
+                SendRawDataDialog.showDialog(this);
                 return true;
             case R.id.action_disconnect:
                 shutDownAndQuitActivity();

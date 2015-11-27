@@ -37,6 +37,10 @@
     <string name="axis_yaw">Yaw</string>
     <string name="axis_pitch">Pitch</string>
     <string name="axis_roll">Roll</string>
+    <string name="aux1">Aux 1</string>
+    <string name="aux2">Aux 2</string>
+    <string name="aux3">Aux 3</string>
+    <string name="aux4">Aux 4</string>
 
     <!-- Connecting screen -->
     <string name="connecting">Connecting...</string>
@@ -49,6 +53,7 @@
     <!-- Menu -->
     <string name="menu_calibration">Calibration</string>
     <string name="menu_preferences">Preferences</string>
+    <string name="menu_send_raw_data">Send raw data</string>
     <string name="menu_disconnect">Disarm and disconnect</string>
 
     <!-- Calibrate phone -->
