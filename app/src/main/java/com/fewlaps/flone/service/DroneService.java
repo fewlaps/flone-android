@@ -158,9 +158,9 @@ public class DroneService extends BaseService {
             rc.setPitch((int) RawDataInput.instance.getPitch());
             rc.setYaw((int) RawDataInput.instance.getHeading());
             rc.set(RCSignals.AUX1, (int) RawDataInput.instance.getAux1());
-            rc.set(RCSignals.AUX1, (int) RawDataInput.instance.getAux2());
-            rc.set(RCSignals.AUX1, (int) RawDataInput.instance.getAux3());
-            rc.set(RCSignals.AUX1, (int) RawDataInput.instance.getAux4());
+            rc.set(RCSignals.AUX2, (int) RawDataInput.instance.getAux2());
+            rc.set(RCSignals.AUX3, (int) RawDataInput.instance.getAux3());
+            rc.set(RCSignals.AUX4, (int) RawDataInput.instance.getAux4());
         } else {
             int yaw;
             int pitch;
