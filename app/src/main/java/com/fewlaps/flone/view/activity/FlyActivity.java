@@ -17,6 +17,7 @@ import com.fewlaps.flone.R;
 import com.fewlaps.flone.data.bean.PhoneSensorsData;
 import com.fewlaps.flone.io.bean.ActualArmedData;
 import com.fewlaps.flone.io.bean.ArmedDataChangeRequest;
+import com.fewlaps.flone.io.bean.DelayData;
 import com.fewlaps.flone.io.bean.DroneSensorData;
 import com.fewlaps.flone.io.communication.RCSignals;
 import com.fewlaps.flone.io.input.phone.PhoneOutputData;
@@ -57,6 +58,9 @@ public class FlyActivity extends BaseActivity {
     private SeekBar dataSentPitch;
     private SeekBar dataSentRoll;
 
+    private SeekBar delaySeekBar;
+    private TextView delayTV;
+
     private boolean armed = DroneService.ARMED_DEFAULT;
 
     @Override
@@ -80,6 +84,9 @@ public class FlyActivity extends BaseActivity {
         dataSentYaw = (SeekBar) findViewById(R.id.sb_data_sent_yaw);
         dataSentPitch = (SeekBar) findViewById(R.id.sb_data_sent_pitch);
         dataSentRoll = (SeekBar) findViewById(R.id.sb_data_sent_roll);
+
+        delaySeekBar = (SeekBar) findViewById(R.id.sb_delay);
+        delayTV = (TextView) findViewById(R.id.tv_delay);
 
         throttleBackgroundV.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -188,6 +195,11 @@ public class FlyActivity extends BaseActivity {
     public void onEventMainThread(ActualArmedData armed) {
         this.armed = armed.isArmed();
         updateArmedLayer();
+    }
+
+    public void onEventMainThread(DelayData delay) {
+        delaySeekBar.setProgress(delay.delay);
+        delayTV.setText(delay.delay + "ms");
     }
 
     private void updateThrottleLabel() {

@@ -9,6 +9,7 @@ import com.fewlaps.flone.data.KnownDronesDatabase;
 import com.fewlaps.flone.data.bean.Drone;
 import com.fewlaps.flone.io.bean.ActualArmedData;
 import com.fewlaps.flone.io.bean.ArmedDataChangeRequest;
+import com.fewlaps.flone.io.bean.DelayData;
 import com.fewlaps.flone.io.bean.DroneConnectionStatusChanged;
 import com.fewlaps.flone.io.bean.DroneSensorData;
 import com.fewlaps.flone.io.bean.MultiWiiValues;
@@ -57,7 +58,6 @@ public class DroneService extends BaseService {
     private long lastDroneAnswerReceived = 0;
 
     private PhoneSensorsInput phoneSensorsInput;
-    private DroneSensorData droneInput;
 
     private PhoneOutputData phoneOutputData = new PhoneOutputData();
 
@@ -105,19 +105,16 @@ public class DroneService extends BaseService {
     }
 
     public void onEventMainThread(DroneSensorData droneSensorData) {
-        droneInput = droneSensorData;
-
+        EventBus.getDefault().post(new DelayData((int) (System.currentTimeMillis() - lastDroneAnswerReceived)));
         protocol.SendRequestMSP_ATTITUDE();
         lastDroneAnswerReceived = System.currentTimeMillis();
 
         updateRcWithInputData();
         EventBus.getDefault().post(phoneOutputData);
 
-//        if (valuesSent.isDifferentThanRcValues(rc)) {
-            Log.d("DATASENT", rc.toString());
-            protocol.sendRequestMSP_SET_RAW_RC(rc.get());
-            valuesSent.update(rc);
-//        }
+//        Log.d("DATASENT", rc.toString());
+        protocol.sendRequestMSP_SET_RAW_RC(rc.get());
+        valuesSent.update(rc);
     }
 
     public void onEventMainThread(ArmedDataChangeRequest request) {
