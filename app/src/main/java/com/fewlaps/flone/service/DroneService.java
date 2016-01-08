@@ -113,11 +113,11 @@ public class DroneService extends BaseService {
         updateRcWithInputData();
         EventBus.getDefault().post(phoneOutputData);
 
-        if (valuesSent.isDifferentThanRcValues(rc)) {
+//        if (valuesSent.isDifferentThanRcValues(rc)) {
             Log.d("DATASENT", rc.toString());
             protocol.sendRequestMSP_SET_RAW_RC(rc.get());
             valuesSent.update(rc);
-        }
+//        }
     }
 
     public void onEventMainThread(ArmedDataChangeRequest request) {
