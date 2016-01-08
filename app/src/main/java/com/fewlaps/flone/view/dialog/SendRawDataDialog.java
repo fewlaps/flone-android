@@ -38,6 +38,15 @@ public class SendRawDataDialog extends DialogFragment {
         findElement(root, R.id.sb_aux3, R.id.tv_aux3, RCSignals.AUX3);
         findElement(root, R.id.sb_aux4, R.id.tv_aux4, RCSignals.AUX4);
 
+        RawDataInput.instance.setThrottle(RCSignals.RC_MIN);
+        RawDataInput.instance.setRoll(RCSignals.RC_MIN);
+        RawDataInput.instance.setPitch(RCSignals.RC_MIN);
+        RawDataInput.instance.setHeading(RCSignals.RC_MIN);
+        RawDataInput.instance.setAux1(RCSignals.RC_MIN);
+        RawDataInput.instance.setAux2(RCSignals.RC_MIN);
+        RawDataInput.instance.setAux3(RCSignals.RC_MIN);
+        RawDataInput.instance.setAux4(RCSignals.RC_MIN);
+
         EventBus.getDefault().post(new UsingRawDataChangeRequest(true));
         return root;
     }
@@ -56,7 +65,7 @@ public class SendRawDataDialog extends DialogFragment {
         public WriteValueOutToTextView(TextView tv, int signal) {
             this.tv = tv;
             this.signal = signal;
-            tv.setText(String.valueOf(0));
+            tv.setText(String.valueOf(RCSignals.RC_MIN));
         }
 
         @Override
