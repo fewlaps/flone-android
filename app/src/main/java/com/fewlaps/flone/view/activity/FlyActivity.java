@@ -88,7 +88,13 @@ public class FlyActivity extends BaseActivity {
                 if (action == MotionEvent.ACTION_MOVE || action == MotionEvent.ACTION_DOWN) {
                     ScreenThrottleData.instance.setThrottle((int) event.getY());
                 } else if (action == MotionEvent.ACTION_UP) {
-                    ScreenThrottleData.instance.setThrottleAtMid();
+                    if (ScreenThrottleData.instance.getThrottlePorcentage() < 90) {
+                        if (ScreenThrottleData.instance.getThrottlePorcentage() < 10) {
+                            ScreenThrottleData.instance.setThrottleAtZero();
+                        } else {
+                            ScreenThrottleData.instance.setThrottleAtMid();
+                        }
+                    }
                 }
 
                 updateThrottleLabel();
