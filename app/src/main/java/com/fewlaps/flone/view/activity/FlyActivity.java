@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.IntentCompat;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -187,7 +188,7 @@ public class FlyActivity extends BaseActivity {
     }
 
     public void onEventMainThread(PhoneOutputData data) {
-        dataSentYaw.setProgress((int) data.getHeading() + 180);
+        dataSentYaw.setProgress((int) data.getHeading() - 1000);
         dataSentPitch.setProgress((int) data.getPitch() - 1000);
         dataSentRoll.setProgress((int) data.getRoll() - 1000);
     }

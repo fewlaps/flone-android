@@ -90,7 +90,8 @@
                 android:id="@+id/sb_data_sent_yaw"
                 style="@style/SeekBarData"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:max="1000" />
 
             <SeekBar
                 android:id="@+id/sb_data_sent_pitch"
