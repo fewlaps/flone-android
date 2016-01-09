@@ -11,7 +11,7 @@ public class DesiredPitchRollCalculatorTest {
 
     @Before
     public void init() {
-        calculator = new DesiredPitchRollCalculator();
+        calculator = new DesiredPitchRollCalculator(0);
     }
 
     @Test

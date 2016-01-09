@@ -10,7 +10,16 @@ package com.fewlaps.flone;
  */
 public class DesiredPitchRollCalculator {
 
+    public static final int MID = 1500;
+
+    public static final int MIN_USER_VALUE = 0;
+    public static final int MAX_USER_VALUE = 500;
+
     private int limit = 0;
+
+    public DesiredPitchRollCalculator(int limit) {
+        this.limit = limit;
+    }
 
     public void setLimit(int limit) {
         this.limit = limit;
@@ -19,20 +28,20 @@ public class DesiredPitchRollCalculator {
     public int getValue(int value) {
         int absolute = getAbsolute(value);
 
-        int calculatedValue = map(absolute, 0, 500, 0, 500 - limit);
+        int calculatedValue = map(absolute, MIN_USER_VALUE, MAX_USER_VALUE, MIN_USER_VALUE, MAX_USER_VALUE - limit);
 
-        if (value > 1500) {
-            return 1500 + calculatedValue;
+        if (value > MID) {
+            return MID + calculatedValue;
         } else {
-            return 1500 - calculatedValue;
+            return MID - calculatedValue;
         }
     }
 
     public int getAbsolute(int value) {
-        if (value > 1500) {
-            return value - 1500;
+        if (value > MID) {
+            return value - MID;
         } else {
-            int absolute = value - 1500;
+            int absolute = value - MID;
             return absolute * -1;
         }
     }
