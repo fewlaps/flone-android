@@ -20,6 +20,7 @@ import de.greenrobot.event.EventBus;
 public class ConnectingActivity extends BaseActivity {
 
     public static final int JUMPING_BEANS_ANIMATION_START_DELAY = 500;
+    private JumpingBeans jumpingBeans;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class ConnectingActivity extends BaseActivity {
         new Handler().postDelayed(new Runnable() { //To make a loving animation we start it after the Activity startup cycle
             @Override
             public void run() {
-                JumpingBeans.with((TextView) findViewById(R.id.tv_connecting)).appendJumpingDots().build();
+                jumpingBeans = JumpingBeans.with((TextView) findViewById(R.id.tv_connecting)).appendJumpingDots().build();
             }
         }, JUMPING_BEANS_ANIMATION_START_DELAY);
     }
@@ -52,12 +53,14 @@ public class ConnectingActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         EventBus.getDefault().post(DroneService.ACTION_DISCONNECT);
+        jumpingBeans.stopJumping();
         finish();
     }
 
     public void onEventMainThread(DroneSensorData data) {
         if (data != null) { //Connected to the drone!
             startActivity(new Intent(this, FlyActivity.class));
+            jumpingBeans.stopJumping();
             finish();
         }
     }
