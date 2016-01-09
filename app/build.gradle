@@ -42,6 +42,7 @@ dependencies {
     testCompile "org.mockito:mockito-core:1.9.5"
     testCompile 'org.apache.maven:maven-ant-tasks:2.1.3'
     testCompile "org.robolectric:robolectric:3.0-rc3"
+    testCompile 'org.assertj:assertj-core:1.7.0'
 
     // @see https://google.github.io/android-testing-support-library/docs/espresso
     // @see https://google.github.io/android-testing-support-library/downloads
