@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
 
+import com.fewlaps.flone.DesiredPitchRollCalculator;
 import com.fewlaps.flone.DesiredYawCalculator;
 import com.fewlaps.flone.data.KnownDronesDatabase;
 import com.fewlaps.flone.data.bean.Drone;
@@ -33,6 +34,8 @@ import de.greenrobot.event.EventBus;
  * @date 15/02/2015
  */
 public class DroneService extends BaseService {
+    public static final int DEFAULT_PITCH_ROLL_LIMIT = 200;
+
     public static final boolean ARMED_DEFAULT = false;
     public static final boolean USING_RAW_DATA_DEFAULT = false;
 
@@ -58,12 +61,13 @@ public class DroneService extends BaseService {
     private long lastDroneAnswerReceived = 0;
 
     private PhoneSensorsInput phoneSensorsInput;
-
     private PhoneOutputData phoneOutputData = new PhoneOutputData();
 
     public static MultiWiiValues valuesSent = new MultiWiiValues(); //Created at startup, never changed, never destroyed, totally reused at every request
     public static final RCSignals rc = new RCSignals(); //Created at startup, never changed, never destroyed, totally reused at every request
-    DesiredYawCalculator yawCalculator = new DesiredYawCalculator();
+
+    private DesiredYawCalculator yawCalculator = new DesiredYawCalculator();
+    private DesiredPitchRollCalculator pitchRollCalculator = new DesiredPitchRollCalculator(DEFAULT_PITCH_ROLL_LIMIT);
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -169,8 +173,8 @@ public class DroneService extends BaseService {
 
                 //yaw = (int) yawCalculator.getYaw(droneInput.getHeading(), phoneSensorsInput.getHeading()); //while having the compass issue, sending 1500 to the board
                 yaw = RCSignals.RC_MID;
-                pitch = (int) phoneSensorsInput.getPitch();
-                roll = (int) phoneSensorsInput.getRoll();
+                pitch = pitchRollCalculator.getValue((int) phoneSensorsInput.getPitch());
+                roll = pitchRollCalculator.getValue((int) phoneSensorsInput.getRoll());
             } else {
                 rc.set(RCSignals.AUX1, RCSignals.RC_MIN);
                 rc.setThrottle(RCSignals.RC_MIN);
