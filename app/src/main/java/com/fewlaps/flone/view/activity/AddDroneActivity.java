@@ -21,10 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-/**
- * @author Roc Boronat (roc@fewlaps.com)
- * @date 19/02/2015
- */
 public class AddDroneActivity extends BaseActivity implements OnDeviceNickNameSetListener {
 
     private ListView listView = null;

@@ -78,7 +78,7 @@
 
     <!-- Cap pitch and roll -->
     <string name="preference_cap_pitch_and_roll">Cap pitch and roll</string>
-    <string name="preference_cap_pitch_and_roll_description">Controlling your drone is not an easy task. If you're a beginner, cap pitch and roll limit values. The drone will have a more stable flight.</string>
+    <string name="preference_cap_pitch_and_roll_description">Controlling your drone is not an easy task. If you\'re a beginner, cap pitch and roll limit values. The drone will have a more stable flight.</string>
     <string name="preference_cap_pitch_and_roll_beginner">Beginner</string>
     <string name="preference_cap_pitch_and_roll_expert">Expert</string>
     <string name="preference_cap_pitch_and_roll_cap_value">Cap value:</string>

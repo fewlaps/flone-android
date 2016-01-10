@@ -13,10 +13,6 @@ import net.frakbot.jumpingbeans.JumpingBeans;
 
 import de.greenrobot.event.EventBus;
 
-/**
- * @author Roc Boronat (roc@fewlaps.com)
- * @date 20150907
- */
 public class ConnectingActivity extends BaseActivity {
 
     public static final int JUMPING_BEANS_ANIMATION_START_DELAY = 500;

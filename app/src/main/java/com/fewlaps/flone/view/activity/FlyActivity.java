@@ -36,9 +36,6 @@ import de.greenrobot.event.EventBus;
  * <p/>
  * Also, it is the responsable of saying: "are you sure you want to disconnect of the Drone?"
  * when the user taps the back button.
- *
- * @author Roc Boronat (roc@fewlaps.com)
- * @date 20150215
  */
 public class FlyActivity extends BaseActivity {
 
@@ -163,6 +160,7 @@ public class FlyActivity extends BaseActivity {
                 startActivity(new Intent(this, CalibrationActivity.class));
                 return true;
             case R.id.action_preferences:
+                startActivity(new Intent(this, PreferenceActivity.class));
                 return true;
             case R.id.action_send_raw_data:
                 SendRawDataDialog.showDialog(this);

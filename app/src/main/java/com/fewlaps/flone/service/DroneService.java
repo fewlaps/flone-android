@@ -7,6 +7,7 @@ import android.util.Log;
 import com.fewlaps.flone.DesiredPitchRollCalculator;
 import com.fewlaps.flone.DesiredYawCalculator;
 import com.fewlaps.flone.data.CalibrationDatabase;
+import com.fewlaps.flone.data.DefaultValues;
 import com.fewlaps.flone.data.KnownDronesDatabase;
 import com.fewlaps.flone.data.bean.Drone;
 import com.fewlaps.flone.io.bean.ActualArmedData;
@@ -36,7 +37,6 @@ import de.greenrobot.event.EventBus;
  * @date 15/02/2015
  */
 public class DroneService extends BaseService {
-    public static final int DEFAULT_PITCH_ROLL_LIMIT = 200;
 
     public static final boolean ARMED_DEFAULT = false;
     public static final boolean USING_RAW_DATA_DEFAULT = false;
@@ -69,7 +69,7 @@ public class DroneService extends BaseService {
     public static final RCSignals rc = new RCSignals(); //Created at startup, never changed, never destroyed, totally reused at every request
 
     private DesiredYawCalculator yawCalculator = new DesiredYawCalculator();
-    private DesiredPitchRollCalculator pitchRollCalculator = new DesiredPitchRollCalculator(DEFAULT_PITCH_ROLL_LIMIT);
+    private DesiredPitchRollCalculator pitchRollCalculator = new DesiredPitchRollCalculator(DefaultValues.DEFAULT_PITCH_ROLL_LIMIT);
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {

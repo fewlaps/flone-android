@@ -15,10 +15,6 @@ import com.fewlaps.flone.view.listener.OnSelectedOkDialogListener;
 
 import java.util.List;
 
-/**
- * @author Roc Boronat (roc@fewlaps.com)
- * @date 19/02/2015
- */
 public class DronesListActivity extends BaseActivity implements OnSelectedOkDialogListener {
 
     private static final int ADD_DRONE_REQUEST = 42;
