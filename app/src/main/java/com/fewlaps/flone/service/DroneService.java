@@ -6,10 +6,12 @@ import android.util.Log;
 
 import com.fewlaps.flone.DesiredPitchRollCalculator;
 import com.fewlaps.flone.DesiredYawCalculator;
+import com.fewlaps.flone.data.CalibrationDatabase;
 import com.fewlaps.flone.data.KnownDronesDatabase;
 import com.fewlaps.flone.data.bean.Drone;
 import com.fewlaps.flone.io.bean.ActualArmedData;
 import com.fewlaps.flone.io.bean.ArmedDataChangeRequest;
+import com.fewlaps.flone.io.bean.CalibrationDataChangedEvent;
 import com.fewlaps.flone.io.bean.DelayData;
 import com.fewlaps.flone.io.bean.DroneConnectionStatusChanged;
 import com.fewlaps.flone.io.bean.DroneSensorData;
@@ -81,6 +83,8 @@ public class DroneService extends BaseService {
         if (phoneSensorsInput == null) {
             phoneSensorsInput = new PhoneSensorsInput(this);
         }
+
+        updateCalibrationData();
 
         return START_NOT_STICKY;
     }
@@ -190,5 +194,13 @@ public class DroneService extends BaseService {
 
             phoneOutputData.update(yaw, pitch, roll);
         }
+    }
+
+    public void onEventMainThread(CalibrationDataChangedEvent event) {
+        updateCalibrationData();
+    }
+
+    private void updateCalibrationData() {
+        pitchRollCalculator.setLimit(CalibrationDatabase.getPhoneCalibrationData(this).getLimit());
     }
 }

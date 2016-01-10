@@ -1,0 +1,61 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/gapLarge"
+    tools:context=".FlyActivity">
+
+    <Button
+        android:id="@+id/bt_load_default"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/preference_common_load_default" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bt_load_default"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/gapLarge"
+            android:text="@string/preference_cap_pitch_and_roll_description" />
+
+        <TextView
+            android:id="@+id/tv_preview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/gapLarge"
+            tools:text="Cap value: 142\nMin pitch: 1358\nMax pitch: 1642\nMin roll: 1358\nMax roll: 1642" />
+
+        <SeekBar
+            android:id="@+id/sb_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/tv_preview"
+            android:layout_marginBottom="@dimen/gapLarge"
+            android:layout_marginTop="@dimen/gapMedium"
+            android:max="500"
+            tools:progress="142" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/sb_value"
+            android:layout_alignParentLeft="true"
+            android:text="@string/preference_cap_pitch_and_roll_beginner" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/sb_value"
+            android:layout_alignParentRight="true"
+            android:text="@string/preference_cap_pitch_and_roll_expert" />
+
+    </RelativeLayout>
+</RelativeLayout>
