@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
 
+import com.fewlaps.flone.DesiredPitchRollCalculator;
 import com.fewlaps.flone.R;
 import com.fewlaps.flone.data.CalibrationDatabase;
 import com.fewlaps.flone.data.DefaultValues;
@@ -18,7 +19,7 @@ import de.greenrobot.event.EventBus;
 
 public class PreferenceCapPitchRollFragment extends Fragment {
 
-    Context context;
+    private Context context;
 
     public static PreferenceCapPitchRollFragment newInstance() {
         return new PreferenceCapPitchRollFragment();
@@ -35,12 +36,12 @@ public class PreferenceCapPitchRollFragment extends Fragment {
         context = PreferenceCapPitchRollFragment.this.getContext();
 
         final SeekBar seekBar = (SeekBar) view.findViewById(R.id.sb_value);
-        seekBar.setProgress(CalibrationDatabase.getPhoneCalibrationData(context).getLimit());
+        seekBar.setProgress(DesiredPitchRollCalculator.MAX_LIMIT - CalibrationDatabase.getPhoneCalibrationData(context).getLimit());
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 PhoneCalibrationData data = CalibrationDatabase.getPhoneCalibrationData(context);
-                data.setLimit(progress);
+                data.setLimit(DesiredPitchRollCalculator.MAX_LIMIT - progress);
                 CalibrationDatabase.setPhoneCalibrationData(context, data);
 
                 EventBus.getDefault().post(new CalibrationDataChangedEvent());

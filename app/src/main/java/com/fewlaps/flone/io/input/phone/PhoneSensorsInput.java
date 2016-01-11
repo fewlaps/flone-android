@@ -27,7 +27,10 @@ public class PhoneSensorsInput extends MultiWiiValues implements SensorEventList
     private Sensor mAccelerometer;
     private Sensor mMagnetic;
 
+    private Context context;
+
     public PhoneSensorsInput(Context context) {
+        this.context = context;
         mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mMagnetic = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
@@ -89,11 +92,17 @@ public class PhoneSensorsInput extends MultiWiiValues implements SensorEventList
 
     @Override
     public double getPitch() {
-        return pitch;
+        double average = CalibrationDatabase.getPhoneCalibrationData(context).getAverageMaxPitch();
+        double relative = pitch * RCSignals.RC_MID_GAP / average;
+        double absolute = relative + RCSignals.RC_MID;
+        return absolute;
     }
 
     @Override
     public double getRoll() {
-        return roll;
+        double average = CalibrationDatabase.getPhoneCalibrationData(context).getAverageMaxRoll();
+        double relative = roll * RCSignals.RC_MID_GAP / average;
+        double absolute = relative + RCSignals.RC_MID;
+        return absolute;
     }
 }

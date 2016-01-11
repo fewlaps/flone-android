@@ -2,18 +2,18 @@ package com.fewlaps.flone;
 
 /**
  * A tool to get the pitch and yaw the user wants to send to the drone.
- * <p>
+ * <p/>
  * Usually, users won't want to send a 2000 or a 1000, because it's a too high value. So,
  * we'll have to map the input of the user to the bounds he previously set.
- * <p>
+ * <p/>
  * A limit of 100 makes the min to be 1100 and the max to be 1900.
  */
 public class DesiredPitchRollCalculator {
 
     public static final int MID = 1500;
 
-    public static final int MIN_USER_VALUE = 0;
-    public static final int MAX_USER_VALUE = 500;
+    public static final int MIN_LIMIT = 0;
+    public static final int MAX_LIMIT = 500;
 
     private int limit = 0;
 
@@ -28,7 +28,7 @@ public class DesiredPitchRollCalculator {
     public int getValue(int value) {
         int absolute = getAbsolute(value);
 
-        int calculatedValue = map(absolute, MIN_USER_VALUE, MAX_USER_VALUE, MIN_USER_VALUE, MAX_USER_VALUE - limit);
+        int calculatedValue = map(absolute, MIN_LIMIT, MAX_LIMIT, MIN_LIMIT, MAX_LIMIT - limit);
 
         if (value > MID) {
             return MID + calculatedValue;
