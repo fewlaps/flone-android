@@ -63,6 +63,7 @@ public class DroneService extends BaseService {
     private long lastDroneAnswerReceived = 0;
 
     private PhoneSensorsInput phoneSensorsInput;
+    private DroneSensorData droneSensorInput;
     private PhoneOutputData phoneOutputData = new PhoneOutputData();
 
     public static MultiWiiValues valuesSent = new MultiWiiValues(); //Created at startup, never changed, never destroyed, totally reused at every request
@@ -113,6 +114,7 @@ public class DroneService extends BaseService {
     }
 
     public void onEventMainThread(DroneSensorData droneSensorData) {
+        this.droneSensorInput = droneSensorData;
         EventBus.getDefault().post(new DelayData((int) (System.currentTimeMillis() - lastDroneAnswerReceived)));
         protocol.SendRequestMSP_ATTITUDE();
         lastDroneAnswerReceived = System.currentTimeMillis();
@@ -175,8 +177,7 @@ public class DroneService extends BaseService {
                 rc.set(RCSignals.AUX1, RCSignals.RC_MAX);
                 rc.setThrottle((int) phoneSensorsInput.getThrottle());
 
-                //yaw = (int) yawCalculator.getYaw(droneInput.getHeading(), phoneSensorsInput.getHeading()); //while having the compass issue, sending 1500 to the board
-                yaw = RCSignals.RC_MID;
+                yaw = RCSignals.RC_MID + ((int) yawCalculator.getYaw(droneSensorInput.getHeading() - 180, phoneSensorsInput.getHeading()));
                 pitch = pitchRollCalculator.getValue((int) phoneSensorsInput.getPitch());
                 roll = pitchRollCalculator.getValue((int) phoneSensorsInput.getRoll());
             } else {
