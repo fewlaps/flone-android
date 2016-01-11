@@ -71,6 +71,7 @@ public class DroneService extends BaseService {
 
     private DesiredYawCalculator yawCalculator = new DesiredYawCalculator();
     private DesiredPitchRollCalculator pitchRollCalculator = new DesiredPitchRollCalculator(DefaultValues.DEFAULT_PITCH_ROLL_LIMIT);
+    private double headingDifference = 0.0;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -177,7 +178,7 @@ public class DroneService extends BaseService {
                 rc.set(RCSignals.AUX1, RCSignals.RC_MAX);
                 rc.setThrottle((int) phoneSensorsInput.getThrottle());
 
-                yaw = RCSignals.RC_MID + ((int) yawCalculator.getYaw(droneSensorInput.getHeading() - 180, phoneSensorsInput.getHeading()));
+                yaw = RCSignals.RC_MID + ((int) yawCalculator.getYaw(droneSensorInput.getHeading() + headingDifference, phoneSensorsInput.getHeading()));
                 pitch = pitchRollCalculator.getValue((int) phoneSensorsInput.getPitch());
                 roll = pitchRollCalculator.getValue((int) phoneSensorsInput.getRoll());
             } else {
@@ -203,5 +204,8 @@ public class DroneService extends BaseService {
 
     private void updateCalibrationData() {
         pitchRollCalculator.setLimit(CalibrationDatabase.getPhoneCalibrationData(this).getLimit());
+
+        Drone selectedDrone = KnownDronesDatabase.getSelectedDrone(DroneService.this);
+        headingDifference = CalibrationDatabase.getDroneCalibrationData(this, selectedDrone.nickName).getHeadingDifference();
     }
 }

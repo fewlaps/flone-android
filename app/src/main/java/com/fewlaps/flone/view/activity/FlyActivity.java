@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.IntentCompat;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +14,10 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.fewlaps.flone.R;
+import com.fewlaps.flone.data.CalibrationDatabase;
+import com.fewlaps.flone.data.KnownDronesDatabase;
+import com.fewlaps.flone.data.bean.Drone;
+import com.fewlaps.flone.data.bean.DroneCalibrationData;
 import com.fewlaps.flone.data.bean.PhoneSensorsData;
 import com.fewlaps.flone.io.bean.ActualArmedData;
 import com.fewlaps.flone.io.bean.ArmedDataChangeRequest;
@@ -174,7 +177,10 @@ public class FlyActivity extends BaseActivity {
     }
 
     public void onEventMainThread(DroneSensorData data) {
-        droneHeading.setProgress((int) data.getHeading() + 180);
+        Drone drone = KnownDronesDatabase.getSelectedDrone(this);
+        DroneCalibrationData dcd = CalibrationDatabase.getDroneCalibrationData(this, drone.nickName);
+
+        droneHeading.setProgress((int) data.getHeading() + 180 + (int) dcd.getHeadingDifference());
         dronePitch.setProgress((int) data.getPitch() + 180);
         droneRoll.setProgress((int) data.getRoll() + 180);
     }

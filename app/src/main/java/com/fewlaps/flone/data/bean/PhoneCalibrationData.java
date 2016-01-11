@@ -2,10 +2,6 @@ package com.fewlaps.flone.data.bean;
 
 import com.fewlaps.flone.data.DefaultValues;
 
-/**
- * @author Roc Boronat (roc@fewlaps.com)
- * @date 26/05/2015
- */
 public class PhoneCalibrationData {
 
     private Double minPitch = DefaultValues.DEFAULT_PHONE_PITCH_ROLL * -1;

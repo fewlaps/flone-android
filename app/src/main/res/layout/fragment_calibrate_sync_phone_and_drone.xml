@@ -2,20 +2,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FlyActivity"
-    android:padding="@dimen/gapLarge">
+    android:padding="@dimen/gapLarge"
+    tools:context=".FlyActivity">
 
     <Button
-        android:layout_alignParentBottom="true"
-        android:id="@+id/bt_stop_calibration_and_save"
+        android:id="@+id/bt_sync_sensors"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:text="@string/calibrate_sync_phone_and_drone_button" />
 
     <TextView
-        android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:text="@string/calibrate_sync_phone_and_drone_description" />
 
 </RelativeLayout>
