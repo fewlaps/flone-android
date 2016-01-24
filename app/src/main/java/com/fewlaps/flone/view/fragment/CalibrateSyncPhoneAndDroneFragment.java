@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.fewlaps.flone.R;
 import com.fewlaps.flone.data.CalibrationDatabase;
@@ -19,6 +20,14 @@ import com.fewlaps.flone.io.bean.DroneSensorData;
 import de.greenrobot.event.EventBus;
 
 public class CalibrateSyncPhoneAndDroneFragment extends Fragment {
+
+    private TextView droneTV;
+    private TextView phoneTV;
+    private TextView differenceTV;
+    private TextView syncdDifferenceTV;
+
+    private Double droneHeading;
+    private Double phoneHeading;
 
     public static CalibrateSyncPhoneAndDroneFragment newInstance() {
         return new CalibrateSyncPhoneAndDroneFragment();
@@ -38,12 +47,20 @@ public class CalibrateSyncPhoneAndDroneFragment extends Fragment {
                 Context context = CalibrateSyncPhoneAndDroneFragment.this.getActivity();
                 Drone drone = KnownDronesDatabase.getSelectedDrone(context);
                 DroneCalibrationData data = CalibrationDatabase.getDroneCalibrationData(context, drone.nickName);
-                data.setHeadingDifference(phoneHeading - droneHeading);
+                data.setHeadingDifference(getDifference());
                 CalibrationDatabase.setDroneCalibrationData(context, drone.nickName, data);
-
+                updateSyncdDifference();
                 EventBus.getDefault().post(new CalibrationDataChangedEvent());
             }
         });
+
+        droneTV = (TextView) view.findViewById(R.id.tv_drone);
+        phoneTV = (TextView) view.findViewById(R.id.tv_phone);
+        differenceTV = (TextView) view.findViewById(R.id.tv_difference);
+        syncdDifferenceTV = (TextView) view.findViewById(R.id.tv_syncd_difference);
+
+        updateSyncdDifference();
+
         return view;
     }
 
@@ -59,14 +76,32 @@ public class CalibrateSyncPhoneAndDroneFragment extends Fragment {
         super.onPause();
     }
 
-    double droneHeading;
-    double phoneHeading;
-
     public void onEventMainThread(DroneSensorData data) {
         droneHeading = data.getHeading();
+        droneTV.setText(getString(R.string.calibration_drone) + " " + data.getHeading());
+        updateDifference();
     }
 
     public void onEventMainThread(PhoneSensorsData data) {
         phoneHeading = data.getHeading();
+        phoneTV.setText(getString(R.string.calibration_phone) + " " + data.getHeading());
+        updateDifference();
+    }
+
+    private void updateDifference() {
+        if (droneHeading != null && phoneHeading != null) {
+            differenceTV.setText(getString(R.string.calibration_difference) + " " + getDifference());
+        }
+    }
+
+    private void updateSyncdDifference() {
+        Drone drone = KnownDronesDatabase.getSelectedDrone(getActivity());
+        DroneCalibrationData data = CalibrationDatabase.getDroneCalibrationData(getActivity(), drone.nickName);
+
+        syncdDifferenceTV.setText(getString(R.string.calibration_difference_syncd) + " " + data.getHeadingDifference());
+    }
+
+    private double getDifference() {
+        return phoneHeading - droneHeading;
     }
 } 

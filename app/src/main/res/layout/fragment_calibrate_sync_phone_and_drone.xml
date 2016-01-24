@@ -18,4 +18,41 @@
         android:layout_alignParentTop="true"
         android:text="@string/calibrate_sync_phone_and_drone_description" />
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/gapXXLarge"
+        android:layout_marginRight="@dimen/gapXXLarge"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/gapMedium"
+            android:text="@string/calibration_phone" />
+
+        <TextView
+            android:id="@+id/tv_drone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/gapMedium"
+            android:text="@string/calibration_drone" />
+
+        <TextView
+            android:id="@+id/tv_difference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/gapMedium"
+            android:text="@string/calibration_difference" />
+
+        <TextView
+            android:id="@+id/tv_syncd_difference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/gapMedium"
+            android:text="@string/calibration_difference_syncd" />
+    </LinearLayout>
 </RelativeLayout>

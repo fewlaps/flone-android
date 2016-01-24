@@ -96,4 +96,10 @@
     <!-- Disarmed layer -->
     <string name="disarmed">Disarmed</string>
     <string name="disarmed_instructions">To arm the drone, tap the \'volume up\' button of the phone. To disarm it again, tap the \'volume down\'.</string>
+
+    <!-- Calibration screen -->
+    <string name="calibration_phone">Phone:</string>
+    <string name="calibration_drone">Drone:</string>
+    <string name="calibration_difference">Difference:</string>
+    <string name="calibration_difference_syncd">Sync\'d difference:</string>
 </resources>
