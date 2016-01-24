@@ -180,7 +180,7 @@ public class FlyActivity extends BaseActivity {
         Drone drone = KnownDronesDatabase.getSelectedDrone(this);
         DroneCalibrationData dcd = CalibrationDatabase.getDroneCalibrationData(this, drone.nickName);
 
-        droneHeading.setProgress((int) data.getHeading() + 180 + (int) dcd.getHeadingDifference());
+        droneHeading.setProgress(((int) data.getHeading() + 180 + 360 + (int) dcd.getHeadingDifference()) % 360);
         dronePitch.setProgress((int) data.getPitch() + 180);
         droneRoll.setProgress((int) data.getRoll() + 180);
     }
