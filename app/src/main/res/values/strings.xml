@@ -102,4 +102,5 @@
     <string name="calibration_drone">Drone:</string>
     <string name="calibration_difference">Difference:</string>
     <string name="calibration_difference_syncd">Sync\'d difference:</string>
+    <string name="calibration_difference_applyed">Apply\'d difference:</string>
 </resources>

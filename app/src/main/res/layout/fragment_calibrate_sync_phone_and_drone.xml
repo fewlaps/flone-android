@@ -54,5 +54,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/gapMedium"
             android:text="@string/calibration_difference_syncd" />
+
+        <TextView
+            android:id="@+id/tv_applyed_difference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/gapMedium"
+            android:text="@string/calibration_difference_applyed" />
     </LinearLayout>
 </RelativeLayout>

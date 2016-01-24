@@ -25,9 +25,11 @@ public class CalibrateSyncPhoneAndDroneFragment extends Fragment {
     private TextView phoneTV;
     private TextView differenceTV;
     private TextView syncdDifferenceTV;
+    private TextView applyedDifferenceTV;
 
     private Double droneHeading;
     private Double phoneHeading;
+    private Double headingDifference;
 
     public static CalibrateSyncPhoneAndDroneFragment newInstance() {
         return new CalibrateSyncPhoneAndDroneFragment();
@@ -58,6 +60,7 @@ public class CalibrateSyncPhoneAndDroneFragment extends Fragment {
         phoneTV = (TextView) view.findViewById(R.id.tv_phone);
         differenceTV = (TextView) view.findViewById(R.id.tv_difference);
         syncdDifferenceTV = (TextView) view.findViewById(R.id.tv_syncd_difference);
+        applyedDifferenceTV = (TextView) view.findViewById(R.id.tv_applyed_difference);
 
         updateSyncdDifference();
 
@@ -91,17 +94,23 @@ public class CalibrateSyncPhoneAndDroneFragment extends Fragment {
     private void updateDifference() {
         if (droneHeading != null && phoneHeading != null) {
             differenceTV.setText(getString(R.string.calibration_difference) + " " + getDifference());
+            applyedDifferenceTV.setText(getString(R.string.calibration_difference_applyed) + " " + getApplyedDifference());
         }
     }
 
     private void updateSyncdDifference() {
         Drone drone = KnownDronesDatabase.getSelectedDrone(getActivity());
         DroneCalibrationData data = CalibrationDatabase.getDroneCalibrationData(getActivity(), drone.nickName);
+        headingDifference = data.getHeadingDifference();
 
-        syncdDifferenceTV.setText(getString(R.string.calibration_difference_syncd) + " " + data.getHeadingDifference());
+        syncdDifferenceTV.setText(getString(R.string.calibration_difference_syncd) + " " + headingDifference);
     }
 
     private double getDifference() {
         return phoneHeading - droneHeading;
+    }
+
+    private double getApplyedDifference() {
+        return phoneHeading - droneHeading - headingDifference;
     }
 } 
