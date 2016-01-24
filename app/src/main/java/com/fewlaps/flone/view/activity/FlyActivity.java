@@ -204,7 +204,7 @@ public class FlyActivity extends BaseActivity {
 
     public void onEventMainThread(DelayData delay) {
         delaySeekBar.setProgress(delay.delay);
-        delayTV.setText(delay.delay + "ms");
+        delayTV.setText(delay.delay + " ms");
     }
 
     private void updateThrottleLabel() {

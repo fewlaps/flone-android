@@ -91,6 +91,7 @@
     <string name="fly_phone">Phone</string>
     <string name="fly_drone">Drone</string>
     <string name="fly_data_sent">Data sent</string>
+    <string name="fly_delay">Delay:</string>
 
     <!-- Disarmed layer -->
     <string name="disarmed">Disarmed</string>

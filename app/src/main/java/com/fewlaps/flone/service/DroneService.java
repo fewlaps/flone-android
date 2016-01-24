@@ -64,7 +64,7 @@ public class DroneService extends BaseService {
     private Handler telemetryTask = new Handler();
     private Handler sendRawDataTask = new Handler();
 
-    private long lastDroneAnswerReceived = 0;
+    private long lastTelemetryRequestSent = 0;
 
     private PhoneSensorsInput phoneSensorsInput;
     private DroneSensorData droneSensorInput;
@@ -124,8 +124,7 @@ public class DroneService extends BaseService {
 
     public void onEventMainThread(DroneSensorData droneSensorData) {
         this.droneSensorInput = droneSensorData;
-        EventBus.getDefault().post(new DelayData((int) (System.currentTimeMillis() - lastDroneAnswerReceived)));
-        lastDroneAnswerReceived = System.currentTimeMillis();
+        EventBus.getDefault().post(new DelayData((int) (System.currentTimeMillis() - lastTelemetryRequestSent)));
 
         updateRcWithInputData();
         EventBus.getDefault().post(phoneOutputData);
@@ -156,7 +155,7 @@ public class DroneService extends BaseService {
                         protocol.Connect(selectedDrone.address, BAUD_RATE, 0);
                     }
                 } else {
-                    if (lastDroneAnswerReceived < System.currentTimeMillis() - COMMAND_TIMEOUT) {
+                    if (lastTelemetryRequestSent < System.currentTimeMillis() - COMMAND_TIMEOUT) {
                         protocol.SendRequestMSP_ATTITUDE(); //Requesting the attitude, in order to make the connection fail
                     }
                 }
@@ -170,6 +169,7 @@ public class DroneService extends BaseService {
             Log.d("RUNNABLE", "telemetryRunnable.run()");
             if (running) {
                 if (communication.Connected) {
+                    lastTelemetryRequestSent = System.currentTimeMillis();
                     protocol.SendRequestMSP_ATTITUDE();
                 }
                 telemetryTask.postDelayed(telemetryRunnable, TELEMETRY_INTERVAL);

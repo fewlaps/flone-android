@@ -123,11 +123,25 @@
             android:layout_marginTop="@dimen/gapMedium"
             android:max="100" />
 
-        <TextView
-            android:id="@+id/tv_delay"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center" />
+            android:layout_marginLeft="@dimen/gapLarge"
+            android:layout_marginRight="@dimen/gapLarge">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="@string/fly_delay" />
+
+            <TextView
+                android:id="@+id/tv_delay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                tools:text="42 ms" />
+        </RelativeLayout>
     </LinearLayout>
 
     <RelativeLayout
