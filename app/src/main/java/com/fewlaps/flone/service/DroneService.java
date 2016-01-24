@@ -52,6 +52,8 @@ public class DroneService extends BaseService {
 
     private static final int DELAY_RECONNECT = 2000; //The time the reconnect task will wait between launches
     private static final int COMMAND_TIMEOUT = 1000; //The time we consider that was "too time ago for being connected"
+    private static final int TELEMETRY_INTERVAL = 50;
+    private static final int SEND_RAW_DATA_INTERVAL = 10;
 
     public Communication communication;
     public MultirotorData protocol;
@@ -59,6 +61,8 @@ public class DroneService extends BaseService {
     public boolean running = false;
 
     private Handler connectTask = new Handler();
+    private Handler telemetryTask = new Handler();
+    private Handler sendRawDataTask = new Handler();
 
     private long lastDroneAnswerReceived = 0;
 
@@ -72,6 +76,10 @@ public class DroneService extends BaseService {
     private DesiredYawCalculator yawCalculator = new DesiredYawCalculator();
     private DesiredPitchRollCalculator pitchRollCalculator = new DesiredPitchRollCalculator(DefaultValues.DEFAULT_PITCH_ROLL_LIMIT);
     private double headingDifference = 0.0;
+
+    private int yaw;
+    private int pitch;
+    private int roll;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -92,11 +100,11 @@ public class DroneService extends BaseService {
     }
 
     public void onEventMainThread(String action) {
-        Log.d("SERVICE", "Action received: " + action);
-
         if (action.equals(ACTION_CONNECT)) {
             running = true;
             reconnectRunnable.run();
+            telemetryRunnable.run();
+            sendRawDataRunnable.run();
         } else if (action.equals(ACTION_DISCONNECT)) {
             phoneSensorsInput.unregisterListeners();
             communication.close();
@@ -117,14 +125,11 @@ public class DroneService extends BaseService {
     public void onEventMainThread(DroneSensorData droneSensorData) {
         this.droneSensorInput = droneSensorData;
         EventBus.getDefault().post(new DelayData((int) (System.currentTimeMillis() - lastDroneAnswerReceived)));
-        protocol.SendRequestMSP_ATTITUDE();
         lastDroneAnswerReceived = System.currentTimeMillis();
 
         updateRcWithInputData();
         EventBus.getDefault().post(phoneOutputData);
 
-//        Log.d("DATASENT", rc.toString());
-        protocol.sendRequestMSP_SET_RAW_RC(rc.get());
         valuesSent.update(rc);
     }
 
@@ -137,8 +142,13 @@ public class DroneService extends BaseService {
         usingRawData = request.isUsingRawData();
     }
 
+    public void onEventMainThread(CalibrationDataChangedEvent event) {
+        updateCalibrationData();
+    }
+
     private final Runnable reconnectRunnable = new Runnable() {
         public void run() {
+            Log.d("RUNNABLE", "reconnectRunnable.run()");
             if (running) {
                 if (!communication.Connected) {
                     Drone selectedDrone = KnownDronesDatabase.getSelectedDrone(DroneService.this);
@@ -151,6 +161,31 @@ public class DroneService extends BaseService {
                     }
                 }
                 connectTask.postDelayed(reconnectRunnable, DELAY_RECONNECT);
+            }
+        }
+    };
+
+    private final Runnable telemetryRunnable = new Runnable() {
+        public void run() {
+            Log.d("RUNNABLE", "telemetryRunnable.run()");
+            if (running) {
+                if (communication.Connected) {
+                    protocol.SendRequestMSP_ATTITUDE();
+                }
+                telemetryTask.postDelayed(telemetryRunnable, TELEMETRY_INTERVAL);
+            }
+        }
+    };
+
+    private final Runnable sendRawDataRunnable = new Runnable() {
+        public void run() {
+            Log.d("RUNNABLE", "sendRawDataRunnable.run()");
+            if (running) {
+                if (communication.Connected) {
+                    updateRcWithInputData();
+                    protocol.sendRequestMSP_SET_RAW_RC(rc.get());
+                }
+                sendRawDataTask.postDelayed(sendRawDataRunnable, SEND_RAW_DATA_INTERVAL);
             }
         }
     };
@@ -170,10 +205,6 @@ public class DroneService extends BaseService {
             rc.set(RCSignals.AUX3, (int) RawDataInput.instance.getAux3());
             rc.set(RCSignals.AUX4, (int) RawDataInput.instance.getAux4());
         } else {
-            int yaw;
-            int pitch;
-            int roll;
-
             if (armed) {
                 rc.set(RCSignals.AUX1, RCSignals.RC_MAX);
                 rc.setThrottle((int) phoneSensorsInput.getThrottle());
@@ -196,10 +227,6 @@ public class DroneService extends BaseService {
 
             phoneOutputData.update(yaw, pitch, roll);
         }
-    }
-
-    public void onEventMainThread(CalibrationDataChangedEvent event) {
-        updateCalibrationData();
     }
 
     private void updateCalibrationData() {
