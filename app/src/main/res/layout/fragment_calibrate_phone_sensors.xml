@@ -33,7 +33,7 @@
 
         <Button
             android:layout_alignParentBottom="true"
-            android:id="@+id/bt_start_calibration"
+            android:id="@+id/bt_start_accelerometer_calibration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/calibrate_phone_sensors_start_button"

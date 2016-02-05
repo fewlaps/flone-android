@@ -12,6 +12,8 @@ import com.fewlaps.flone.data.KnownDronesDatabase;
 import com.fewlaps.flone.data.bean.Drone;
 import com.fewlaps.flone.io.bean.ActualArmedData;
 import com.fewlaps.flone.io.bean.ArmedDataChangeRequest;
+import com.fewlaps.flone.io.bean.CalibrateDroneAccelerometerRequest;
+import com.fewlaps.flone.io.bean.CalibrateDroneMagnetometerRequest;
 import com.fewlaps.flone.io.bean.CalibrationDataChangedEvent;
 import com.fewlaps.flone.io.bean.DelayData;
 import com.fewlaps.flone.io.bean.DroneConnectionStatusChanged;
@@ -143,6 +145,14 @@ public class DroneService extends BaseService {
 
     public void onEventMainThread(CalibrationDataChangedEvent event) {
         updateCalibrationData();
+    }
+
+    public void onEventMainThread(CalibrateDroneAccelerometerRequest event) {
+        protocol.SendRequestMSP_ACC_CALIBRATION();
+    }
+
+    public void onEventMainThread(CalibrateDroneMagnetometerRequest event) {
+        protocol.SendRequestMSP_MAG_CALIBRATION();
     }
 
     private final Runnable reconnectRunnable = new Runnable() {
