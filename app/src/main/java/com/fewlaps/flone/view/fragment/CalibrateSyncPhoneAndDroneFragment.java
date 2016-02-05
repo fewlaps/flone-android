@@ -111,6 +111,11 @@ public class CalibrateSyncPhoneAndDroneFragment extends Fragment {
     }
 
     private double getApplyedDifference() {
-        return phoneHeading - droneHeading - headingDifference;
+        double difference = phoneHeading - droneHeading - headingDifference;
+        if (difference > 180) {
+            return difference - 360;
+        } else {
+            return difference;
+        }
     }
 } 
