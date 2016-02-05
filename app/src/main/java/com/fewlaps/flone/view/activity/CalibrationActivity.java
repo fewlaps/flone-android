@@ -36,7 +36,7 @@ public class CalibrationActivity extends BaseActivity {
     }
 
     public class CalibratePagerAdapter extends FragmentPagerAdapter {
-        private int NUM_ITEMS = 3;
+        private int NUM_ITEMS = 2;
 
         public CalibratePagerAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
@@ -51,11 +51,11 @@ public class CalibrationActivity extends BaseActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return CalibratePhoneSensorsFragment.newInstance();
+                    return CalibrateSyncPhoneAndDroneFragment.newInstance();
                 case 1:
                     return CalibrateDroneSensorsFragment.newInstance();
                 case 2:
-                    return CalibrateSyncPhoneAndDroneFragment.newInstance();
+                    return CalibratePhoneSensorsFragment.newInstance();
                 default:
                     return null;
             }
@@ -65,11 +65,11 @@ public class CalibrationActivity extends BaseActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return CalibrationActivity.this.getString(R.string.calibrate_phone_sensors);
+                    return CalibrationActivity.this.getString(R.string.calibrate_sync_phone_and_drone);
                 case 1:
                     return CalibrationActivity.this.getString(R.string.calibrate_drone_sensors);
                 case 2:
-                    return CalibrationActivity.this.getString(R.string.calibrate_sync_phone_and_drone);
+                    return CalibrationActivity.this.getString(R.string.calibrate_phone_sensors);
                 default:
                     return null;
             }
