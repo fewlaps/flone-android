@@ -39,9 +39,9 @@ public class SendRawDataDialog extends DialogFragment {
         findElement(root, R.id.sb_aux4, R.id.tv_aux4, RCSignals.AUX4);
 
         RawDataInput.instance.setThrottle(RCSignals.RC_MIN);
-        RawDataInput.instance.setRoll(RCSignals.RC_MIN);
-        RawDataInput.instance.setPitch(RCSignals.RC_MIN);
-        RawDataInput.instance.setHeading(RCSignals.RC_MIN);
+        RawDataInput.instance.setRoll(RCSignals.RC_MID);
+        RawDataInput.instance.setPitch(RCSignals.RC_MID);
+        RawDataInput.instance.setHeading(RCSignals.RC_MID);
         RawDataInput.instance.setAux1(RCSignals.RC_MIN);
         RawDataInput.instance.setAux2(RCSignals.RC_MIN);
         RawDataInput.instance.setAux3(RCSignals.RC_MIN);
