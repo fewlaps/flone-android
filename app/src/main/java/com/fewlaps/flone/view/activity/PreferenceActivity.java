@@ -9,36 +9,30 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 
 import com.fewlaps.flone.R;
-import com.fewlaps.flone.view.fragment.CalibrateDroneSensorsFragment;
-import com.fewlaps.flone.view.fragment.CalibratePhoneSensorsFragment;
-import com.fewlaps.flone.view.fragment.CalibrateSyncPhoneAndDroneFragment;
+import com.fewlaps.flone.view.fragment.PreferenceCapPitchRollFragment;
 
-/**
- * @author Roc Boronat (roc@fewlaps.com)
- * @date 20150523
- */
-public class CalibrationActivity extends BaseActivity {
+public class PreferenceActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calibration);
+        setContentView(R.layout.activity_preferences);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         ViewPager pager = (ViewPager) findViewById(R.id.vp_root);
-        CalibratePagerAdapter adapter = new CalibratePagerAdapter(getSupportFragmentManager());
+        PreferencePagerAdapter adapter = new PreferencePagerAdapter(getSupportFragmentManager());
         pager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(pager);
     }
 
-    public class CalibratePagerAdapter extends FragmentPagerAdapter {
-        private int NUM_ITEMS = 2;
+    public class PreferencePagerAdapter extends FragmentPagerAdapter {
+        private int NUM_ITEMS = 1;
 
-        public CalibratePagerAdapter(FragmentManager fragmentManager) {
+        public PreferencePagerAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
         }
 
@@ -51,11 +45,7 @@ public class CalibrationActivity extends BaseActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return CalibrateSyncPhoneAndDroneFragment.newInstance();
-                case 1:
-                    return CalibrateDroneSensorsFragment.newInstance();
-                case 2:
-                    return CalibratePhoneSensorsFragment.newInstance();
+                    return PreferenceCapPitchRollFragment.newInstance();
                 default:
                     return null;
             }
@@ -65,11 +55,7 @@ public class CalibrationActivity extends BaseActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return CalibrationActivity.this.getString(R.string.calibrate_sync_phone_and_drone);
-                case 1:
-                    return CalibrationActivity.this.getString(R.string.calibrate_drone_sensors);
-                case 2:
-                    return CalibrationActivity.this.getString(R.string.calibrate_phone_sensors);
+                    return PreferenceActivity.this.getString(R.string.preference_cap_pitch_and_roll);
                 default:
                     return null;
             }

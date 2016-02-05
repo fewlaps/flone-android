@@ -890,10 +890,10 @@
             <text>Aux%202</text>
           </controlProperties>
         </control>
-        <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="108" y="10" w="55" h="-1" measuredW="10" measuredH="21" zOrder="2" locked="false" isInGroup="173">
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="108" y="10" w="55" h="-1" measuredW="29" measuredH="21" zOrder="2" locked="false" isInGroup="173">
           <controlProperties>
             <align>right</align>
-            <text>0</text>
+            <text>1000</text>
           </controlProperties>
         </control>
       </groupChildrenDescriptors>
@@ -910,10 +910,10 @@
             <text>Aux%203</text>
           </controlProperties>
         </control>
-        <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="108" y="10" w="55" h="-1" measuredW="10" measuredH="21" zOrder="2" locked="false" isInGroup="174">
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="108" y="10" w="55" h="-1" measuredW="29" measuredH="21" zOrder="2" locked="false" isInGroup="174">
           <controlProperties>
             <align>right</align>
-            <text>0</text>
+            <text>1000</text>
           </controlProperties>
         </control>
       </groupChildrenDescriptors>
@@ -930,13 +930,18 @@
             <text>Aux%204</text>
           </controlProperties>
         </control>
-        <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="108" y="10" w="55" h="-1" measuredW="10" measuredH="21" zOrder="2" locked="false" isInGroup="175">
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="108" y="10" w="55" h="-1" measuredW="29" measuredH="21" zOrder="2" locked="false" isInGroup="175">
           <controlProperties>
             <align>right</align>
-            <text>0</text>
+            <text>1000</text>
           </controlProperties>
         </control>
       </groupChildrenDescriptors>
+    </control>
+    <control controlID="176" controlTypeID="com.balsamiq.mockups::Paragraph" x="600" y="291" w="208" h="44" measuredW="275" measuredH="80" zOrder="114" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>FEWLAPS_BT%0ACA%3AFE%3A04%3A02%3A00%3A00</text>
+      </controlProperties>
     </control>
   </controls>
 </mockup>

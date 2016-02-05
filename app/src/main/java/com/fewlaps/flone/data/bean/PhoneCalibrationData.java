@@ -1,20 +1,18 @@
 package com.fewlaps.flone.data.bean;
 
-/**
- * @author Roc Boronat (roc@fewlaps.com)
- * @date 26/05/2015
- */
+import com.fewlaps.flone.data.DefaultValues;
+
 public class PhoneCalibrationData {
-    public Double minPitch;
-    public Double maxPitch;
-    public Double minRoll;
-    public Double maxRoll;
+
+    private Double minPitch = DefaultValues.DEFAULT_PHONE_PITCH_ROLL * -1;
+    private Double maxPitch = DefaultValues.DEFAULT_PHONE_PITCH_ROLL;
+    private Double minRoll = DefaultValues.DEFAULT_PHONE_PITCH_ROLL * -1;
+    private Double maxRoll = DefaultValues.DEFAULT_PHONE_PITCH_ROLL;
+
+    private int limit = DefaultValues.DEFAULT_PITCH_ROLL_LIMIT;
 
     public PhoneCalibrationData() {
-        minPitch = -50d;
-        maxPitch = 50d;
-        minRoll = -50d;
-        maxRoll = 50d;
+
     }
 
     public double getAverageMaxPitch() {
@@ -23,5 +21,13 @@ public class PhoneCalibrationData {
 
     public double getAverageMaxRoll() {
         return ((minRoll * -1) + maxRoll) / 2;
+    }
+
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
     }
 }

@@ -5,16 +5,12 @@ import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
 
-/**
- * @author Roc Boronat (roc@fewlaps.com)
- * @date 05/07/2015
- */
-public class DesiredYawTest {
+public class DesiredYawCalculatorTest {
 
     DesiredYawCalculator desiredYaw;
 
     @Before
-    public void init(){
+    public void init() {
         desiredYaw = new DesiredYawCalculator();
     }
 
@@ -27,7 +23,7 @@ public class DesiredYawTest {
     }
 
     @Test
-     public void shouldReturn20ForDroneAt0AndPhoneAt20() {
+    public void shouldReturn20ForDroneAt0AndPhoneAt20() {
         double yaw = desiredYaw.getYaw(0, 20);
 
         assertEquals(20d, yaw);

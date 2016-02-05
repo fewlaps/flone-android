@@ -45,15 +45,19 @@ public class ScreenThrottleData {
         this.throttle = RCSignals.RC_MIN + chosenThrottle;
     }
 
-    public void setThrottleAtMid() {
-        this.throttle = RCSignals.RC_MID;
-    }
-
     public float getThrottleScreenPosition() {
         return screenHeight - ((throttle - RCSignals.RC_MIN) * screenHeight / RCSignals.RC_GAP);
     }
 
     public int getThrottlePorcentage() {
         return (throttle - RCSignals.RC_MIN) * 100 / RCSignals.RC_GAP;
+    }
+
+    public void setThrottleAtMid() {
+        this.throttle = RCSignals.RC_MID;
+    }
+
+    public void setThrottleAtZero() {
+        this.throttle = RCSignals.RC_MIN;
     }
 }

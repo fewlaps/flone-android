@@ -2,6 +2,8 @@ package com.fewlaps.flone.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -15,10 +17,6 @@ import com.fewlaps.flone.view.listener.OnSelectedOkDialogListener;
 
 import java.util.List;
 
-/**
- * @author Roc Boronat (roc@fewlaps.com)
- * @date 19/02/2015
- */
 public class DronesListActivity extends BaseActivity implements OnSelectedOkDialogListener {
 
     private static final int ADD_DRONE_REQUEST = 42;
@@ -68,6 +66,23 @@ public class DronesListActivity extends BaseActivity implements OnSelectedOkDial
         List<Drone> drones = KnownDronesDatabase.getDrones(this);
 
         listView.setAdapter(new DroneAdapter(this, drones));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.drone_list_activity_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_preferences:
+                startActivity(new Intent(this, PreferenceActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override

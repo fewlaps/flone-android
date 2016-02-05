@@ -1,8 +1,12 @@
-<EditText xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/et_nickname"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/gapMedium"
-    android:hint="@string/add_drone_nickname_hint"
-    android:padding="@dimen/gapMedium"
-    android:singleLine="true" />
+    android:padding="@dimen/gapMedium">
+
+    <EditText
+        android:id="@+id/et_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/add_drone_nickname_hint"
+        android:singleLine="true" />
+</FrameLayout>

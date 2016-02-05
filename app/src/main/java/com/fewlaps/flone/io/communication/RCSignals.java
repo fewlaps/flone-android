@@ -37,8 +37,8 @@ public class RCSignals {
 
     public static byte ROLL = 0;
     public static byte PITCH = 1;
-    public static byte YAW = 2;
-    public static byte THROTTLE = 3;
+    public static byte YAW = 3;
+    public static byte THROTTLE = 2;
     public static byte AUX1 = 4;
     public static byte AUX2 = 5;
     public static byte AUX3 = 6;

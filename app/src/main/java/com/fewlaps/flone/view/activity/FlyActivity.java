@@ -14,9 +14,14 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.fewlaps.flone.R;
+import com.fewlaps.flone.data.CalibrationDatabase;
+import com.fewlaps.flone.data.KnownDronesDatabase;
+import com.fewlaps.flone.data.bean.Drone;
+import com.fewlaps.flone.data.bean.DroneCalibrationData;
 import com.fewlaps.flone.data.bean.PhoneSensorsData;
 import com.fewlaps.flone.io.bean.ActualArmedData;
 import com.fewlaps.flone.io.bean.ArmedDataChangeRequest;
+import com.fewlaps.flone.io.bean.DelayData;
 import com.fewlaps.flone.io.bean.DroneSensorData;
 import com.fewlaps.flone.io.communication.RCSignals;
 import com.fewlaps.flone.io.input.phone.PhoneOutputData;
@@ -34,9 +39,6 @@ import de.greenrobot.event.EventBus;
  * <p/>
  * Also, it is the responsable of saying: "are you sure you want to disconnect of the Drone?"
  * when the user taps the back button.
- *
- * @author Roc Boronat (roc@fewlaps.com)
- * @date 20150215
  */
 public class FlyActivity extends BaseActivity {
 
@@ -56,6 +58,9 @@ public class FlyActivity extends BaseActivity {
     private SeekBar dataSentYaw;
     private SeekBar dataSentPitch;
     private SeekBar dataSentRoll;
+
+    private SeekBar delaySeekBar;
+    private TextView delayTV;
 
     private boolean armed = DroneService.ARMED_DEFAULT;
 
@@ -81,6 +86,9 @@ public class FlyActivity extends BaseActivity {
         dataSentPitch = (SeekBar) findViewById(R.id.sb_data_sent_pitch);
         dataSentRoll = (SeekBar) findViewById(R.id.sb_data_sent_roll);
 
+        delaySeekBar = (SeekBar) findViewById(R.id.sb_delay);
+        delayTV = (TextView) findViewById(R.id.tv_delay);
+
         throttleBackgroundV.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -88,7 +96,13 @@ public class FlyActivity extends BaseActivity {
                 if (action == MotionEvent.ACTION_MOVE || action == MotionEvent.ACTION_DOWN) {
                     ScreenThrottleData.instance.setThrottle((int) event.getY());
                 } else if (action == MotionEvent.ACTION_UP) {
-                    ScreenThrottleData.instance.setThrottleAtMid();
+                    if (ScreenThrottleData.instance.getThrottlePorcentage() < 90) {
+                        if (ScreenThrottleData.instance.getThrottlePorcentage() < 10) {
+                            ScreenThrottleData.instance.setThrottleAtZero();
+                        } else {
+                            ScreenThrottleData.instance.setThrottleAtMid();
+                        }
+                    }
                 }
 
                 updateThrottleLabel();
@@ -149,6 +163,7 @@ public class FlyActivity extends BaseActivity {
                 startActivity(new Intent(this, CalibrationActivity.class));
                 return true;
             case R.id.action_preferences:
+                startActivity(new Intent(this, PreferenceActivity.class));
                 return true;
             case R.id.action_send_raw_data:
                 SendRawDataDialog.showDialog(this);
@@ -162,7 +177,10 @@ public class FlyActivity extends BaseActivity {
     }
 
     public void onEventMainThread(DroneSensorData data) {
-        droneHeading.setProgress((int) data.getHeading() + 180);
+        Drone drone = KnownDronesDatabase.getSelectedDrone(this);
+        DroneCalibrationData dcd = CalibrationDatabase.getDroneCalibrationData(this, drone.nickName);
+
+        droneHeading.setProgress(((int) data.getHeading() + 180 + 360 + (int) dcd.getHeadingDifference()) % 360);
         dronePitch.setProgress((int) data.getPitch() + 180);
         droneRoll.setProgress((int) data.getRoll() + 180);
     }
@@ -174,7 +192,7 @@ public class FlyActivity extends BaseActivity {
     }
 
     public void onEventMainThread(PhoneOutputData data) {
-        dataSentYaw.setProgress((int) data.getHeading() + 180);
+        dataSentYaw.setProgress((int) data.getHeading() - 1000);
         dataSentPitch.setProgress((int) data.getPitch() - 1000);
         dataSentRoll.setProgress((int) data.getRoll() - 1000);
     }
@@ -182,6 +200,11 @@ public class FlyActivity extends BaseActivity {
     public void onEventMainThread(ActualArmedData armed) {
         this.armed = armed.isArmed();
         updateArmedLayer();
+    }
+
+    public void onEventMainThread(DelayData delay) {
+        delaySeekBar.setProgress(delay.delay);
+        delayTV.setText(delay.delay + " ms");
     }
 
     private void updateThrottleLabel() {

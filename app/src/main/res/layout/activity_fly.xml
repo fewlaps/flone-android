@@ -5,10 +5,11 @@
     tools:context=".FlyActivity">
 
     <LinearLayout
+        android:id="@+id/l_sensors_seekers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/gapLarge"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/gapLarge"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -89,7 +90,8 @@
                 android:id="@+id/sb_data_sent_yaw"
                 style="@style/SeekBarData"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:max="1000" />
 
             <SeekBar
                 android:id="@+id/sb_data_sent_pitch"
@@ -105,6 +107,41 @@
                 android:layout_height="wrap_content"
                 android:max="1000" />
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/l_sensors_seekers"
+        android:orientation="vertical">
+
+        <SeekBar
+            android:id="@+id/sb_delay"
+            style="@style/SeekBarData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/gapMedium"
+            android:max="100" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/gapLarge"
+            android:layout_marginRight="@dimen/gapLarge">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="@string/fly_delay" />
+
+            <TextView
+                android:id="@+id/tv_delay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                tools:text="42 ms" />
+        </RelativeLayout>
     </LinearLayout>
 
     <RelativeLayout
@@ -174,5 +211,11 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <include layout="@layout/disarmed" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/throttle_area"
+        android:layout_alignParentBottom="true">
+
+        <include layout="@layout/disarmed" />
+    </FrameLayout>
 </RelativeLayout>

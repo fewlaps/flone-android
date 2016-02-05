@@ -2,8 +2,8 @@ package com.fewlaps.flone.io.communication.protocol;
 
 import android.util.Log;
 
-import com.fewlaps.flone.io.communication.Communication;
 import com.fewlaps.flone.io.bean.DroneSensorData;
+import com.fewlaps.flone.io.communication.Communication;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -229,7 +229,7 @@ public class MultiWii230 extends MultirotorData {
                 setIs_ATTITUDE_received(true);
                 attitudeReceivedTime = System.currentTimeMillis();
 //                Log.d("aaa", "MSP_ATTITUDE: angx = " + angx + ",angy = " + angy + ",head = " + head);
-                sensorInformation.update(head, angy, angx);
+                sensorInformation.update(head - 180, angy, angx); //180 to work with Cleanfight
                 EventBus.getDefault().post(sensorInformation);
                 break;
             case MSP_ALTITUDE:

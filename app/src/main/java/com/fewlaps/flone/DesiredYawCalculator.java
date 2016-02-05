@@ -3,9 +3,6 @@ package com.fewlaps.flone;
 /**
  * A tool to get the yaw the user wants to send to the drone. The idea is that
  * droneHeading and desiresHeading are values from -180 to 180.
- *
- * @author Roc Boronat (roc@fewlaps.com)
- * @date 05/07/2015
  */
 public class DesiredYawCalculator {
     public double getYaw(double droneHeading, double phoneHeading) {

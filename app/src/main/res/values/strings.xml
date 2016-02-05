@@ -22,7 +22,7 @@
     <string name="add_drone_launch_bt_screen">Pair the drone with the phone</string>
     <string name="add_drone_zero1">There isn\'t any paired bluetooth device</string>
     <string name="add_drone_zero2">Did you tried to switch on the drone?</string>
-    <string name="add_drone_nickname_hint">Write a friendly name for this drone...</string>
+    <string name="add_drone_nickname_hint">Drone\'s nickname</string>
 
     <!-- Remove a drone -->
     <string name="remove_drone_confirmation">Are you sure you want to remove the drone %1$s?</string>
@@ -65,20 +65,46 @@
 
     <!-- Calibrate drone -->
     <string name="calibrate_drone_sensors">Drone sensors</string>
-    <string name="calibrate_drone_sensors_description">In order to have a great flying experience, calibrate your drone sensors. Usually they\'re actually well calibrated. To check its calibration, place the drone in a neutral zone, like a flat stable table, and check for a 0 pitch and 0 roll values. If they don\'t show a double 0, tap the button and wait for 20 seconds without doing absolutely nothing.</string>
-    <string name="calibrate_drone_sensors_start_button">Start calibration</string>
+    <string name="calibrate_drone_sensors_accelerometer_description">In order to have a great flying experience, calibrate the drone\'s accelerometer. Usually they\'re actually well calibrated. To check its calibration, place the drone in a neutral zone, like a flat stable table, and check the pitch roll values. If they are not at the center, tap the button and wait 10 seconds without doing absolutely nothing.</string>
+    <string name="calibrate_drone_sensors_start_accelerometer_button">Start accelerometer calibration</string>
+    <string name="calibrate_drone_sensors_magnetometer_description">In order to have a great flying experience, calibrate the drone\'s magnetometer. To check its calibration, check that the compass works and sends values from the start to the end of the bar. If it doesn\'t arrive to the limits, tap the button and roll the drone in all its axis during 30 seconds.</string>
+    <string name="calibrate_drone_sensors_start_magnetometer_button">Start magnetometer calibration</string>
 
     <!-- Sync phone and drone -->
-    <string name="calibrate_sync_phone_and_drone">Sync</string>
+    <string name="calibrate_sync_phone_and_drone">Sync heading</string>
     <string name="calibrate_sync_phone_and_drone_description">The easier way to make drone fly is to have it sync\'d with your phone. So, put your drone in a flat stable table, and get your phone with your hand, heading to the same orientation. Then, tap the button. The phone and the drone will be instantly sync\'d.</string>
     <string name="calibrate_sync_phone_and_drone_button">Synchronize sensors</string>
+
+    <!-- Preferences -->
+    <string name="preference_common_load_default">Load default value</string>
+
+    <!-- Cap pitch and roll -->
+    <string name="preference_cap_pitch_and_roll">Cap pitch and roll</string>
+    <string name="preference_cap_pitch_and_roll_description">Controlling your drone is not an easy task. If you\'re a beginner, cap pitch and roll limit values. The drone will have a more stable flight.</string>
+    <string name="preference_cap_pitch_and_roll_beginner">Beginner</string>
+    <string name="preference_cap_pitch_and_roll_expert">Expert</string>
+    <string name="preference_cap_pitch_and_roll_cap_value">Cap value:</string>
+    <string name="preference_cap_pitch_and_roll_pitch_min">Min pitch:</string>
+    <string name="preference_cap_pitch_and_roll_pitch_max">Max pitch:</string>
+    <string name="preference_cap_pitch_and_roll_roll_min">Min roll:</string>
+    <string name="preference_cap_pitch_and_roll_roll_max">Max roll:</string>
 
     <!-- Fly screen data-->
     <string name="fly_phone">Phone</string>
     <string name="fly_drone">Drone</string>
     <string name="fly_data_sent">Data sent</string>
+    <string name="fly_delay">Delay:</string>
 
     <!-- Disarmed layer -->
     <string name="disarmed">Disarmed</string>
     <string name="disarmed_instructions">To arm the drone, tap the \'volume up\' button of the phone. To disarm it again, tap the \'volume down\'.</string>
+
+    <!-- Calibration screen -->
+    <string name="calibration_phone">Phone:</string>
+    <string name="calibration_drone">Drone:</string>
+    <string name="calibration_difference">Difference:</string>
+    <string name="calibration_difference_syncd">Sync\'d difference:</string>
+    <string name="calibration_difference_applyed">Apply\'d difference:</string>
+    <string name="calibration_accelerometer_wait_ten_seconds">Wait 10 seconds until the calibration process ends</string>
+    <string name="calibration_magnetometer_move_all_axis">Move the drone in all its axis during 30 seconds</string>
 </resources>
