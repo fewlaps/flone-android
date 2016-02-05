@@ -22,7 +22,7 @@
     <string name="add_drone_launch_bt_screen">Pair the drone with the phone</string>
     <string name="add_drone_zero1">There isn\'t any paired bluetooth device</string>
     <string name="add_drone_zero2">Did you tried to switch on the drone?</string>
-    <string name="add_drone_nickname_hint">Write a friendly name for this drone...</string>
+    <string name="add_drone_nickname_hint">Drone\'s nickname</string>
 
     <!-- Remove a drone -->
     <string name="remove_drone_confirmation">Are you sure you want to remove the drone %1$s?</string>

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.EditText;
 
 import com.fewlaps.flone.R;
@@ -23,20 +24,19 @@ public class ChooseDeviceNickNameDialog extends DialogFragment {
         new ChooseDeviceNickNameDialog().show(a.getSupportFragmentManager(), "ChooseDeviceNickNameDialog");
     }
 
-    EditText etNickName = null;
-    OnDeviceNickNameSetListener listener = null;
+    private OnDeviceNickNameSetListener listener = null;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        etNickName = (EditText) inflater.inflate(R.layout.dialog_choose_nick, null);
-
-        builder.setView(etNickName).setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener() {
+        final View root = inflater.inflate(R.layout.dialog_choose_nick, null);
+        builder.setView(root).setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
-                listener.onDeviceNickNameSetListener(etNickName.getText().toString());
+                EditText nickNameET = (EditText) root.findViewById(R.id.et_nickname);
+                listener.onDeviceNickNameSetListener(nickNameET.getText().toString());
             }
         });
         return builder.create();
