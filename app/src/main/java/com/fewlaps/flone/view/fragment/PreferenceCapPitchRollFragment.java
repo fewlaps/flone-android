@@ -61,7 +61,7 @@ public class PreferenceCapPitchRollFragment extends Fragment {
         view.findViewById(R.id.bt_load_default).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                seekBar.setProgress(DefaultValues.DEFAULT_PITCH_ROLL_LIMIT);
+                seekBar.setProgress(DesiredPitchRollCalculator.MAX_LIMIT - DefaultValues.DEFAULT_PITCH_ROLL_LIMIT);
             }
         });
 
