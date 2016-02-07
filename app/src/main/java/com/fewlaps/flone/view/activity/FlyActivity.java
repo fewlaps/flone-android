@@ -23,6 +23,7 @@ import com.fewlaps.flone.io.bean.ActualArmedData;
 import com.fewlaps.flone.io.bean.ArmedDataChangeRequest;
 import com.fewlaps.flone.io.bean.DelayData;
 import com.fewlaps.flone.io.bean.DroneSensorData;
+import com.fewlaps.flone.io.bean.UserTouchModeChangedEvent;
 import com.fewlaps.flone.io.communication.RCSignals;
 import com.fewlaps.flone.io.input.phone.PhoneOutputData;
 import com.fewlaps.flone.io.input.phone.ScreenThrottleData;
@@ -93,7 +94,10 @@ public class FlyActivity extends BaseActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 int action = event.getAction();
-                if (action == MotionEvent.ACTION_MOVE || action == MotionEvent.ACTION_DOWN) {
+                if (action == MotionEvent.ACTION_DOWN) {
+                    ScreenThrottleData.instance.setThrottle((int) event.getY());
+                    EventBus.getDefault().post(new UserTouchModeChangedEvent(true));
+                } else if (action == MotionEvent.ACTION_MOVE) {
                     ScreenThrottleData.instance.setThrottle((int) event.getY());
                 } else if (action == MotionEvent.ACTION_UP) {
                     if (ScreenThrottleData.instance.getThrottlePorcentage() < 90) {
@@ -103,6 +107,7 @@ public class FlyActivity extends BaseActivity {
                             ScreenThrottleData.instance.setThrottleAtMid();
                         }
                     }
+                    EventBus.getDefault().post(new UserTouchModeChangedEvent(false));
                 }
 
                 updateThrottleLabel();

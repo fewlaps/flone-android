@@ -19,6 +19,7 @@ import com.fewlaps.flone.io.bean.DelayData;
 import com.fewlaps.flone.io.bean.DroneConnectionStatusChanged;
 import com.fewlaps.flone.io.bean.DroneSensorData;
 import com.fewlaps.flone.io.bean.MultiWiiValues;
+import com.fewlaps.flone.io.bean.UserTouchModeChangedEvent;
 import com.fewlaps.flone.io.bean.UsingRawDataChangeRequest;
 import com.fewlaps.flone.io.communication.Bluetooth;
 import com.fewlaps.flone.io.communication.Communication;
@@ -61,6 +62,7 @@ public class DroneService extends BaseService {
     public MultirotorData protocol;
 
     public boolean running = false;
+    public boolean isUserTouching = false;
 
     private Handler connectTask = new Handler();
     private Handler telemetryTask = new Handler();
@@ -155,6 +157,10 @@ public class DroneService extends BaseService {
         protocol.SendRequestMSP_MAG_CALIBRATION();
     }
 
+    public void onEventMainThread(UserTouchModeChangedEvent event) {
+        isUserTouching = event.isTouching();
+    }
+
     private final Runnable reconnectRunnable = new Runnable() {
         public void run() {
             Log.d("RUNNABLE", "reconnectRunnable.run()");
@@ -217,6 +223,13 @@ public class DroneService extends BaseService {
         } else {
             if (armed) {
                 rc.set(RCSignals.AUX1, RCSignals.RC_MAX);
+                if (isUserTouching) {
+                    rc.set(RCSignals.AUX2, RCSignals.RC_MIN);
+                } else {
+                    rc.set(RCSignals.AUX2, RCSignals.RC_MAX);
+                }
+                Log.i("AUX2", "" + rc.get(RCSignals.AUX2));
+
                 rc.setThrottle((int) phoneSensorsInput.getThrottle());
 
                 yaw = RCSignals.RC_MID + ((int) yawCalculator.getYaw(droneSensorInput.getHeading() + headingDifference, phoneSensorsInput.getHeading()));
