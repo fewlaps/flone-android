@@ -1,16 +1,18 @@
-![The Flone](http://fewlaps.com/xtra/flone/flone-desert.png)<br/>
+![The Flone](https://github.com/Fewlaps/flone-android/blob/master/art/flone-makers-shadow.png)<br/>
 
 [![Build Status](https://travis-ci.org/Fewlaps/flone-android.svg?branch=master)](https://travis-ci.org/Fewlaps/flone-android)
 
 # flone-android
-A Multiwii drone remote controller, driven with performance in mind.
+A CleanFlight drone remote controller, driven with performance in mind.
 
 ### Current features
 - Autoreconnection: if connection drops, the app will try to connect again to the drone automatically
 - Automagic heading: the drone will mimic your orientation automatically
 - Connects with the drone via Bluetooth
 - The communication is handled in a Service, so the drone wouldn't fall if someone calls you
-- It works with all Multiwii boards, not only the Flone
+- Choose if you are a beginner or an expert pilot, to cap the pitch/roll values
+- Put the drone in BARO/SONAR mode when untapping the phone screen
+- It works with all CleanFlight powered boards, not only the Flone
 
 ### Next releases features
 - Connection via WiFi Direct
@@ -27,9 +29,9 @@ A Multiwii drone remote controller, driven with performance in mind.
 <img src="http://fewlaps.com/xtra/flone/app4.png" width="130">
 <img src="http://fewlaps.com/xtra/flone/app5.png" width="130">
 
-## The project goal
-This is what we want to reach. The main issue is that we update the mockup frequently...!<br/><br/>
-![The goal](https://github.com/aeracoop/FloneRemote/blob/master/balsamiq/Mockup.png)
+## We introduced Flone at Maker Faire Barcelona 2016!
+[![Flone at Maker Faire Barcelona 2016](https://github.com/Fewlaps/flone-android/blob/master/art/flone-youtube.png)](http://www.youtube.com/watch?v=jgnI5yOga6I)
+
 
 ## References
 Like you guess, we didn't this magic alone. We want to thank these great projects:
@@ -44,5 +46,4 @@ Get it at [Google Play!](https://play.google.com/store/apps/details?id=com.fewla
 
 # Want to know more about Flone?
 Don't hesitate to read the official website: http://flone.cc/<br/><br/>
-![The Flone](http://fewlaps.com/xtra/flone/flone-projecting.jpg)<br/>
-![Flone at RNE](http://fewlaps.com/xtra/flone/flone-at-RNE.jpg)
+![Flone at Maker Faire Barcelona 2016](https://github.com/Fewlaps/flone-android/blob/master/art/flone-makers-stand.JPG)
