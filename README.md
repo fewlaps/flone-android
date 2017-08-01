@@ -23,11 +23,9 @@ A CleanFlight drone remote controller, driven with performance in mind.
 - Do you have an idea? [Create an issue!](https://github.com/aeracoop/FloneRemote/issues/new) 
 
 ## The project nowadays
-<img src="http://fewlaps.com/xtra/flone/app1.png" width="130">
-<img src="http://fewlaps.com/xtra/flone/app2.png" width="130">
-<img src="http://fewlaps.com/xtra/flone/app3.png" width="130">
-<img src="http://fewlaps.com/xtra/flone/app4.png" width="130">
-<img src="http://fewlaps.com/xtra/flone/app5.png" width="130">
+<img src="http://fewlaps.com/xtra/flone/app1.png" width="200"> <img src="http://fewlaps.com/xtra/flone/app2.png" width="200">
+<img src="http://fewlaps.com/xtra/flone/app3.png" width="200"> <img src="http://fewlaps.com/xtra/flone/app4.png" width="200">
+<img src="http://fewlaps.com/xtra/flone/app5.png" width="200">
 
 ## We introduced Flone at Maker Faire Barcelona 2016!
 [![Flone at Maker Faire Barcelona 2016](https://github.com/Fewlaps/flone-android/blob/master/art/flone-youtube.png)](http://www.youtube.com/watch?v=jgnI5yOga6I)
