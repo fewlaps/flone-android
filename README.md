@@ -1,12 +1,10 @@
 ![The Flone](https://github.com/Fewlaps/flone-android/blob/master/art/flone-makers-shadow.png)<br/>
 
-[![Build Status](https://travis-ci.org/Fewlaps/flone-android.svg?branch=master)](https://travis-ci.org/Fewlaps/flone-android)
-
 # flone-android
 A CleanFlight drone remote controller, driven with performance in mind.
 
 ### Current features
-- Autoreconnection: if connection drops, the app will try to connect again to the drone automatically
+- Autoreconnection: if connection drops, app will try to connect again to the drone automatically
 - Automagic heading: the drone will mimic your orientation automatically
 - Connects with the drone via Bluetooth
 - The communication is handled in a Service, so the drone wouldn't fall if someone calls you
@@ -32,12 +30,12 @@ A CleanFlight drone remote controller, driven with performance in mind.
 
 
 ## References
-Like you guess, we didn't this magic alone. We want to thank these great projects:
+We didn't do this magic alone. We want to thank these great projects:
 - [@zjusbo's Multiwii-Remote](https://github.com/zjusbo/Multiwii-Remote): to connect the phone with the multiwii board
 - [@greenrobot's EventBus](https://github.com/greenrobot/EventBus): the great way to have a Bus in your loved Android
 - [@google's GSON](https://github.com/google/gson): a standard and simple way to work with JSON
 - [@square's Phrase](https://github.com/square/phrase): a fancy way to format strings
-- [@nenick's AndroidStudioAndRobolectric](https://github.com/nenick/AndroidStudioAndRobolectric): a great and simple example to add Roboelectric feature to your existing Android project
+- [@nenick's AndroidStudioAndRobolectric](https://github.com/nenick/AndroidStudioAndRobolectric): a simple example to use Roboelectric in your unit tests
 
 ## Download
 Get it at [Google Play!](https://play.google.com/store/apps/details?id=com.fewlaps.flone) 
