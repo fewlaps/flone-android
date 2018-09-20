@@ -38,7 +38,7 @@ We didn't do this magic alone. We want to thank these great projects:
 - [@nenick's AndroidStudioAndRobolectric](https://github.com/nenick/AndroidStudioAndRobolectric): a simple example to use Roboelectric in your unit tests
 
 ## Download
-Get it at [Google Play!](https://play.google.com/store/apps/details?id=com.fewlaps.flone) 
+Get it from [Google Play](https://play.google.com/store/apps/details?id=com.fewlaps.flone) or from [this very repo](https://github.com/Fewlaps/flone-android/tree/master/apk).
 
 # Want to know more about Flone?
 Don't hesitate to read the official website: http://flone.cc/<br/><br/>
